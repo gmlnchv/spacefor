@@ -1,13 +1,12 @@
-import { json, LoaderFunctionArgs } from '@remix-run/node'
+import { json } from '@remix-run/node'
 import { useLoaderData } from '@remix-run/react'
 import { MetaFunction } from '@vercel/remix'
 import { getPageByType } from '~/queries/page.ts'
 import { Layout } from '~/layouts/layout.tsx'
+import { PageComponents } from '~/components/page-components.tsx'
 
-export const loader = async ({ params }: LoaderFunctionArgs) => {
-  const { slug = '/' } = params
+export const loader = async () => {
   const page = await getPageByType('homePage')
-
   return json({ page })
 }
 
@@ -30,7 +29,7 @@ export default function Index() {
 
   return (
     <Layout>
-      {JSON.stringify(page)}
+      <PageComponents components={page.components} />
     </Layout>
   )
 }

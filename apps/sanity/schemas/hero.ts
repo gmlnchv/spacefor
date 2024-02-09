@@ -1,9 +1,11 @@
 import { defineField, defineType } from 'sanity'
+import { ComponentIcon } from '@sanity/icons'
 
 export default defineType({
   name: 'hero',
   title: 'Hero',
   type: 'object',
+  icon: ComponentIcon,
   fields: [
     defineField({
       name: 'title',
@@ -11,9 +13,9 @@ export default defineType({
       type: 'string',
     }),
     defineField({
-      name: 'subtitle',
-      title: 'Subtitle',
-      type: 'string',
+      name: 'description',
+      title: 'Description',
+      type: 'text',
     }),
     defineField({
       name: 'image',
@@ -22,6 +24,13 @@ export default defineType({
       options: {
         hotspot: true,
       },
+      fields: [
+        defineField({
+          name: 'alt',
+          title: 'Alt Text',
+          type: 'string',
+        }),
+      ],
     }),
   ],
 })

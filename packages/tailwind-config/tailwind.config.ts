@@ -5,7 +5,10 @@ const config: Omit<Config, 'content'> = {
   theme: {
     container: {
       center: true,
-      padding: '2rem',
+      padding: {
+        DEFAULT: '2rem',
+        xl: 0,
+      },
     },
     extend: {
       colors: {

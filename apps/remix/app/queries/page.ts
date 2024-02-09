@@ -1,28 +1,32 @@
-import { q, sanityImage, type TypeFromSelection } from 'groqd'
+import { q, sanityImage, type TypeFromSelection, type Selection } from 'groqd'
 import { runQuery } from '~/lib/sanity'
 
-const hero = {
-  "_type == 'hero'": {
-    title: q.string(),
-    subtitle: q.string(),
-    image: sanityImage('image', {
-      withAsset: ['base', 'blurHash', 'dimensions'],
-    }),
-  },
+export const heroSelection = {
+  title: q.string(),
+  description: q.string(),
+  image: sanityImage('image', {
+    withAsset: ['base', 'blurHash', 'dimensions'],
+    additionalFields: {
+      alt: q.string(),
+    },
+  }),
+} satisfies Selection
+
+export interface HeroProps extends TypeFromSelection<typeof heroSelection> {
+  _type: 'hero'
+  _key: string
 }
 
 const components = {
-  components: q('coalesce(components, [])')
-    .filter()
-    .grab$(
-      {
-        _type: q.string(),
-        _key: q.string(),
-      },
-      {
-        ...hero,
-      },
-    ),
+  components: q('coalesce(components, [])').filter().grab$(
+    {
+      _type: q.string(),
+      _key: q.string(),
+    },
+    {
+      "_type == 'hero'": heroSelection,
+    },
+  ),
 }
 
 const meta = {
@@ -69,5 +73,3 @@ export async function getPageByType(pageType: string) {
     { pageType },
   )
 }
-
-export type Page = TypeFromSelection<typeof pageSelection>
