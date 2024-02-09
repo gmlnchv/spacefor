@@ -20,9 +20,9 @@ import settings from './schemas/settings'
 
 export default defineConfig({
   name: 'default',
-  title: 'Shiv',
+  title: 'Spacefor',
 
-  projectId: 'rvviv5g5',
+  projectId: 'tt57qu4m',
   dataset: 'production',
 
   schema: {

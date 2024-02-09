@@ -2,7 +2,7 @@ import { createClient } from '@sanity/client'
 import { makeSafeQueryRunner } from 'groqd'
 
 const client = createClient({
-  projectId: 'rvviv5g5',
+  projectId: 'tt57qu4m',
   dataset: 'production',
   apiVersion: '2021-03-25',
   useCdn: true,
