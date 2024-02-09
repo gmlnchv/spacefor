@@ -50,6 +50,7 @@ const config: Omit<Config, 'content'> = {
       },
       fontFamily: {
         sans: 'var(--font-sans)',
+        serif: 'var(--font-serif)',
       },
       keyframes: {
         'accordion-down': {

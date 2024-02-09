@@ -22,6 +22,7 @@ export async function getSettings() {
     q('*')
       .filterByType('settings')
       .grab$({
+        siteTitle: q.string().optional(),
         primaryNav: nullToUndefined(q('primaryNav')
           .deref()
           .grab$({

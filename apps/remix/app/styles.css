@@ -6,12 +6,11 @@
 
 @layer base {
     :root {
-        /*--font-sans: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";*/
+        --font-sans: 'Untitled Sans';
+        --font-serif: 'GT Sectra';
 
-        --font-sans: 'Mona Sans';
-
-        --background: 0 0% 100%;
-        --foreground: 222.2 47.4% 11.2%;
+        --background: 0 0% 0%;
+        --foreground: 0 0% 100%;
 
         --muted: 210 40% 96.1%;
         --muted-foreground: 215.4 16.3% 46.9%;
@@ -50,6 +49,5 @@
 
     body {
         @apply bg-background text-foreground;
-        font-feature-settings: "rlig" 1, "calt" 1;
     }
 }

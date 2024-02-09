@@ -30,7 +30,7 @@ export default function Index() {
 
   return (
     <Layout>
-      <h1>{page.title}</h1>
+      {JSON.stringify(page)}
     </Layout>
   )
 }

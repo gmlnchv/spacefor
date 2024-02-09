@@ -1,8 +1,13 @@
 @font-face {
-    font-family: 'Mona Sans';
+    font-family: 'GT Sectra';
     src:
-        url('/fonts/MonaSans-Regular.woff2') format('woff2 supports variations'),
-        url('/fonts/MonaSans-Regular.woff2') format('woff2-variations');
-    font-weight: 200 900;
-    font-stretch: 75% 125%;
+        url('/fonts/GT-Sectra-Fine-Regular.woff2') format('woff2');
+    font-weight: 100;
+}
+
+@font-face {
+    font-family: 'Untitled Sans';
+    src:
+            url('/fonts/untitled-sans-regular.woff2') format('woff2');
+    font-weight: 400;
 }

@@ -58,6 +58,7 @@ export default function App() {
             settings,
           }}
         />
+        {JSON.stringify(settings)}
         <ScrollRestoration />
         <Scripts />
         <LiveReload />
