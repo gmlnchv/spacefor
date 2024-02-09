@@ -1,0 +1,42 @@
+{
+  "name": "remix",
+  "version": "0.0.0",
+  "private": true,
+  "sideEffects": false,
+  "scripts": {
+    "build": "remix build",
+    "dev": "remix dev --manual",
+    "lint": "biome lint .",
+    "start": "remix-serve ./build/index.cjs",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@remix-run/node": "^2.0.0",
+    "@remix-run/react": "^2.0.0",
+    "@remix-run/serve": "^2.0.0",
+    "@sanity/client": "^6.11.0",
+    "@unpic/placeholder": "^0.1.2",
+    "@unpic/react": "^0.1.5",
+    "@vercel/remix": "^2.0.0",
+    "groqd": "^0.15.10",
+    "install": "^0.13.0",
+    "isbot": "^3.6.8",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "ui": "*",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "1.5.1",
+    "@remix-run/dev": "^2.0.0",
+    "@types/react": "^18.2.20",
+    "@types/react-dom": "^18.2.7",
+    "tailwind-config": "*",
+    "tailwindcss": "^3.4.0",
+    "typescript": "^5.1.6",
+    "typescript-config": "*"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

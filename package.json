@@ -1,0 +1,26 @@
+{
+  "name": "chorizo",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev --parallel",
+    "format": "biome format --write .",
+    "lint": "turbo run lint",
+    "typecheck": "turbo run typecheck"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "1.5.1",
+    "@types/glob": "^8.0.0",
+    "glob": "^10.0.0",
+    "turbo": "^1.4.3",
+    "typescript-config": "*"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "packageManager": "yarn@4.1.0"
+}
