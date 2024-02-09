@@ -4,12 +4,10 @@ import { NavigationItem } from './navigation-item.tsx'
 
 const Header = () => {
   const context = useOutletContext()
-  const { primaryNav } = context.settings
+  const { primaryNav } = context.settings ?? {}
 
   return (
     <header className="container py-4">
-      <h1>Shiv</h1>
-
       {Boolean(primaryNav?.items.length) && (
         <nav>
           {primaryNav.items.map((item: NavigationItemProps) => (
