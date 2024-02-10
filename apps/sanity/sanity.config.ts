@@ -17,6 +17,7 @@ import page from './schemas/page'
 import post from './schemas/post'
 import seo from './schemas/seo'
 import settings from './schemas/settings'
+import space from './schemas/space'
 
 export default defineConfig({
   name: 'default',
@@ -32,6 +33,7 @@ export default defineConfig({
       contact,
       settings,
       // Documents
+      space,
       page,
       post,
       navigation,
