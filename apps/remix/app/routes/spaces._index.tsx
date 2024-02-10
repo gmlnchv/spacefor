@@ -5,10 +5,11 @@ import { Layout, LayoutContent } from '~/layouts/layout.tsx'
 import { getSpacesPage } from '~/queries/spaces.ts'
 import { PortableText } from '@portabletext/react'
 import { Header } from '~/components/header.tsx'
+import { SpaceList } from '~/components/space-list.tsx'
 
 export const loader = async () => {
-  const page = await getSpacesPage()
-  return json({ page })
+  const { page, spaces } = await getSpacesPage()
+  return json({ page, spaces })
 }
 
 export const meta: MetaFunction<typeof loader> = ({ data }) => {
@@ -26,25 +27,35 @@ export const meta: MetaFunction<typeof loader> = ({ data }) => {
 }
 
 export default function Spaces() {
-  const { page } = useLoaderData<typeof loader>()
+  const { page, spaces } = useLoaderData<typeof loader>()
 
-  console.log(page)
+  console.log(spaces)
 
   return (
     <Layout>
       <Header colorScheme="light" />
       <LayoutContent>
-        <div className="bg-cararra-100">
-          <div className="container py-10 md:py-20 lg:py-40">
-            <div className="grid md:grid-cols-2 gap-8 md:gap-16">
+        <div className="bg-cararra-100 py-10 md:py-24 space-y-10 md:space-y-24">
+          <div className="container">
+            <div className="grid lg:grid-cols-2 gap-y-8 items-center">
               {page.header.title && (
-                <h1 className="text-4xl lg:text-8xl">{page.header.title}</h1>
+                <h1 className="text-4xl lg:text-8xl text-balance">
+                  {page.header.title}
+                </h1>
               )}
 
-              <div className="space-y-4">
-                <PortableText value={page.header.description} />
+              <div className=" ">
+                <div className="p-10">
+                  <div className="space-y-4 p-5 relative border border-black text-xl text-balance before:content-['*'] before:block before:size-5 before:bg-black before:absolute before:-top-5 before:-left-5">
+                    <PortableText value={page.header.description} />
+                  </div>
+                </div>
               </div>
             </div>
+          </div>
+
+          <div className="container">
+            <SpaceList spaces={spaces} />
           </div>
         </div>
       </LayoutContent>
