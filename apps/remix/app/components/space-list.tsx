@@ -15,13 +15,11 @@ const SpaceList = ({ spaces }: SpaceListProps) => {
             <div className="space-y-3.5">
               <h2 className="text-[2rem]">{space.title}</h2>
               <p className="text-sm">{`${space.address}, ${space.city}`}</p>
-              <p className="text-xl/tight text-pretty">
-                {space.indexDescription}
-              </p>
+              <p className="text-xl text-pretty">{space.indexDescription}</p>
             </div>
 
             <Link
-              to={`/spaces/${space.slug}`}
+              to={space.slug}
               className="underline text-sm underline-offset-2"
             >
               View

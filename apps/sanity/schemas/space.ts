@@ -19,8 +19,6 @@ export default defineType({
       options: {
         source: 'title',
         maxLength: 96,
-        slugify: (input) =>
-          `/spaces/${input}`.toLowerCase().replace(/\s+/g, '-').slice(0, 200),
       },
     }),
     defineField({
@@ -45,7 +43,20 @@ export default defineType({
       title: 'Description (Detail)',
       description:
         'This is the description that will be shown in the detail page',
-      type: 'text',
+      type: 'array',
+      of: [
+        defineArrayMember({
+          title: 'Block',
+          type: 'block',
+          styles: [], // Remove styles to prevent inline formatting
+          lists: [], // Remove lists to prevent ordered and unordered lists
+          marks: {
+            // Only allow plain text
+            annotations: [],
+            decorators: [],
+          },
+        }),
+      ],
     }),
     defineField({
       name: 'specs',

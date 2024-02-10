@@ -36,3 +36,20 @@ export async function getSpacesPage() {
     }),
   )
 }
+
+export async function getSpacePage(slug: string) {
+  return runQuery(
+    q('*')
+      .filterByType('space')
+      .filter('slug.current == $slug')
+      .grab$({
+        ...meta,
+        detailDescription: q.array(q.contentBlock()),
+        image: sanityImage('mainImage', {
+          withAsset: ['base', 'blurHash', 'dimensions'],
+        }).nullable(),
+      })
+      .slice(0),
+    { slug },
+  )
+}

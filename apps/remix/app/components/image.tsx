@@ -8,8 +8,12 @@ type ImageProps = UnpicImageProps & {
   blurHash?: string | null
 }
 
-export const Image = ({ blurHash, ...props }: ImageProps) => {
+export const Image = ({ className, blurHash, ...props }: ImageProps) => {
   const background = blurHash ? blurhashToCssGradientString(blurHash) : 'auto'
 
-  return <UnpicImage {...props} background={background} />
+  return (
+    <figure className={className}>
+      <UnpicImage {...props} background={background} />
+    </figure>
+  )
 }
