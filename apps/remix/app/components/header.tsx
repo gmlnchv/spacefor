@@ -27,7 +27,7 @@ const Header = ({ colorScheme }: HeaderProps) => {
 
   return (
     <header className={cn(variants({ colorScheme }))}>
-      <div className="flex items-center container justify-between">
+      <div className="flex items-center justify-between px-4 max-w-[1360px] mx-auto">
         <Link to={'/'} aria-label={'Go to the home page'}>
           {/* SiteLogo inherits the color scheme from Header */}
           <SiteLogo colorScheme={colorScheme} className="size-20" />

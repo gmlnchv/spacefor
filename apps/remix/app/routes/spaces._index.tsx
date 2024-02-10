@@ -6,6 +6,7 @@ import { getSpacesPage } from '~/queries/spaces.ts'
 import { PortableText } from '@portabletext/react'
 import { Header } from '~/components/header.tsx'
 import { SpaceList } from '~/components/space-list.tsx'
+import { Container } from '~/components/container.tsx'
 
 export const loader = async () => {
   const { page, spaces } = await getSpacesPage()
@@ -29,34 +30,30 @@ export const meta: MetaFunction<typeof loader> = ({ data }) => {
 export default function Spaces() {
   const { page, spaces } = useLoaderData<typeof loader>()
 
-  console.log(spaces)
-
   return (
     <Layout>
       <Header colorScheme="light" />
       <LayoutContent>
         <div className="bg-cararra-100 py-10 md:py-24 space-y-10 md:space-y-24">
-          <div className="container">
+          <Container>
             <div className="grid lg:grid-cols-2 gap-y-8 items-center">
               {page.header.title && (
-                <h1 className="text-4xl lg:text-8xl text-balance">
+                <h1 className="text-4xl md:text-6xl xl:text-8xl text-balance">
                   {page.header.title}
                 </h1>
               )}
 
-              <div className=" ">
-                <div className="p-10">
-                  <div className="space-y-4 p-5 relative border border-black text-xl text-balance before:content-['*'] before:block before:size-5 before:bg-black before:absolute before:-top-5 before:-left-5">
-                    <PortableText value={page.header.description} />
-                  </div>
+              <div className="p-10">
+                <div className="space-y-4 p-5 relative border border-black text-xl text-balance before:content-['*'] before:block before:size-5 before:bg-black before:absolute before:-top-5 before:-left-5">
+                  <PortableText value={page.header.description} />
                 </div>
               </div>
             </div>
-          </div>
+          </Container>
 
-          <div className="container">
+          <Container>
             <SpaceList spaces={spaces} />
-          </div>
+          </Container>
         </div>
       </LayoutContent>
     </Layout>

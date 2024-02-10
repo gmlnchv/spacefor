@@ -1,15 +1,16 @@
 import { useOutletContext } from '@remix-run/react'
+import { Container } from '~/components/container.tsx'
 
 const Footer = () => {
   const context = useOutletContext()
   return (
     <footer role="contentinfo" className="py-4 bg-black text-white">
-      <div className="container">
+      <Container>
         <p className="text-sm">
           {context.settings?.siteTitle} <span className="opacity-50">©</span>{' '}
           {new Date().getFullYear()}
         </p>
-      </div>
+      </Container>
     </footer>
   )
 }
