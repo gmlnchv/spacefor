@@ -8,6 +8,15 @@ export default defineType({
   icon: DocumentIcon,
   groups: [
     {
+      name: 'content',
+      title: 'Content',
+      default: true,
+    },
+    {
+      name: 'settings',
+      title: 'Settings',
+    },
+    {
       name: 'seo',
       title: 'SEO',
     },
@@ -17,11 +26,13 @@ export default defineType({
       name: 'title',
       title: 'Title',
       type: 'string',
+      group: 'content',
     }),
     defineField({
       name: 'slug',
       title: 'Slug',
       type: 'slug',
+      group: 'settings',
       options: {
         source: 'title',
         maxLength: 96,
@@ -33,6 +44,7 @@ export default defineType({
       name: 'components',
       type: 'array',
       title: 'Components',
+      group: 'content',
       of: [
         defineArrayMember({
           name: 'hero',

@@ -1,6 +1,5 @@
 import { defineType } from 'sanity'
 import pageSchema from './page'
-import { DocumentIcon, HomeIcon } from '@sanity/icons'
 
 export default defineType({
   ...pageSchema,

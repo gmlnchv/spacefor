@@ -18,6 +18,7 @@ import post from './schemas/post'
 import seo from './schemas/seo'
 import settings from './schemas/settings'
 import space from './schemas/space'
+import spaces from './schemas/spaces'
 
 export default defineConfig({
   name: 'default',
@@ -31,6 +32,7 @@ export default defineConfig({
       // Singletons
       home,
       contact,
+      spaces,
       settings,
       // Documents
       space,
@@ -50,9 +52,9 @@ export default defineConfig({
 
   plugins: [
     structureTool({
-      structure: deskStructure([home, contact, settings]),
+      structure: deskStructure([home, contact, spaces, settings]),
     }),
-    singletonPlugin([home.name, contact.name, settings.name]),
+    singletonPlugin([home.name, contact.name, spaces.name, settings.name]),
     visionTool(),
   ],
 })

@@ -1,6 +1,9 @@
 import { q, sanityImage, type TypeFromSelection, type Selection } from 'groqd'
 import { runQuery } from '~/lib/sanity'
 
+import meta from '~/queries/meta.ts'
+import seo from '~/queries/seo.ts'
+
 export const heroSelection = {
   title: q.string(),
   description: q.string(),
@@ -9,7 +12,7 @@ export const heroSelection = {
     additionalFields: {
       alt: q.string(),
     },
-  }),
+  }).nullable(),
 } satisfies Selection
 
 export interface HeroProps extends TypeFromSelection<typeof heroSelection> {
@@ -27,21 +30,6 @@ const components = {
       "_type == 'hero'": heroSelection,
     },
   ),
-}
-
-const meta = {
-  _id: q.string(),
-  title: q.string(),
-  slug: q.slug('slug'),
-}
-
-const seo = {
-  seo: q
-    .object({
-      title: q.string(),
-      description: q.string().optional(),
-    })
-    .optional(),
 }
 
 export async function getPageBySlug(slug: string) {

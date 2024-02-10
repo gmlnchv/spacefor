@@ -1,6 +1,7 @@
 import React from 'react'
-import { Link } from '@remix-run/react'
+import { NavLink } from '@remix-run/react'
 import type { NavigationItemProps } from '~/queries/settings.ts'
+import { cn } from 'ui'
 
 const NavigationItem = React.forwardRef<HTMLAnchorElement, NavigationItemProps>(
   (props, ref) => {
@@ -18,9 +19,17 @@ const NavigationItem = React.forwardRef<HTMLAnchorElement, NavigationItemProps>(
     }
 
     return (
-      <Link to={props.link.href as string} ref={ref}>
+      <NavLink
+        to={props.link.href as string}
+        ref={ref}
+        className={({ isActive }) =>
+          cn('underline underline-offset-[3px] decoration-transparent', {
+            'decoration-current -translate-y-0.5': isActive,
+          })
+        }
+      >
         {props.label}
-      </Link>
+      </NavLink>
     )
   },
 )

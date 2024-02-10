@@ -6,7 +6,7 @@ const config: Pick<Config, 'content' | 'presets' | 'plugins'> = {
     './app/**/*.{js,jsx,ts,tsx}',
     '../../packages/ui/**/*.{js,jsx,ts,tsx}',
   ],
-  plugins: [],
+  plugins: [require('@tailwindcss/typography')],
   presets: [sharedConfig],
 }
 

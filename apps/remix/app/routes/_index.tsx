@@ -2,8 +2,9 @@ import { json } from '@remix-run/node'
 import { useLoaderData } from '@remix-run/react'
 import { MetaFunction } from '@vercel/remix'
 import { getPageByType } from '~/queries/page.ts'
-import { Layout } from '~/layouts/layout.tsx'
+import { Layout, LayoutContent } from '~/layouts/layout.tsx'
 import { PageComponents } from '~/components/page-components.tsx'
+import { Header } from '~/components/header.tsx'
 
 export const loader = async () => {
   const page = await getPageByType('homePage')
@@ -29,7 +30,10 @@ export default function Index() {
 
   return (
     <Layout>
-      <PageComponents components={page.components} />
+      <Header />
+      <LayoutContent className="bg-black text-white">
+        <PageComponents components={page.components} />
+      </LayoutContent>
     </Layout>
   )
 }

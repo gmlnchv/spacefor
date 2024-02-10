@@ -44,6 +44,8 @@ export const loader = async () => {
 export default function App() {
   const { settings } = useLoaderData<typeof loader>()
 
+  console.log(settings)
+
   return (
     <html lang="en">
       <head>
@@ -58,7 +60,6 @@ export default function App() {
             settings,
           }}
         />
-        {JSON.stringify(settings)}
         <ScrollRestoration />
         <Scripts />
         <LiveReload />

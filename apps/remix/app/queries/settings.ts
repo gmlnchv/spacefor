@@ -1,4 +1,9 @@
-import { q, nullToUndefined, type TypeFromSelection, type Selection } from 'groqd'
+import {
+  q,
+  nullToUndefined,
+  type TypeFromSelection,
+  type Selection,
+} from 'groqd'
 import { runQuery } from '~/lib/sanity'
 
 const NavigationItemSelection = {
@@ -23,11 +28,12 @@ export async function getSettings() {
       .filterByType('settings')
       .grab$({
         siteTitle: q.string().optional(),
-        primaryNav: nullToUndefined(q('primaryNav')
+        primaryNav: q('primaryNav')
           .deref()
           .grab$({
             items: q('items').filter().grab(NavigationItemSelection),
-          })),
+          })
+          .nullable(),
       })
       .slice(0),
   )

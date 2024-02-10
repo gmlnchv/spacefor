@@ -45,6 +45,20 @@ const config: Omit<Config, 'content'> = {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))',
         },
+        // These are the colors from the design system
+        cararra: {
+          '50': '#f8f6f4',
+          '100': '#ece9e3',
+          '200': '#dcd7cc',
+          '300': '#c6bcab',
+          '400': '#ae9e89',
+          '500': '#9d8872',
+          '600': '#907866',
+          '700': '#786356',
+          '800': '#635149',
+          '900': '#51443d',
+          '950': '#2b231f',
+        },
       },
       borderRadius: {
         lg: 'var(--radius)',
