@@ -8,22 +8,24 @@ interface SpaceListProps {
 
 const SpaceList = ({ spaces }: SpaceListProps) => {
   return (
-    <div className="flex max-sm:flex-col max-sm:divide-y border border-black md:divide-x divide-black">
+    <div className="flex max-md:flex-col max-md:divide-y border border-black md:divide-x divide-black">
       {spaces.map((space) => (
-        <div key={space._id} className="md:w-1/2 p-5 space-y-10">
-          <header className="flex justify-between">
-            <div className="space-y-3.5">
-              <h2 className="text-[2rem]">{space.title}</h2>
-              <p className="text-sm">{`${space.address}, ${space.city}`}</p>
-              <p className="text-xl text-pretty">{space.indexDescription}</p>
-            </div>
+        <div key={space._id} className="md:w-1/2 p-5 space-y-10 flex flex-col">
+          <header className="flex flex-col flex-1">
+            <div className="flex justify-between">
+              <div className="space-y-3.5">
+                <h2 className="text-[2rem]">{space.title}</h2>
+                <p className="text-sm">{`${space.address}, ${space.city}`}</p>
+                <p className="text-xl text-pretty">{space.indexDescription}</p>
+              </div>
 
-            <Link
-              to={space.slug}
-              className="underline text-sm underline-offset-2"
-            >
-              View
-            </Link>
+              <Link
+                to={space.slug}
+                className="underline text-sm underline-offset-2"
+              >
+                View
+              </Link>
+            </div>
           </header>
 
           {space.image && (
@@ -31,9 +33,9 @@ const SpaceList = ({ spaces }: SpaceListProps) => {
               src={space.image.asset.url}
               layout="constrained"
               height={360}
-              aspectRatio={16 / 9}
+              aspectRatio={1.67}
               blurHash={space.image.asset.metadata.blurHash}
-              className="border border-white"
+              className="border border-white w-full"
               alt={space.title}
             />
           )}
