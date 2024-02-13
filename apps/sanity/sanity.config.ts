@@ -19,6 +19,7 @@ import seo from './schemas/seo'
 import settings from './schemas/settings'
 import space from './schemas/space'
 import spaces from './schemas/spaces'
+import retailer from './schemas/retailer'
 
 export default defineConfig({
   name: 'default',
@@ -39,6 +40,7 @@ export default defineConfig({
       page,
       post,
       navigation,
+      retailer,
       // Objects
       author,
       blockContent,

@@ -14,7 +14,7 @@ interface PageComponentsProps {
 const PageComponents = ({ components }: PageComponentsProps) => {
   return (
     <>
-      {components.map((component) => {
+      {components?.map((component) => {
         const Component = mapComponents[component._type]
         return <Component key={component._key} {...component} />
       })}

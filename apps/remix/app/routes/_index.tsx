@@ -5,10 +5,12 @@ import { getPageByType } from '~/queries/page.ts'
 import { Layout, LayoutContent } from '~/layouts/layout.tsx'
 import { PageComponents } from '~/components/page-components.tsx'
 import { Header } from '~/components/header.tsx'
+import { getHomePage } from '~/queries/home.ts'
+import { RetailerList } from '~/components/retailer-list.tsx'
 
 export const loader = async () => {
-  const page = await getPageByType('homePage')
-  return json({ page })
+  const { page, retailers } = await getHomePage()
+  return json({ page, retailers })
 }
 
 export const meta: MetaFunction<typeof loader> = ({ data }) => {
@@ -26,13 +28,19 @@ export const meta: MetaFunction<typeof loader> = ({ data }) => {
 }
 
 export default function Index() {
-  const { page } = useLoaderData<typeof loader>()
+  const { page, retailers } = useLoaderData<typeof loader>()
+
+  console.log('page', page)
+  console.log('retailers', retailers)
 
   return (
     <Layout>
       <Header />
       <LayoutContent className="bg-black text-white">
         <PageComponents components={page.components} />
+
+        {/* Retailers */}
+        <RetailerList retailers={retailers} />
       </LayoutContent>
     </Layout>
   )
