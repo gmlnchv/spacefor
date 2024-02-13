@@ -1,12 +1,7 @@
-import {
-  q,
-  nullToUndefined,
-  type TypeFromSelection,
-  type Selection,
-} from 'groqd'
-import { runQuery } from '~/lib/sanity'
+import { q, type TypeFromSelection, type Selection } from 'groqd';
+import { runQuery } from '~/lib/sanity';
 
-const NavigationItemSelection = {
+const NavigationItemSelection: Selection = {
   _key: q.string(),
   label: q.string(),
   link: q('link').grab({
@@ -16,11 +11,11 @@ const NavigationItemSelection = {
       'type == "external"': q('external'),
     }),
   }),
-} satisfies Selection
+};
 
 export type NavigationItemProps = TypeFromSelection<
   typeof NavigationItemSelection
->
+>;
 
 export async function getSettings() {
   return runQuery(
@@ -35,6 +30,6 @@ export async function getSettings() {
           })
           .nullable(),
       })
-      .slice(0),
-  )
+      .slice(0)
+  );
 }

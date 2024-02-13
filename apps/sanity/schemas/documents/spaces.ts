@@ -1,6 +1,6 @@
-import { defineArrayMember, defineField, defineType } from 'sanity'
-import pageSchema from './page'
-import { PinIcon } from '@sanity/icons'
+import { defineArrayMember, defineField, defineType } from 'sanity';
+import pageSchema from './page';
+import { PinIcon } from '@sanity/icons';
 
 export default defineType({
   ...pageSchema,
@@ -20,9 +20,9 @@ export default defineType({
           initialValue: {
             current: '/spaces',
           },
-        }
+        };
       }
-      return field
+      return field;
     })
     .concat([
       defineType({
@@ -57,4 +57,4 @@ export default defineType({
         ],
       }),
     ]),
-})
+});

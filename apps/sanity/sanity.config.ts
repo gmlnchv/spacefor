@@ -1,25 +1,26 @@
-import { defineConfig } from 'sanity'
-import { structureTool } from 'sanity/structure'
-import { visionTool } from '@sanity/vision'
-import { deskStructure, singletonPlugin } from './plugins/singleton'
+import { defineConfig } from 'sanity';
+import { structureTool } from 'sanity/structure';
+import { visionTool } from '@sanity/vision';
+import { deskStructure, singletonPlugin } from './plugins/singleton';
 
 // Schemas
-import author from './schemas/author'
-import blockContent from './schemas/blockContent'
-import category from './schemas/category'
-import contact from './schemas/contact'
-import hero from './schemas/hero'
-import home from './schemas/home'
-import link from './schemas/link'
-import navigation from './schemas/navigation'
-import navigationItem from './schemas/navigation-item'
-import page from './schemas/page'
-import post from './schemas/post'
-import seo from './schemas/seo'
-import settings from './schemas/settings'
-import space from './schemas/space'
-import spaces from './schemas/spaces'
-import retailer from './schemas/retailer'
+import author from './schemas/documents/author';
+import blockContent from './schemas/blockContent';
+import category from './schemas/documents/category';
+import contact from './schemas/documents/contact';
+import hero from './schemas/objects/hero';
+import home from './schemas/documents/home';
+import event from './schemas/documents/event';
+import link from './schemas/objects/link';
+import navigation from './schemas/documents/navigation';
+import navigationItem from './schemas/objects/navigation-item';
+import page from './schemas/documents/page';
+import post from './schemas/documents/post';
+import seo from './schemas/objects/seo';
+import settings from './schemas/documents/settings';
+import space from './schemas/documents/space';
+import spaces from './schemas/documents/spaces';
+import retailer from './schemas/documents/retailer';
 
 export default defineConfig({
   name: 'default',
@@ -36,6 +37,7 @@ export default defineConfig({
       spaces,
       settings,
       // Documents
+      event,
       space,
       page,
       post,
@@ -59,4 +61,4 @@ export default defineConfig({
     singletonPlugin([home.name, contact.name, spaces.name, settings.name]),
     visionTool(),
   ],
-})
+});

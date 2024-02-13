@@ -1,5 +1,5 @@
-import { defineField, defineType } from 'sanity'
-import { TagIcon } from '@sanity/icons'
+import { defineField, defineType } from 'sanity';
+import { TagIcon } from '@sanity/icons';
 
 export default defineType({
   name: 'retailer',
@@ -30,4 +30,4 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
   ],
-})
+});

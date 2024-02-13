@@ -9,8 +9,8 @@ import { RetailerList } from '~/components/retailer-list.tsx';
 import Hero from '~/components/hero';
 
 export const loader = async () => {
-  const { page, retailers } = await getHomePage();
-  return json({ page, retailers });
+  const { page, retailers, events } = await getHomePage();
+  return json({ page, retailers, events });
 };
 
 export const meta: MetaFunction<typeof loader> = ({ data }) => {
@@ -28,10 +28,9 @@ export const meta: MetaFunction<typeof loader> = ({ data }) => {
 };
 
 export default function Index() {
-  const { page, retailers } = useLoaderData<typeof loader>();
+  const { page, retailers, events } = useLoaderData<typeof loader>();
 
-  console.log('page', page);
-  console.log('retailers', retailers);
+  console.log('events', events);
 
   return (
     <Layout>

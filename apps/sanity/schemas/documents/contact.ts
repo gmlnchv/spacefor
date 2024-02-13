@@ -1,5 +1,5 @@
-import { defineType } from 'sanity'
-import pageSchema from './page'
+import { defineType } from 'sanity';
+import pageSchema from './page';
 
 export default defineType({
   ...pageSchema,
@@ -15,8 +15,8 @@ export default defineType({
         initialValue: {
           current: '/contact',
         },
-      }
+      };
     }
-    return field
+    return field;
   }),
-})
+});

@@ -35,10 +35,31 @@ export async function getHomePage() {
           title: q.string(),
           logo: sanityImage('logo', {
             withAsset: ['base', 'dimensions'],
-          }).nullable(),
+          }),
           image: sanityImage('image', {
             withAsset: ['base', 'blurHash', 'dimensions'],
-          }).nullable(),
+          }),
+        }),
+      events: q('*')
+        .filterByType('event')
+        .grab$({
+          _id: q.string(),
+          start_date: q.date(),
+          end_date: q.date(),
+          retailer: q('retailer')
+            .deref()
+            .grab$({
+              title: q.string(),
+              logo: sanityImage('logo', {
+                withAsset: ['base', 'dimensions'],
+              }),
+            }),
+          space: q('space')
+            .deref()
+            .grab$({
+              title: q.string(),
+              slug: q.slug('slug'),
+            }),
         }),
     })
   );
