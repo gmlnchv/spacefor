@@ -1,7 +1,8 @@
-import { runQuery } from '~/lib/sanity.ts'
-import { q, type TypeFromSelection, type Selection, sanityImage } from 'groqd'
-import meta from '~/queries/meta.ts'
-import seo from '~/queries/seo.ts'
+import { runQuery } from '~/lib/sanity.ts';
+import { q, type TypeFromSelection, type Selection, sanityImage } from 'groqd';
+import meta from '~/queries/meta.ts';
+import seo from '~/queries/seo.ts';
+import { heroSelection } from './page';
 
 const retailerSelection = {
   _id: q.string(),
@@ -9,9 +10,9 @@ const retailerSelection = {
   logo: sanityImage('logo', {
     withAsset: ['base', 'dimensions'],
   }).nullable(),
-} satisfies Selection
+} satisfies Selection;
 
-export type RetailerProps = TypeFromSelection<typeof retailerSelection>
+export type RetailerProps = TypeFromSelection<typeof retailerSelection>;
 
 export async function getHomePage() {
   return runQuery(
@@ -21,6 +22,10 @@ export async function getHomePage() {
         .grab$({
           ...meta,
           ...seo,
+          hero: q('hero').grab$({
+            _type: q.string(),
+            ...heroSelection,
+          }),
         })
         .slice(0),
       retailers: q('*')
@@ -35,6 +40,6 @@ export async function getHomePage() {
             withAsset: ['base', 'blurHash', 'dimensions'],
           }).nullable(),
         }),
-    }),
-  )
+    })
+  );
 }

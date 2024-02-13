@@ -1,6 +1,6 @@
-import { HeroProps } from '~/queries/page.ts'
-import { Image } from '~/components/image.tsx'
-import { Container } from '~/components/container.tsx'
+import { HeroProps } from '~/queries/page.ts';
+import { Image } from '~/components/image.tsx';
+import { Container } from '~/components/container.tsx';
 
 const Hero = ({ title, description, image }: HeroProps) => {
   return (
@@ -28,7 +28,7 @@ const Hero = ({ title, description, image }: HeroProps) => {
         </div>
       </Container>
     </section>
-  )
-}
+  );
+};
 
-export default Hero
+export default Hero;
