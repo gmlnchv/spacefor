@@ -1,9 +1,9 @@
-import { SpaceProps } from '~/queries/spaces.ts'
-import { Image } from '~/components/image.tsx'
-import { Link } from '@remix-run/react'
+import { SpaceProps } from '~/queries/spaces.ts';
+import { Image } from '~/components/image.tsx';
+import { Link } from '@remix-run/react';
 
 interface SpaceListProps {
-  spaces: SpaceProps[]
+  spaces: SpaceProps[];
 }
 
 const SpaceList = ({ spaces }: SpaceListProps) => {
@@ -42,7 +42,7 @@ const SpaceList = ({ spaces }: SpaceListProps) => {
         </div>
       ))}
     </div>
-  )
-}
+  );
+};
 
-export { SpaceList }
+export { SpaceList };

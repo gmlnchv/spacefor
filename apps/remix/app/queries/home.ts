@@ -4,15 +4,32 @@ import meta from '~/queries/meta.ts';
 import seo from '~/queries/seo.ts';
 import { heroSelection } from './page';
 
-const retailerSelection = {
+const retailerSelection: Selection = {
   _id: q.string(),
   title: q.string(),
   logo: sanityImage('logo', {
     withAsset: ['base', 'dimensions'],
   }).nullable(),
-} satisfies Selection;
+  image: sanityImage('image', {
+    withAsset: ['base', 'blurHash', 'dimensions'],
+  }).nullable(),
+};
+
+const eventSelection: Selection = {
+  _id: q.string(),
+  start_date: q.date(),
+  end_date: q.date(),
+  retailer: q('retailer').deref().grab$(retailerSelection),
+  space: q('space')
+    .deref()
+    .grab$({
+      title: q.string(),
+      slug: q.slug('slug'),
+    }),
+};
 
 export type RetailerProps = TypeFromSelection<typeof retailerSelection>;
+export type EventProps = TypeFromSelection<typeof eventSelection>;
 
 export async function getHomePage() {
   return runQuery(
@@ -28,39 +45,11 @@ export async function getHomePage() {
           }),
         })
         .slice(0),
-      retailers: q('*')
-        .filterByType('retailer')
-        .grab$({
-          _id: q.string(),
-          title: q.string(),
-          logo: sanityImage('logo', {
-            withAsset: ['base', 'dimensions'],
-          }),
-          image: sanityImage('image', {
-            withAsset: ['base', 'blurHash', 'dimensions'],
-          }),
-        }),
+      retailers: q('*').filterByType('retailer').grab$(retailerSelection),
       events: q('*')
         .filterByType('event')
-        .grab$({
-          _id: q.string(),
-          start_date: q.date(),
-          end_date: q.date(),
-          retailer: q('retailer')
-            .deref()
-            .grab$({
-              title: q.string(),
-              logo: sanityImage('logo', {
-                withAsset: ['base', 'dimensions'],
-              }),
-            }),
-          space: q('space')
-            .deref()
-            .grab$({
-              title: q.string(),
-              slug: q.slug('slug'),
-            }),
-        }),
+        .order('start_date desc')
+        .grab$(eventSelection),
     })
   );
 }
