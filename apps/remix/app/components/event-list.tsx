@@ -112,7 +112,7 @@ const EventList = ({ events }: EventListProps) => {
 
         {events.length > limit && (
           <div className="text-center mt-6">
-            <Button variant="link" onClick={() => setLimit(limit + 5)}>
+            <Button variant="link" onClick={() => setLimit(limit + 1)}>
               Show more
             </Button>
           </div>
