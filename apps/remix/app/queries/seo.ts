@@ -1,10 +1,10 @@
-import { q } from 'groqd'
+import { q } from 'groqd';
 
-export default {
+export const seo = {
   seo: q
     .object({
       title: q.string(),
       description: q.string().optional(),
     })
     .optional(),
-}
+};

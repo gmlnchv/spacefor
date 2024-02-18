@@ -1,7 +1,7 @@
 import { runQuery } from '~/lib/sanity.ts';
 import { q, type TypeFromSelection, type Selection, sanityImage } from 'groqd';
-import meta from '~/queries/meta.ts';
-import seo from '~/queries/seo.ts';
+import { meta } from '~/queries/meta.ts';
+import { seo } from '~/queries/seo.ts';
 import { heroSelection } from './page';
 
 const retailerSelection: Selection = {

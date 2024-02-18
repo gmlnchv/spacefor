@@ -1,19 +1,19 @@
-import { q, sanityImage, type Selection, type TypeFromSelection } from 'groqd'
-import { runQuery } from '~/lib/sanity'
+import { q, sanityImage, type Selection, type TypeFromSelection } from 'groqd';
+import { runQuery } from '~/lib/sanity';
 
-export const postSelection = {
+export const postSelection: Selection = {
   _id: q.string(),
   title: q.string(),
   slug: q.slug('slug'),
   mainImage: sanityImage('mainImage', {
     withAsset: ['base', 'blurHash', 'dimensions'],
   }),
-} satisfies Selection
+};
 
 export async function getPosts() {
   return runQuery(
-    q('*', { isArray: true }).filterByType('post').grab(postSelection),
-  )
+    q('*', { isArray: true }).filterByType('post').grab(postSelection)
+  );
 }
 
 export async function getPost(slug: string) {
@@ -29,8 +29,8 @@ export async function getPost(slug: string) {
         }),
       })
       .slice(0),
-    { slug },
-  )
+    { slug }
+  );
 }
 
-export type Post = TypeFromSelection<typeof postSelection>
+export type Post = TypeFromSelection<typeof postSelection>;

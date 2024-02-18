@@ -1,7 +1,7 @@
-import { q } from 'groqd'
+import { q } from 'groqd';
 
-export default {
+export const meta = {
   _id: q.string(),
   title: q.string(),
   slug: q.slug('slug'),
-}
+};

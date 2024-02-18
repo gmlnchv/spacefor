@@ -1,8 +1,8 @@
 import { q, sanityImage, type TypeFromSelection, type Selection } from 'groqd';
 import { runQuery } from '~/lib/sanity';
 
-import meta from '~/queries/meta.ts';
-import seo from '~/queries/seo.ts';
+import { meta } from '~/queries/meta.ts';
+import { seo } from '~/queries/seo.ts';
 
 export const heroSelection = {
   title: q.string(),
