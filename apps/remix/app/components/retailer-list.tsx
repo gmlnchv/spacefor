@@ -16,7 +16,7 @@ const RetailerList = ({ retailers }: RetailerListProps) => {
             {retailers?.map((retailer) => (
               <div
                 key={retailer._id}
-                className="w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/6 flex-auto h-[150px]"
+                className="w-1/3 md:w-1/4 lg:w-1/6 flex-auto h-20 sm:h-[150px]"
               >
                 {retailer.logo && (
                   <div className="group size-full relative flex items-center justify-center">
