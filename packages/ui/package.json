@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "@ariakit/react": "^0.3.11",
+    "@radix-ui/react-dialog": "^1.0.5",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
     "tailwind-merge": "^2.2.0",

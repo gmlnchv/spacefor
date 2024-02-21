@@ -1,4 +1,4 @@
-import type { Config } from 'tailwindcss'
+import type { Config } from 'tailwindcss';
 
 // We want each package to be responsible for its own content.
 const config: Omit<Config, 'content'> = {
@@ -41,7 +41,7 @@ const config: Omit<Config, 'content'> = {
         // These are the colors from the design system
         cararra: {
           '50': '#f8f6f4',
-          '100': '#ece9e3',
+          '100': '#ece9e3', // This is the default background color
           '200': '#dcd7cc',
           '300': '#c6bcab',
           '400': '#ae9e89',
@@ -78,6 +78,6 @@ const config: Omit<Config, 'content'> = {
       },
     },
   },
-  plugins: [],
-}
-export default config
+  plugins: [require('tailwindcss-animate')],
+};
+export default config;
