@@ -34,10 +34,12 @@ const Header = ({ colorScheme }: HeaderProps) => {
           <SiteLogo colorScheme={colorScheme} className="size-20" />
         </Link>
 
-        <MobileNav />
+        <div className="md:hidden">
+          <MobileNav />
+        </div>
 
         {Boolean(primaryNav?.items?.length) && (
-          <nav className="flex gap-x-10">
+          <nav className="md:flex gap-x-10 hidden">
             {primaryNav.items.map((item: NavigationItemProps) => (
               <NavigationItem key={item._key} {...item} />
             ))}

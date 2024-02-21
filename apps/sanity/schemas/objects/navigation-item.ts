@@ -1,4 +1,4 @@
-import { defineField, defineType } from 'sanity'
+import { defineField, defineType } from 'sanity';
 
 export default defineType({
   name: 'navigationItem',
@@ -9,11 +9,13 @@ export default defineType({
       name: 'label',
       title: 'Label',
       type: 'string',
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'link',
       title: 'Link',
       type: 'link',
+      validation: (Rule) => Rule.required(),
     }),
   ],
-})
+});

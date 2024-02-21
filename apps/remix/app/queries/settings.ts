@@ -1,3 +1,4 @@
+import { MobileNav } from './../components/mobile-nav';
 import { q, type TypeFromSelection, type Selection } from 'groqd';
 import { runQuery } from '~/lib/sanity';
 
@@ -24,6 +25,12 @@ export async function getSettings() {
       .grab$({
         siteTitle: q.string().optional(),
         primaryNav: q('primaryNav')
+          .deref()
+          .grab$({
+            items: q('items').filter().grab(NavigationItemSelection),
+          })
+          .nullable(),
+        mobileNav: q('mobileNav')
           .deref()
           .grab$({
             items: q('items').filter().grab(NavigationItemSelection),

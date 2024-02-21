@@ -1,4 +1,4 @@
-import { defineType } from 'sanity'
+import { defineType } from 'sanity';
 
 export default defineType({
   name: 'link',
@@ -15,6 +15,7 @@ export default defineType({
           { title: 'External', value: 'external' },
         ],
       },
+      validation: (Rule) => Rule.required(),
       initialValue: 'internal',
     },
     {
@@ -42,4 +43,4 @@ export default defineType({
       description: 'Use a fully qualified URL (e.g. https://example.com)',
     },
   ],
-})
+});
