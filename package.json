@@ -15,10 +15,8 @@
     "turbo": "^1.4.3",
     "typescript-config": "workspace:*"
   },
+  "packageManager": "pnpm@8.9.0",
   "engines": {
     "node": ">=18"
-  },
-  "dependencies": {
-    "framer-motion": "^11.0.5"
   }
 }
