@@ -1,10 +1,6 @@
 {
   "name": "chorizo",
   "private": true,
-  "workspaces": [
-    "apps/*",
-    "packages/*"
-  ],
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev --parallel",
@@ -17,7 +13,7 @@
     "@types/glob": "^8.0.0",
     "glob": "^10.0.0",
     "turbo": "^1.4.3",
-    "typescript-config": "*"
+    "typescript-config": "workspace:*"
   },
   "engines": {
     "node": ">=18"
