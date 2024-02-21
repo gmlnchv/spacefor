@@ -1,4 +1,4 @@
-import { q, type TypeFromSelection, type Selection, sanityImage } from 'groqd';
+import { q, type InferType, sanityImage } from 'groqd';
 import { runQuery } from '~/lib/sanity';
 
 import { meta } from '~/queries/meta.ts';
@@ -24,19 +24,20 @@ export async function getSpacesPage() {
   );
 }
 
+const spacePageQuery: any = q('*')
+  .filterByType('space')
+  .filter('slug.current == $slug')
+  .grab$({
+    ...meta,
+    ...seo,
+    ...spaceSelection,
+    specs: q.string().optional(),
+    detailDescription: q.array(q.contentBlock()),
+  })
+  .slice(0);
+
 export async function getSpacePage(slug: string) {
-  return runQuery(
-    q('*')
-      .filterByType('space')
-      .filter('slug.current == $slug')
-      .grab$({
-        ...meta,
-        detailDescription: q.array(q.contentBlock()),
-        image: sanityImage('mainImage', {
-          withAsset: ['base', 'blurHash', 'dimensions'],
-        }).nullable(),
-      })
-      .slice(0),
-    { slug }
-  );
+  return runQuery(spacePageQuery, { slug });
 }
+
+export type SpacePageProps = InferType<typeof spacePageQuery>;

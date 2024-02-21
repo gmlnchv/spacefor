@@ -6,22 +6,24 @@ const Hero = ({ title, description, image }: HeroProps) => {
   return (
     <section className="py-10 md:py-24 max-h-[875px]">
       <Container>
-        <div className="flex max-sm:flex-wrap items-center gap-8 justify-between">
+        <div className="flex max-sm:flex-wrap items-center gap-x-4 gap-y-8 justify-between">
           <header className="space-y-8 lg:space-y-14 text-balance md:w-1/2 xl:w-auto max-w-[660px]">
-            <h1 className="text-5xl xl:text-8xl">{title}</h1>
+            <h1 className="text-5xl md:text-6xl xl:text-8xl">{title}</h1>
             <p className="text-balance">{description}</p>
           </header>
 
           {image && (
-            <Image
-              src={image.asset.url}
-              layout="constrained"
-              width={600}
-              height={490}
-              blurHash={image.asset.metadata.blurHash}
-              className="border border-white md:w-1/2 xl:w-auto"
-              alt={image.alt ?? ''}
-            />
+            <figure>
+              <Image
+                src={image.asset.url}
+                layout="constrained"
+                width={600}
+                height={490}
+                blurHash={image.asset.metadata.blurHash}
+                className="border border-white md:w-1/2 xl:w-auto"
+                alt={image.alt ?? ''}
+              />
+            </figure>
           )}
         </div>
       </Container>
