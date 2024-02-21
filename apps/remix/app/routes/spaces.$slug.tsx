@@ -2,13 +2,14 @@ import { json, LoaderFunctionArgs } from '@remix-run/node';
 import { useLoaderData } from '@remix-run/react';
 import { MetaFunction } from '@vercel/remix';
 import { Layout, LayoutContent } from '~/layouts/layout.tsx';
-import { getSpacePage } from '~/queries/spaces.ts';
+import { getSpacePage, SpotProps } from '~/queries/spaces.ts';
 import { Header } from '~/components/header.tsx';
 import { Image } from '~/components/image.tsx';
 import { PortableText } from '@portabletext/react';
 import { Container } from '~/components/container.tsx';
 import { SpaceIcon } from '~/components/space-icon';
 import { SpecsIcon } from '~/components/specs-icon';
+import { Popover, PopoverArrow, PopoverContent, PopoverTrigger } from 'ui';
 
 export const loader = async ({ params }: LoaderFunctionArgs) => {
   const { slug } = params;
@@ -43,7 +44,7 @@ export default function Space() {
         <section className="py-10 md:py-24 max-h-[875px]">
           <Container>
             <div className="flex max-sm:flex-wrap items-center gap-y-8 justify-between">
-              <header className="space-y-6 lg:space-y-14 max-w-[380px]">
+              <header className="space-y-12 lg:space-y-16 max-w-[380px]">
                 <h1 className="text-3xl md:text-6xl">{space.title}</h1>
 
                 <div className="space-y-4">
@@ -87,6 +88,70 @@ export default function Space() {
             </div>
           </Container>
         </section>
+
+        {/* Plan */}
+        {space.plan && (
+          <section>
+            <Container>
+              <header className="space-y-12 lg:space-y-16 max-w-[380px]">
+                <h2 className="text-3xl md:text-5xl">The Space</h2>
+
+                {space.plan.description && <p>{space.plan.description}</p>}
+              </header>
+
+              {/* Hotspots */}
+              <div className="grid justify-items-center">
+                <figure className="relative">
+                  <img
+                    src={space.plan.image.asset.url}
+                    className=""
+                    alt={space.title}
+                  />
+
+                  {space.plan.hotspots?.map((spot: SpotProps) => (
+                    <div
+                      className="absolute grid place-items-center size-2 md:size-4"
+                      style={{
+                        top: `${spot.y}%`,
+                        left: `${spot.x}%`,
+                      }}
+                    >
+                      <Popover>
+                        <PopoverTrigger asChild>
+                          <button
+                            key={spot._key}
+                            className="absolute size-2 md:size-4 bg-white rounded-full cursor-pointer z-10"
+                            aria-label={spot.description}
+                          />
+                        </PopoverTrigger>
+                        <PopoverContent
+                          className="rounded-none p-5 w-[220px]"
+                          sideOffset={0}
+                          side="bottom"
+                          align="start"
+                        >
+                          <p>{spot.description}</p>
+
+                          <PopoverArrow asChild width={1} height={50}>
+                            <svg
+                              viewBox="0 0 1 50"
+                              xmlns="http://www.w3.org/2000/svg"
+                              className="relative top-px"
+                            >
+                              <path stroke="#fff" d="M.5 0v50" />
+                            </svg>
+                          </PopoverArrow>
+                        </PopoverContent>
+                      </Popover>
+
+                      <span className="absolute inline-flex h-full w-full bg-white opacity-75 animate-ping rounded-full" />
+                    </div>
+                  ))}
+                </figure>
+              </div>
+            </Container>
+          </section>
+        )}
       </LayoutContent>
     </Layout>
   );

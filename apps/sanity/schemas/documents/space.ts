@@ -1,5 +1,5 @@
-import { defineArrayMember, defineField, defineType } from 'sanity'
-import { PinIcon } from '@sanity/icons'
+import { defineArrayMember, defineField, defineType } from 'sanity';
+import { PinIcon } from '@sanity/icons';
 
 export default defineType({
   name: 'space',
@@ -75,22 +75,9 @@ export default defineType({
       },
     }),
     defineField({
-      name: 'images',
-      type: 'array',
-      title: 'Additional images',
-      of: [
-        defineArrayMember({
-          name: 'image',
-          type: 'image',
-          fields: [
-            defineField({
-              name: 'caption',
-              title: 'Caption',
-              type: 'string',
-            }),
-          ],
-        }),
-      ],
+      name: 'spacePlan',
+      title: 'Plan',
+      type: 'spacePlan',
     }),
   ],
-})
+});

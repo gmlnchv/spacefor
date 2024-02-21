@@ -2,6 +2,7 @@ import { defineConfig } from 'sanity';
 import { structureTool } from 'sanity/structure';
 import { visionTool } from '@sanity/vision';
 import { deskStructure, singletonPlugin } from './plugins/singleton';
+import { imageHotspotArrayPlugin } from 'sanity-plugin-hotspot-array';
 
 // Schemas
 import author from './schemas/documents/author';
@@ -21,6 +22,7 @@ import settings from './schemas/documents/settings';
 import space from './schemas/documents/space';
 import spaces from './schemas/documents/spaces';
 import retailer from './schemas/documents/retailer';
+import spacePlan from './schemas/objects/space-plan';
 
 export default defineConfig({
   name: 'default',
@@ -51,6 +53,7 @@ export default defineConfig({
       link,
       navigationItem,
       seo,
+      spacePlan,
     ],
   },
 
@@ -59,6 +62,7 @@ export default defineConfig({
       structure: deskStructure([home, contact, spaces, settings]),
     }),
     singletonPlugin([home.name, contact.name, spaces.name, settings.name]),
+    imageHotspotArrayPlugin(),
     visionTool(),
   ],
 });
