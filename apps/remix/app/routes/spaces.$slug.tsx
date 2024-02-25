@@ -36,8 +36,6 @@ export const meta: MetaFunction<typeof loader> = ({ data }) => {
 export default function Space() {
   const { space } = useLoaderData<typeof loader>();
 
-  console.log(space);
-
   return (
     <Layout>
       <Header />
