@@ -1,7 +1,7 @@
-import React from 'react'
-import { NavLink } from '@remix-run/react'
-import type { NavigationItemProps } from '~/queries/settings.ts'
-import { cn } from 'ui'
+import React from 'react';
+import { NavLink } from '@remix-run/react';
+import type { NavigationItemProps } from '~/queries/global-data';
+import { cn } from 'ui';
 
 const NavigationItem = React.forwardRef<HTMLAnchorElement, NavigationItemProps>(
   (props, ref) => {
@@ -15,7 +15,7 @@ const NavigationItem = React.forwardRef<HTMLAnchorElement, NavigationItemProps>(
         >
           {props.label}
         </a>
-      )
+      );
     }
 
     return (
@@ -30,10 +30,10 @@ const NavigationItem = React.forwardRef<HTMLAnchorElement, NavigationItemProps>(
       >
         {props.label}
       </NavLink>
-    )
-  },
-)
+    );
+  }
+);
 
-NavigationItem.displayName = 'NavigationItem'
+NavigationItem.displayName = 'NavigationItem';
 
-export { NavigationItem }
+export { NavigationItem };

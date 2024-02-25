@@ -9,7 +9,7 @@ import {
 } from '@remix-run/react';
 import type { LinksFunction } from '@vercel/remix';
 import { json } from '@remix-run/node';
-import { getGlobalData } from '~/queries/settings.ts';
+import { getGlobalData } from '~/queries/global-data';
 
 import styles from './styles.css';
 

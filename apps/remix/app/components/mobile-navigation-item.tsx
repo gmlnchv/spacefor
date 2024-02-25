@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from '@remix-run/react';
-import type { NavigationItemProps } from '~/queries/settings.ts';
+import type { NavigationItemProps } from '~/queries/global-data';
 import { cn } from 'ui';
 
 const MobileNavigationItem = React.forwardRef<
