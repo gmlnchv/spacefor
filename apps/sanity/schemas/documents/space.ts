@@ -75,6 +75,30 @@ export default defineType({
       },
     }),
     defineField({
+      name: 'images',
+      type: 'array',
+      title: 'Additional images',
+      of: [
+        defineArrayMember({
+          name: 'image',
+          type: 'image',
+          fields: [
+            defineField({
+              name: 'captionTitle',
+              title: 'Caption Title',
+              type: 'string',
+              validation: (Rule) => Rule.required(),
+            }),
+            defineField({
+              name: 'captionDescription',
+              title: 'Caption Description',
+              type: 'string',
+            }),
+          ],
+        }),
+      ],
+    }),
+    defineField({
       name: 'spacePlan',
       title: 'Plan',
       type: 'spacePlan',

@@ -39,7 +39,7 @@ const spotSelection = {
 
 export type SpotProps = TypeFromSelection<typeof spaceSelection>;
 
-const spacePageQuery: any = q('*')
+const spacePageQuery = q('*')
   .filterByType('space')
   .filter('slug.current == $slug')
   .grab$({
@@ -57,6 +57,14 @@ const spacePageQuery: any = q('*')
         hotspots: q.array(q.object(spotSelection)).nullable(),
       })
       .nullable(),
+    images: sanityImage('images', {
+      isList: true,
+      withAsset: ['base', 'blurHash', 'dimensions'],
+      additionalFields: {
+        captionTitle: q.string(),
+        captionDescription: q.string().nullable(),
+      },
+    }).nullable(),
   })
   .slice(0);
 

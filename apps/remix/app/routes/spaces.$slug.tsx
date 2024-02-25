@@ -10,6 +10,7 @@ import { Container } from '~/components/container.tsx';
 import { SpaceIcon } from '~/components/space-icon';
 import { SpecsIcon } from '~/components/specs-icon';
 import { Popover, PopoverArrow, PopoverContent, PopoverTrigger } from 'ui';
+import { SpaceAdditionalImages } from '~/components/space-additional-images';
 
 export const loader = async ({ params }: LoaderFunctionArgs) => {
   const { slug } = params;
@@ -53,7 +54,10 @@ export default function Space() {
               </header>
 
               {space.image && (
-                <figure className="grid justify-items-end">
+                <figure
+                  key={space.image.asset._id}
+                  className="grid justify-items-end"
+                >
                   <Image
                     src={space.image.asset.url}
                     layout="constrained"
@@ -100,7 +104,7 @@ export default function Space() {
               </header>
 
               {/* Hotspots */}
-              <div className="grid justify-items-center">
+              <div className="grid justify-items-center mt-10 mb-20 lg:my-10">
                 <figure className="relative">
                   <img
                     src={space.plan.image.asset.url}
@@ -110,6 +114,7 @@ export default function Space() {
 
                   {space.plan.hotspots?.map((spot: SpotProps) => (
                     <div
+                      key={spot._key}
                       className="absolute grid place-items-center size-2 md:size-4"
                       style={{
                         top: `${spot.y}%`,
@@ -152,6 +157,13 @@ export default function Space() {
             </Container>
           </section>
         )}
+
+        {/* Additional images */}
+        <section>
+          <Container>
+            <SpaceAdditionalImages images={space.images} />
+          </Container>
+        </section>
       </LayoutContent>
     </Layout>
   );
