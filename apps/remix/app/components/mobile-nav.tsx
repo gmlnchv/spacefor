@@ -14,7 +14,7 @@ import { MobileNavigationItem } from './mobile-navigation-item';
 
 export const MobileNav = () => {
   const context = useOutletContext();
-  const { mobileNav } = context.settings ?? {};
+  const { mobileNav } = context.globalData ?? {};
 
   return (
     <Sheet>

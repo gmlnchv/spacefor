@@ -1,4 +1,3 @@
-import { MobileNav } from './../components/mobile-nav';
 import { q, type TypeFromSelection, type Selection } from 'groqd';
 import { runQuery } from '~/lib/sanity';
 
@@ -18,7 +17,7 @@ export type NavigationItemProps = TypeFromSelection<
   typeof NavigationItemSelection
 >;
 
-export async function getSettings() {
+export async function getGlobalData() {
   return runQuery(
     q('*')
       .filterByType('settings')

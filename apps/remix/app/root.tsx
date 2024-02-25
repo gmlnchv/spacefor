@@ -6,12 +6,12 @@ import {
   Scripts,
   ScrollRestoration,
   useLoaderData,
-} from '@remix-run/react'
-import type { LinksFunction } from '@vercel/remix'
-import { json } from '@remix-run/node'
-import { getSettings } from '~/queries/settings.ts'
+} from '@remix-run/react';
+import type { LinksFunction } from '@vercel/remix';
+import { json } from '@remix-run/node';
+import { getGlobalData } from '~/queries/settings.ts';
 
-import styles from './styles.css'
+import styles from './styles.css';
 
 export const links: LinksFunction = () => [
   { rel: 'stylesheet', href: styles },
@@ -33,16 +33,16 @@ export const links: LinksFunction = () => [
     rel: 'manifest',
     href: '/manifest.webmanifest',
   },
-]
+];
 
 export const loader = async () => {
-  const settings = await getSettings()
+  const globalData = await getGlobalData();
 
-  return json({ settings })
-}
+  return json({ globalData });
+};
 
 export default function App() {
-  const { settings } = useLoaderData<typeof loader>()
+  const { globalData } = useLoaderData<typeof loader>();
 
   return (
     <html lang="en">
@@ -55,7 +55,7 @@ export default function App() {
       <body className="antialiased">
         <Outlet
           context={{
-            settings,
+            globalData,
           }}
         />
         <ScrollRestoration />
@@ -63,5 +63,5 @@ export default function App() {
         <LiveReload />
       </body>
     </html>
-  )
+  );
 }

@@ -24,7 +24,7 @@ interface HeaderProps
 
 const Header = ({ colorScheme }: HeaderProps) => {
   const context = useOutletContext();
-  const { primaryNav } = context.settings ?? {};
+  const { primaryNav } = context.globalData ?? {};
 
   return (
     <header className={cn(variants({ colorScheme }))}>
