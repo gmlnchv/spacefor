@@ -19,23 +19,25 @@ export type NavigationItemProps = TypeFromSelection<
 
 export async function getGlobalData() {
   return runQuery(
-    q('*')
-      .filterByType('settings')
-      .grab$({
-        siteTitle: q.string().optional(),
-        primaryNav: q('primaryNav')
-          .deref()
-          .grab$({
-            items: q('items').filter().grab(NavigationItemSelection),
-          })
-          .nullable(),
-        mobileNav: q('mobileNav')
-          .deref()
-          .grab$({
-            items: q('items').filter().grab(NavigationItemSelection),
-          })
-          .nullable(),
-      })
-      .slice(0)
+    q('').grab({
+      settings: q('*')
+        .filterByType('settings')
+        .grab$({
+          siteTitle: q.string().optional(),
+          primaryNav: q('primaryNav')
+            .deref()
+            .grab$({
+              items: q('items').filter().grab(NavigationItemSelection),
+            })
+            .nullable(),
+          mobileNav: q('mobileNav')
+            .deref()
+            .grab$({
+              items: q('items').filter().grab(NavigationItemSelection),
+            })
+            .nullable(),
+        })
+        .slice(0),
+    })
   );
 }

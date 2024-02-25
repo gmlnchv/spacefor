@@ -7,8 +7,8 @@ const Footer = () => {
     <footer role="contentinfo" className="py-4 bg-black text-white">
       <Container>
         <p className="text-sm">
-          {context.globalData?.siteTitle} <span className="opacity-50">©</span>{' '}
-          {new Date().getFullYear()}
+          {context.globalData.settings.siteTitle ?? ''}{' '}
+          <span className="opacity-50">©</span> {new Date().getFullYear()}
         </p>
       </Container>
     </footer>
