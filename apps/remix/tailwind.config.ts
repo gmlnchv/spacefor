@@ -1,5 +1,5 @@
-import type { Config } from 'tailwindcss'
-import sharedConfig from 'tailwind-config'
+import type { Config } from 'tailwindcss';
+import sharedConfig from 'tailwind-config';
 
 const config: Pick<Config, 'content' | 'presets' | 'plugins'> = {
   content: [
@@ -8,6 +8,6 @@ const config: Pick<Config, 'content' | 'presets' | 'plugins'> = {
   ],
   plugins: [require('@tailwindcss/typography')],
   presets: [sharedConfig],
-}
+};
 
-export default config
+export default config;

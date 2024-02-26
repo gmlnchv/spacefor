@@ -24,6 +24,7 @@ import spaces from './schemas/documents/spaces';
 import retailer from './schemas/documents/retailer';
 import spacePlan from './schemas/objects/space-plan';
 import footer from './schemas/documents/footer';
+import testimonial from './schemas/documents/testimonial';
 
 export default defineConfig({
   name: 'default',
@@ -47,6 +48,7 @@ export default defineConfig({
       post,
       navigation,
       retailer,
+      testimonial,
       // Objects
       author,
       blockContent,

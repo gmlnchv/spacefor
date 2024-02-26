@@ -1,5 +1,5 @@
-import { defineArrayMember, defineField, defineType } from 'sanity'
-import { DocumentIcon } from '@sanity/icons'
+import { defineArrayMember, defineField, defineType } from 'sanity';
+import { DocumentIcon } from '@sanity/icons';
 
 export default defineType({
   name: 'page',
@@ -53,6 +53,13 @@ export default defineType({
       ],
     }),
     defineField({
+      name: 'includeTestimonials',
+      title: 'Include testimonials',
+      type: 'boolean',
+      group: 'content',
+      initialValue: false,
+    }),
+    defineField({
       name: 'seo',
       title: 'SEO',
       type: 'seo',
@@ -69,7 +76,7 @@ export default defineType({
       return {
         title,
         subtitle: slug,
-      }
+      };
     },
   },
-})
+});

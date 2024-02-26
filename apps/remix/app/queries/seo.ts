@@ -1,6 +1,6 @@
-import { q } from 'groqd';
+import { q, type Selection } from 'groqd';
 
-export const seo = {
+export const seo: Selection = {
   seo: q
     .object({
       title: q.string(),

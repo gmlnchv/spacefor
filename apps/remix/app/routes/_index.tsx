@@ -7,6 +7,7 @@ import { getHomePage } from '~/queries/home.ts';
 import { RetailerList } from '~/components/retailer-list.tsx';
 import Hero from '~/components/hero';
 import { EventList } from '~/components/event-list';
+import { TestimonialList } from '~/components/testimonial-list';
 
 export const loader = async () => {
   const { page, retailers, events } = await getHomePage();
@@ -30,6 +31,8 @@ export const meta: MetaFunction<typeof loader> = ({ data }) => {
 export default function Index() {
   const { page, retailers, events } = useLoaderData<typeof loader>();
 
+  console.log(page);
+
   return (
     <Layout>
       <Header />
@@ -41,6 +44,11 @@ export default function Index() {
 
         {/* Events */}
         <EventList events={events} />
+
+        {/* Testimonials */}
+        {!!page?.testimonials.length && (
+          <TestimonialList testimonials={page.testimonials} />
+        )}
       </LayoutContent>
     </Layout>
   );
