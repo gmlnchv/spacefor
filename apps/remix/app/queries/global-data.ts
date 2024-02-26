@@ -36,6 +36,13 @@ export async function getGlobalData() {
               items: q('items').filter().grab(NavigationItemSelection),
             })
             .nullable(),
+          instagram: q.string().optional(),
+        })
+        .slice(0),
+      footer: q('*')
+        .filterByType('footer')
+        .grab$({
+          footerText: q.string().optional(),
         })
         .slice(0),
     })

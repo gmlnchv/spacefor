@@ -26,5 +26,10 @@ export default defineType({
       type: 'reference',
       to: { type: 'navigation' },
     }),
+    defineField({
+      name: 'instagram',
+      title: 'Instagram',
+      type: 'url',
+    }),
   ],
 });
