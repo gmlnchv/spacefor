@@ -1,4 +1,4 @@
-import { q, sanityImage, type Selection } from 'groqd';
+import { q, sanityImage, type Selection, type TypeFromSelection } from 'groqd'
 
 export const retailerSelection: Selection = {
   _id: q.string(),
@@ -9,4 +9,6 @@ export const retailerSelection: Selection = {
   image: sanityImage('image', {
     withAsset: ['base', 'blurHash', 'dimensions'],
   }).nullable(),
-};
+}
+
+export type RetailerProps = TypeFromSelection<typeof retailerSelection>

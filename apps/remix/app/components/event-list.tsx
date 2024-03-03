@@ -1,7 +1,7 @@
-import * as React from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { format, parseISO, isSameMonth, isPast } from 'date-fns';
-import { EventProps } from '~/queries/home';
+import * as React from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { format, parseISO, isSameMonth, isPast } from 'date-fns'
+import { EventProps } from '~/queries/event'
 import {
   Button,
   Table,
@@ -10,33 +10,33 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from 'ui';
-import { Container } from './container';
-import { cn } from 'ui';
-import { Image } from './image';
-import { SpaceIcon } from './space-icon';
+} from 'ui'
+import { Container } from './container'
+import { cn } from 'ui'
+import { Image } from './image'
+import { SpaceIcon } from './space-icon'
 
 interface EventListProps {
-  events: EventProps[];
+  events: EventProps[]
 }
 
-const AnimatedTableRow = motion(TableRow);
+const AnimatedTableRow = motion(TableRow)
 
 const EventRow = React.forwardRef<HTMLTableRowElement, { event: EventProps }>(
   ({ event }, ref) => {
-    const { start_date, end_date, retailer, space } = event;
-    const parsedStartDate = parseISO(start_date);
-    const parsedEndDate = parseISO(end_date);
+    const { start_date, end_date, retailer, space } = event
+    const parsedStartDate = parseISO(start_date)
+    const parsedEndDate = parseISO(end_date)
 
-    const eventIsSameMonth = isSameMonth(parsedStartDate, parsedEndDate);
-    const eventIsPast = isPast(parsedEndDate);
+    const eventIsSameMonth = isSameMonth(parsedStartDate, parsedEndDate)
+    const eventIsPast = isPast(parsedEndDate)
 
     const formattedDate = eventIsSameMonth
       ? `${format(parsedStartDate, 'd')}–${format(parsedEndDate, 'd MMM yyyy')}`
       : `${format(parsedStartDate, 'd MMM yyyy')} – ${format(
           parsedEndDate,
-          'd MMM yyyy'
-        )}`;
+          'd MMM yyyy',
+        )}`
 
     return (
       <AnimatedTableRow
@@ -71,27 +71,27 @@ const EventRow = React.forwardRef<HTMLTableRowElement, { event: EventProps }>(
           </div>
         </TableCell>
       </AnimatedTableRow>
-    );
-  }
-);
+    )
+  },
+)
 
 const EventRowNarrow = React.forwardRef<
   HTMLTableRowElement,
   { event: EventProps }
 >(({ event }, ref) => {
-  const { start_date, end_date, retailer, space } = event;
-  const parsedStartDate = parseISO(start_date);
-  const parsedEndDate = parseISO(end_date);
+  const { start_date, end_date, retailer, space } = event
+  const parsedStartDate = parseISO(start_date)
+  const parsedEndDate = parseISO(end_date)
 
-  const eventIsSameMonth = isSameMonth(parsedStartDate, parsedEndDate);
-  const eventIsPast = isPast(parsedEndDate);
+  const eventIsSameMonth = isSameMonth(parsedStartDate, parsedEndDate)
+  const eventIsPast = isPast(parsedEndDate)
 
   const formattedDate = eventIsSameMonth
     ? `${format(parsedStartDate, 'd')}–${format(parsedEndDate, 'd MMM yyyy')}`
     : `${format(parsedStartDate, 'd MMM yyyy')} – ${format(
         parsedEndDate,
-        'd MMM yyyy'
-      )}`;
+        'd MMM yyyy',
+      )}`
 
   return (
     <AnimatedTableRow
@@ -124,14 +124,14 @@ const EventRowNarrow = React.forwardRef<
         />
       </TableCell>
     </AnimatedTableRow>
-  );
-});
+  )
+})
 
 const EventList = ({ events }: EventListProps) => {
   // limit the number of events to display
-  const [limit, setLimit] = React.useState(5);
+  const [limit, setLimit] = React.useState(5)
 
-  const latestEvents = events.slice(0, limit);
+  const latestEvents = events.slice(0, limit)
   return (
     <section className="py-10 md:py-24">
       <Container>
@@ -183,7 +183,7 @@ const EventList = ({ events }: EventListProps) => {
         )}
       </Container>
     </section>
-  );
-};
+  )
+}
 
-export { EventList };
+export { EventList }

@@ -1,9 +1,9 @@
-import { RetailerProps } from '~/queries/home.ts';
-import { Container } from '~/components/container.tsx';
-import { Image } from '@unpic/react';
+import { RetailerProps } from '~/queries/retailer.ts'
+import { Container } from '~/components/container.tsx'
+import { Image } from '@unpic/react'
 
 interface RetailerListProps {
-  retailers: RetailerProps[];
+  retailers: RetailerProps[]
 }
 
 const RetailerList = ({ retailers }: RetailerListProps) => {
@@ -44,7 +44,7 @@ const RetailerList = ({ retailers }: RetailerListProps) => {
         </div>
       </Container>
     </section>
-  );
-};
+  )
+}
 
-export { RetailerList };
+export { RetailerList }
