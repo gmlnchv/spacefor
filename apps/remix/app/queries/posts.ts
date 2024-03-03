@@ -11,7 +11,7 @@ import { meta } from '~/queries/meta.ts';
 import { seo } from '~/queries/seo.ts';
 import { postSelection } from './post';
 
-export async function getEditorialPage() {
+export async function getEditorialPage(category: string) {
   return runQuery(
     q('').grab({
       page: q('*')
@@ -21,9 +21,23 @@ export async function getEditorialPage() {
           ...seo,
         })
         .slice(0),
-      posts: q('*').filterByType('post')
-          .order('publishedAt desc')
-          .grab$(postSelection),
-    })
+      categories: q('*')
+        .filterByType('category')
+        .grab$({
+          title: q.string(),
+          slug: q.slug('slug'),
+        }),
+      posts: q('*')
+        .filterByType('post')
+        // check if the post has the category but only if the category is not null
+        .filter(
+          category
+            ? `references(*[_type == "category" && slug.current == $category]._id)`
+            : ''
+        )
+        .order('publishedAt desc')
+        .grab$(postSelection),
+    }),
+    { category }
   );
 }

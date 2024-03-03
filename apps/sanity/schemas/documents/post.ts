@@ -42,10 +42,11 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: 'categories',
-      title: 'Categories',
-      type: 'array',
-      of: [{ type: 'reference', to: { type: 'category' } }],
+      name: 'category',
+      title: 'Category',
+      type: 'reference',
+      to: [{ type: 'category' }],
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'retailer',
@@ -82,7 +83,16 @@ export default defineType({
   preview: {
     select: {
       title: 'title',
+      category: 'category.title',
       media: 'mainImage',
+    },
+    prepare(selection) {
+      const { title, category, media } = selection;
+      return {
+        title,
+        subtitle: category,
+        media,
+      };
     },
   },
 });
