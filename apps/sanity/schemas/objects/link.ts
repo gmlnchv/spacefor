@@ -26,6 +26,7 @@ export default defineType({
       to: [
         { type: 'homePage' },
         { type: 'contactPage' },
+        { type: 'editorialPage' },
         { type: 'spacesPage' },
         {
           type: 'page',

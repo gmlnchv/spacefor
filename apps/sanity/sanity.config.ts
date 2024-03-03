@@ -5,7 +5,6 @@ import { deskStructure, singletonPlugin } from './plugins/singleton';
 import { imageHotspotArrayPlugin } from 'sanity-plugin-hotspot-array';
 
 // Schemas
-import author from './schemas/documents/author';
 import blockContent from './schemas/blockContent';
 import category from './schemas/documents/category';
 import contact from './schemas/documents/contact';
@@ -25,6 +24,7 @@ import retailer from './schemas/documents/retailer';
 import spacePlan from './schemas/objects/space-plan';
 import footer from './schemas/documents/footer';
 import testimonial from './schemas/documents/testimonial';
+import editorial from './schemas/documents/editorial';
 
 export default defineConfig({
   name: 'default',
@@ -40,6 +40,7 @@ export default defineConfig({
       contact,
       spaces,
       settings,
+      editorial,
       // Documents
       event,
       footer,
@@ -50,7 +51,6 @@ export default defineConfig({
       retailer,
       testimonial,
       // Objects
-      author,
       blockContent,
       category,
       hero,
@@ -63,11 +63,19 @@ export default defineConfig({
 
   plugins: [
     structureTool({
-      structure: deskStructure([home, contact, spaces, footer, settings]),
+      structure: deskStructure([
+        home,
+        spaces,
+        contact,
+        editorial,
+        footer,
+        settings,
+      ]),
     }),
     singletonPlugin([
       home.name,
       contact.name,
+      editorial.name,
       spaces.name,
       footer.name,
       settings.name,

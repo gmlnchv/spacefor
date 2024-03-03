@@ -1,17 +1,17 @@
-import { json } from '@remix-run/node'
-import { useLoaderData } from '@remix-run/react'
-import { MetaFunction } from '@vercel/remix'
-import { Layout, LayoutContent } from '~/layouts/layout.tsx'
-import { getSpacesPage } from '~/queries/spaces.ts'
-import { PortableText } from '@portabletext/react'
-import { Header } from '~/components/header.tsx'
-import { SpaceList } from '~/components/space-list.tsx'
-import { Container } from '~/components/container.tsx'
+import { json } from '@remix-run/node';
+import { useLoaderData } from '@remix-run/react';
+import { MetaFunction } from '@vercel/remix';
+import { Layout, LayoutContent } from '~/layouts/layout.tsx';
+import { getSpacesPage } from '~/queries/spaces.ts';
+import { PortableText } from '@portabletext/react';
+import { Header } from '~/components/header.tsx';
+import { SpaceList } from '~/components/space-list.tsx';
+import { Container } from '~/components/container.tsx';
 
 export const loader = async () => {
-  const { page, spaces } = await getSpacesPage()
-  return json({ page, spaces })
-}
+  const { page, spaces } = await getSpacesPage();
+  return json({ page, spaces });
+};
 
 export const meta: MetaFunction<typeof loader> = ({ data }) => {
   return [
@@ -24,17 +24,17 @@ export const meta: MetaFunction<typeof loader> = ({ data }) => {
       name: 'description',
       content: data?.page.seo?.description ?? '',
     },
-  ]
-}
+  ];
+};
 
 export default function Spaces() {
-  const { page, spaces } = useLoaderData<typeof loader>()
+  const { page, spaces } = useLoaderData<typeof loader>();
 
   return (
     <Layout>
       <Header colorScheme="light" />
-      <LayoutContent>
-        <div className="bg-cararra-100 py-10 md:py-24 space-y-10 md:space-y-24">
+      <LayoutContent className="bg-cararra-100">
+        <div className="py-10 md:py-24 space-y-10 md:space-y-24">
           <Container>
             <div className="grid lg:grid-cols-2 gap-y-8 items-center">
               {page.header.title && (
@@ -57,5 +57,5 @@ export default function Spaces() {
         </div>
       </LayoutContent>
     </Layout>
-  )
+  );
 }

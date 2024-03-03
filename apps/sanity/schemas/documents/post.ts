@@ -1,9 +1,11 @@
-import { defineField, defineType } from 'sanity'
+import { defineField, defineType } from 'sanity';
+import { ComposeIcon } from '@sanity/icons';
 
 export default defineType({
   name: 'post',
   title: 'Post',
   type: 'document',
+  icon: ComposeIcon,
   groups: [
     {
       name: 'seo',
@@ -26,10 +28,9 @@ export default defineType({
       },
     }),
     defineField({
-      name: 'author',
-      title: 'Author',
-      type: 'reference',
-      to: { type: 'author' },
+      name: 'excerpt',
+      title: 'Excerpt',
+      type: 'text',
     }),
     defineField({
       name: 'mainImage',
@@ -38,6 +39,7 @@ export default defineType({
       options: {
         hotspot: true,
       },
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'categories',
@@ -46,9 +48,15 @@ export default defineType({
       of: [{ type: 'reference', to: { type: 'category' } }],
     }),
     defineField({
+      name: 'retailer',
+      title: 'Retailer',
+      type: 'reference',
+      to: [{ type: 'retailer' }],
+    }),
+    defineField({
       name: 'publishedAt',
       title: 'Published at',
-      type: 'datetime',
+      type: 'date',
     }),
     defineField({
       name: 'body',
@@ -63,15 +71,18 @@ export default defineType({
     }),
   ],
 
+  orderings: [
+    {
+      name: 'publishedAt',
+      title: 'Published at',
+      by: [{ field: 'publishedAt', direction: 'desc' }],
+    },
+  ],
+
   preview: {
     select: {
       title: 'title',
-      author: 'author.name',
       media: 'mainImage',
     },
-    prepare(selection) {
-      const { author } = selection
-      return { ...selection, subtitle: author && `by ${author}` }
-    },
   },
-})
+});

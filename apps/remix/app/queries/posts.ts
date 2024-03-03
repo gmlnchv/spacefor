@@ -1,36 +1,29 @@
-import { q, sanityImage, type Selection, type TypeFromSelection } from 'groqd';
+import {
+  q,
+  type InferType,
+  type TypeFromSelection,
+  sanityImage,
+  type Selection,
+} from 'groqd';
 import { runQuery } from '~/lib/sanity';
 
-export const postSelection: Selection = {
-  _id: q.string(),
-  title: q.string(),
-  slug: q.slug('slug'),
-  mainImage: sanityImage('mainImage', {
-    withAsset: ['base', 'blurHash', 'dimensions'],
-  }),
-};
+import { meta } from '~/queries/meta.ts';
+import { seo } from '~/queries/seo.ts';
+import { postSelection } from './post';
 
-export async function getPosts() {
+export async function getEditorialPage() {
   return runQuery(
-    q('*', { isArray: true }).filterByType('post').grab(postSelection)
+    q('').grab({
+      page: q('*')
+        .filterByType('editorialPage')
+        .grab$({
+          ...meta,
+          ...seo,
+        })
+        .slice(0),
+      posts: q('*').filterByType('post')
+          .order('publishedAt desc')
+          .grab$(postSelection),
+    })
   );
 }
-
-export async function getPost(slug: string) {
-  return runQuery(
-    q('*')
-      .filterByType('post')
-      .filter('slug.current == $slug')
-      .grab({
-        ...postSelection,
-        seo: q.object({
-          title: q.string(),
-          description: q.string().optional(),
-        }),
-      })
-      .slice(0),
-    { slug }
-  );
-}
-
-export type Post = TypeFromSelection<typeof postSelection>;
