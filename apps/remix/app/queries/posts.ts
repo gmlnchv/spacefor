@@ -4,12 +4,12 @@ import {
   type TypeFromSelection,
   sanityImage,
   type Selection,
-} from 'groqd';
-import { runQuery } from '~/lib/sanity';
+} from 'groqd'
+import { runQuery } from '~/lib/sanity'
 
-import { meta } from '~/queries/meta.ts';
-import { seo } from '~/queries/seo.ts';
-import { postSelection } from './post';
+import { meta } from '~/queries/meta.ts'
+import { seo } from '~/queries/seo.ts'
+import { postSelection } from './post'
 
 export async function getEditorialPage(category: string) {
   return runQuery(
@@ -33,11 +33,22 @@ export async function getEditorialPage(category: string) {
         .filter(
           category
             ? `references(*[_type == "category" && slug.current == $category]._id)`
-            : ''
+            : '',
         )
         .order('publishedAt desc')
         .grab$(postSelection),
     }),
-    { category }
-  );
+    { category },
+  )
+}
+
+export async function getPost(slug: string) {
+  return runQuery(
+    q('*')
+      .filterByType('post')
+      .filter('slug.current == $slug')
+      .grab$(postSelection)
+      .slice(0),
+    { slug },
+  )
 }

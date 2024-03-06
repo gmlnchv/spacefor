@@ -40,7 +40,10 @@ export const PostList = ({ posts, colorScheme }: PostListProps) => {
             <h2 className="text-xl/tight text-balance flex-1">{post.title}</h2>
             <p className="text-sm flex-1 lg:min-h-32">{post.excerpt}</p>
 
-            <Link to={`/posts/${post.slug}`} className="underline text-sm">
+            <Link
+              to={`/editorial/posts/${post.slug}`}
+              className="underline text-sm"
+            >
               Read more
             </Link>
           </figcaption>
