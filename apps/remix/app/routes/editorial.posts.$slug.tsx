@@ -7,7 +7,7 @@ import { Header } from '~/components/header.tsx'
 import { Container } from '~/components/container.tsx'
 import { format, parseISO } from 'date-fns'
 import { Image } from '~/components/image.tsx'
-import { Separator } from 'ui'
+import { PortableText } from '@portabletext/react'
 
 export const loader = async ({ params }: LoaderFunctionArgs) => {
   const { slug = null } = params
@@ -24,31 +24,62 @@ export default function Post() {
       <Header colorScheme="light" />
       <LayoutContent className="bg-cararra-100 py-10">
         <Container>
-          <header className="border-y border-black py-7 space-y-5 lg:space-y-9 text-center lg:py-9">
-            <p className="">{format(parseISO(post.publishedAt), 'd-M-yy')}</p>
-            <h1 className="text-5xl lg:text-6xl text-balance max-w-2xl mx-auto">
-              {post.title}
-            </h1>
-          </header>
+          <div className="border-y border-black">
+            <header className="border-b border-black py-7 space-y-5 lg:space-y-9 text-center lg:py-9">
+              <p className="">{format(parseISO(post.publishedAt), 'd-M-yy')}</p>
+              <h1 className="text-5xl lg:text-6xl text-balance max-w-2xl mx-auto">
+                {post.title}
+              </h1>
+            </header>
 
-          <div className="max-w-4xl text-balance mx-auto pt-7 lg:pt-10 space-y-7 lg:space-y-12">
-            <p className="text-center text-lg font-serif leading-tight lg:text-2xl">
-              {post.excerpt}
-            </p>
+            <div className="max-w-4xl text-balance mx-auto py-7 lg:py-10 space-y-7 lg:space-y-12">
+              <p className="text-center text-lg font-serif leading-tight lg:text-2xl">
+                {post.excerpt}
+              </p>
 
-            <Image
-              src={post.image.asset.url}
-              width={500}
-              height={500}
-              blurHash={post.image.asset.metadata.blurHash}
-              alt={post.title}
-              className="mx-auto border-2 border-black"
-            />
+              <figure className="space-y-3.5">
+                <Image
+                  src={post.image.asset.url}
+                  width={500}
+                  height={500}
+                  blurHash={post.image.asset.metadata.blurHash}
+                  alt={post.image.alt || post.image.caption || post.title}
+                  className="mx-auto border-2 border-black"
+                />
 
-            <p>{post.body}</p>
+                {post.image.caption && (
+                  <figcaption className="text-center text-sm lg:text-base">
+                    {post.image.caption}
+                  </figcaption>
+                )}
+              </figure>
+
+              <div className="space-y-6">
+                <PortableText
+                  value={post.body}
+                  components={{
+                    types: {
+                      image: ({ value }) => (
+                        <Image
+                          src={value.asset.url}
+                          width={value.asset.metadata.dimensions.width}
+                          height={value.asset.metadata.dimensions.height}
+                          blurHash={value.asset.metadata.blurHash}
+                          alt={value.alt || value.caption || ''}
+                          className="mx-auto my-4 border-2 border-black"
+                        />
+                      ),
+                    },
+                    block: {
+                      h3: ({ children }) => (
+                        <h3 className="text-xl lg:text-2xl">{children}</h3>
+                      ),
+                    },
+                  }}
+                />
+              </div>
+            </div>
           </div>
-
-          <Separator />
         </Container>
       </LayoutContent>
     </Layout>

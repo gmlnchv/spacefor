@@ -1,4 +1,4 @@
-import { q, type TypeFromSelection, type Selection, sanityImage } from 'groqd';
+import { q, type TypeFromSelection, type Selection, sanityImage } from 'groqd'
 
 export const postSelection: Selection = {
   _id: q.string(),
@@ -14,7 +14,11 @@ export const postSelection: Selection = {
   publishedAt: q.date(),
   image: sanityImage('mainImage', {
     withAsset: ['base', 'blurHash', 'dimensions'],
+    additionalFields: {
+      alt: q.string().nullable(),
+      caption: q.string().nullable(),
+    },
   }),
-};
+}
 
-export type PostProps = TypeFromSelection<typeof postSelection>;
+export type PostProps = TypeFromSelection<typeof postSelection>

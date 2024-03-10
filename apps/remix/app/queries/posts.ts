@@ -47,7 +47,31 @@ export async function getPost(slug: string) {
     q('*')
       .filterByType('post')
       .filter('slug.current == $slug')
-      .grab$(postSelection)
+      .grab$({
+        ...postSelection,
+        body: q('body')
+          .filter()
+          .select({
+            '_type == "block"': ['{...}', q.contentBlock()],
+            '_type == "image"': {
+              _type: q.literal('image'),
+              alt: q.string().nullable(),
+              caption: q.string().nullable(),
+              asset: q('asset')
+                .deref()
+                .grab$({
+                  url: q.string(),
+                  metadata: q('metadata').grab$({
+                    blurHash: q.string(),
+                    dimensions: q('dimensions').grab$({
+                      height: q.number(),
+                      width: q.number(),
+                    }),
+                  }),
+                }),
+            },
+          }),
+      })
       .slice(0),
     { slug },
   )

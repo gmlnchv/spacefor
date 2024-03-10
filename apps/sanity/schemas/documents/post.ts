@@ -1,5 +1,5 @@
-import { defineField, defineType } from 'sanity';
-import { ComposeIcon } from '@sanity/icons';
+import { defineArrayMember, defineField, defineType } from 'sanity'
+import { ComposeIcon } from '@sanity/icons'
 
 export default defineType({
   name: 'post',
@@ -36,9 +36,18 @@ export default defineType({
       name: 'mainImage',
       title: 'Main image',
       type: 'image',
-      options: {
-        hotspot: true,
-      },
+      fields: [
+        defineField({
+          name: 'alt',
+          title: 'Alt text',
+          type: 'string',
+        }),
+        defineField({
+          name: 'caption',
+          title: 'Caption',
+          type: 'string',
+        }),
+      ],
       validation: (Rule) => Rule.required(),
     }),
     defineField({
@@ -62,7 +71,37 @@ export default defineType({
     defineField({
       name: 'body',
       title: 'Body',
-      type: 'blockContent',
+      type: 'array',
+      of: [
+        defineArrayMember({
+          title: 'Block',
+          type: 'block',
+          styles: [
+            { title: 'Normal', value: 'normal' },
+            { title: 'H3', value: 'h3' },
+          ],
+          lists: [],
+          marks: {
+            annotations: [],
+            decorators: [],
+          },
+        }),
+        defineArrayMember({
+          type: 'image',
+          fields: [
+            defineField({
+              name: 'alt',
+              title: 'Alt text',
+              type: 'string',
+            }),
+            defineField({
+              name: 'caption',
+              title: 'Caption',
+              type: 'string',
+            }),
+          ],
+        }),
+      ],
     }),
     defineField({
       name: 'seo',
@@ -87,12 +126,12 @@ export default defineType({
       media: 'mainImage',
     },
     prepare(selection) {
-      const { title, category, media } = selection;
+      const { title, category, media } = selection
       return {
         title,
         subtitle: category,
         media,
-      };
+      }
     },
   },
-});
+})
