@@ -6,12 +6,12 @@ import {
   Scripts,
   ScrollRestoration,
   useLoaderData,
-} from '@remix-run/react';
-import type { LinksFunction } from '@vercel/remix';
-import { json } from '@remix-run/node';
-import { getGlobalData } from '~/queries/global-data';
+} from '@remix-run/react'
+import type { LinksFunction } from '@vercel/remix'
+import { json } from '@remix-run/node'
+import { getGlobalData } from '~/queries/global-data'
 
-import styles from './styles.css';
+import styles from './styles.css'
 
 export const links: LinksFunction = () => [
   { rel: 'stylesheet', href: styles },
@@ -20,29 +20,16 @@ export const links: LinksFunction = () => [
     sizes: '32x32',
     href: '/favicons/favicon.ico',
   },
-  {
-    rel: 'icon',
-    type: 'image/svg+xml',
-    href: '/favicons/favicon.svg',
-  },
-  {
-    rel: 'apple-touch-icon',
-    href: '/favicons/apple-touch-icon.png',
-  },
-  {
-    rel: 'manifest',
-    href: '/manifest.webmanifest',
-  },
-];
+]
 
 export const loader = async () => {
-  const globalData = await getGlobalData();
+  const globalData = await getGlobalData()
 
-  return json({ globalData });
-};
+  return json({ globalData })
+}
 
 export default function App() {
-  const { globalData } = useLoaderData<typeof loader>();
+  const { globalData } = useLoaderData<typeof loader>()
 
   return (
     <html lang="en">
@@ -63,5 +50,5 @@ export default function App() {
         <LiveReload />
       </body>
     </html>
-  );
+  )
 }
