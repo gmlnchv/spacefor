@@ -10,7 +10,6 @@ import { EventList } from '~/components/event-list'
 import { TestimonialList } from '~/components/testimonial-list'
 import { PostList } from '~/components/post-list.tsx'
 import { Container } from '~/components/container.tsx'
-import { Separator } from 'ui'
 
 export const loader = async () => {
   const { page, retailers, events, posts } = await getHomePage()

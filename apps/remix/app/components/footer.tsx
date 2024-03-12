@@ -1,9 +1,9 @@
-import { useOutletContext } from '@remix-run/react';
-import { Container } from '~/components/container.tsx';
-import { SiteLogo } from './site-logo';
+import { useOutletContext } from '@remix-run/react'
+import { Container } from '~/components/container.tsx'
+import { SiteLogo } from './site-logo'
 
 const Footer = () => {
-  const { globalData } = useOutletContext();
+  const { globalData } = useOutletContext()
 
   return (
     <footer role="contentinfo" className="py-20 pb-10 bg-black text-white">
@@ -40,6 +40,7 @@ const Footer = () => {
                   viewBox="0 0 20 20"
                   fill="none"
                 >
+                  <title>Instagram</title>
                   <g clipPath="url(#a)">
                     <path
                       fill="#fff"
@@ -64,7 +65,7 @@ const Footer = () => {
         </div>
       </Container>
     </footer>
-  );
-};
+  )
+}
 
-export { Footer };
+export { Footer }
