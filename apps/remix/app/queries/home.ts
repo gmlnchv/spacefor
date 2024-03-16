@@ -8,42 +8,49 @@ import { retailerSelection } from './retailer';
 import { eventSelection } from '~/queries/event.ts';
 import { postSelection } from '~/queries/post.ts';
 
+const pageQuery = q('*')
+  .filterByType('homePage')
+  .grab$(
+    {
+      ...meta,
+      ...seo,
+      hero: q('hero').grab$({
+        _type: q.string(),
+        ...heroSelection,
+      }),
+      images: sanityImage('images', {
+        isList: true,
+        withAsset: ['base', 'blurHash', 'dimensions'],
+        additionalFields: {
+          captionTitle: q.string(),
+          captionDescription: q.string().nullable(),
+        },
+      }).nullable(),
+    },
+    {
+      includeTestimonials: testimonials,
+    }
+  )
+  .slice(0);
+
+const postsQuery = q('*')
+  .filterByType('post')
+  .filter('category->title == "Meet the Founder"')
+  .order('publishedAt desc')
+  .slice(0, 3)
+  .grab$(postSelection);
+
+const retailersQuery = q('*').filterByType('retailer').grab$(retailerSelection);
+const eventsQuery = q('*')
+  .filterByType('event')
+  .order('start_date desc')
+  .grab$(eventSelection);
+
 const homeQuery = q('').grab({
-  page: q('*')
-    .filterByType('homePage')
-    .grab$(
-      {
-        ...meta,
-        ...seo,
-        hero: q('hero').grab$({
-          _type: q.string(),
-          ...heroSelection,
-        }),
-        images: sanityImage('images', {
-          isList: true,
-          withAsset: ['base', 'blurHash', 'dimensions'],
-          additionalFields: {
-            captionTitle: q.string(),
-            captionDescription: q.string().nullable(),
-          },
-        }).nullable(),
-      },
-      {
-        includeTestimonials: testimonials,
-      }
-    )
-    .slice(0),
-  posts: q('*')
-    .filterByType('post')
-    .filter('category->title == "Meet the Founder"')
-    .order('publishedAt desc')
-    .slice(0, 3)
-    .grab$(postSelection),
-  retailers: q('*').filterByType('retailer').grab$(retailerSelection),
-  events: q('*')
-    .filterByType('event')
-    .order('start_date desc')
-    .grab$(eventSelection),
+  page: pageQuery,
+  posts: postsQuery,
+  retailers: retailersQuery,
+  events: eventsQuery,
 });
 
 export async function getHomePage() {

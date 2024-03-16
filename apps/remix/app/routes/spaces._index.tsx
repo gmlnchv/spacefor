@@ -1,5 +1,5 @@
 import { json } from '@remix-run/node';
-import { useLoaderData } from '@remix-run/react';
+import { Link, useLoaderData } from '@remix-run/react';
 import { MetaFunction } from '@vercel/remix';
 import { Layout, LayoutContent } from '~/layouts/layout.tsx';
 import { getSpacesPage } from '~/queries/spaces.ts';
@@ -7,10 +7,11 @@ import { PortableText } from '@portabletext/react';
 import { Header } from '~/components/header.tsx';
 import { SpaceList } from '~/components/space-list.tsx';
 import { Container } from '~/components/container.tsx';
+import { PostList } from '~/components/post-list';
 
 export const loader = async () => {
-  const { page, spaces } = await getSpacesPage();
-  return json({ page, spaces });
+  const { page, spaces, posts } = await getSpacesPage();
+  return json({ page, spaces, posts });
 };
 
 export const meta: MetaFunction<typeof loader> = ({ data }) => {
@@ -28,13 +29,13 @@ export const meta: MetaFunction<typeof loader> = ({ data }) => {
 };
 
 export default function Spaces() {
-  const { page, spaces } = useLoaderData<typeof loader>();
+  const { page, spaces, posts } = useLoaderData<typeof loader>();
 
   return (
     <Layout>
       <Header colorScheme="light" />
       <LayoutContent className="bg-cararra-100">
-        <div className="py-10 md:py-24 space-y-10 md:space-y-24">
+        <div className="pt-10 md:pt-24 space-y-10 md:space-y-24">
           <Container>
             <div className="grid lg:grid-cols-2 gap-y-8 items-center">
               {page.header.title && (
@@ -54,6 +55,27 @@ export default function Spaces() {
           <Container>
             <SpaceList spaces={spaces} />
           </Container>
+
+          {/* Posts */}
+          {Boolean(posts?.length) && (
+            <section className="bg-white text-black py-8 lg:py-14">
+              <Container>
+                <div className="flex flex-col space-y-4 md:flex-row md:items-center md:justify-between py-9 border-t border-black">
+                  <p className="font-serif text-2xl lg:text-3xl text-balance">
+                    Showcase
+                  </p>
+                  <Link
+                    to="/editorial/showcase"
+                    className="text-sm underline underline-offset-2"
+                  >
+                    View all
+                  </Link>
+                </div>
+
+                <PostList posts={posts} colorScheme="white" />
+              </Container>
+            </section>
+          )}
         </div>
       </LayoutContent>
     </Layout>

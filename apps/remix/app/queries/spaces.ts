@@ -10,6 +10,16 @@ import { runQuery } from '~/lib/sanity';
 import { meta } from '~/queries/meta.ts';
 import { seo } from '~/queries/seo.ts';
 import { spaceSelection } from './space';
+import { postSelection } from './post';
+
+const spacesQuery = q('*').filterByType('space').grab$(spaceSelection);
+
+const postsQuery = q('*')
+  .filterByType('post')
+  .filter('category->title == "Showcase"')
+  .order('publishedAt desc')
+  .slice(0, 3)
+  .grab$(postSelection);
 
 export async function getSpacesPage() {
   return runQuery(
@@ -25,7 +35,8 @@ export async function getSpacesPage() {
           }),
         })
         .slice(0),
-      spaces: q('*').filterByType('space').grab$(spaceSelection),
+      spaces: spacesQuery,
+      posts: postsQuery,
     })
   );
 }
