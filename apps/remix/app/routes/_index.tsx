@@ -33,8 +33,6 @@ export const meta: MetaFunction<typeof loader> = ({ data }) => {
 export default function Index() {
   const { page, retailers, events, posts } = useLoaderData<typeof loader>()
 
-  console.log(posts)
-
   return (
     <Layout>
       <Header />

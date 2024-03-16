@@ -25,12 +25,8 @@ export const Newsletter = () => {
             </label>
 
             <Input type="email" name="email" id="email" placeholder="Email" />
-            <button
-              type="submit"
-              className="inline-flex border h-[46px] px-4 py-2 text-sm lg:text-base items-center justify-center whitespace-nowrap transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
-            >
-              Subscribe
-            </button>
+
+            <Button type="submit">Subscribe</Button>
           </form.Form>
 
           {/*  success*/}
