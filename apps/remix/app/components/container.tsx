@@ -1,11 +1,12 @@
-import * as React from 'react'
+import * as React from 'react';
+import { cn } from 'ui/src';
 
 interface ContainerProps extends React.HTMLAttributes<HTMLDivElement> {}
 
-const Container = (props: ContainerProps) => (
+const Container = ({ className, ...props }: ContainerProps) => (
   <div className="px-5">
-    <div className="mx-auto max-w-7xl" {...props} />
+    <div className={cn('mx-auto max-w-7xl', className)} {...props} />
   </div>
-)
+);
 
-export { Container }
+export { Container };

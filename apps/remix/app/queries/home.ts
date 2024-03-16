@@ -1,12 +1,12 @@
-import { testimonials } from './testimonials'
-import { runQuery } from '~/lib/sanity.ts'
-import { q } from 'groqd'
-import { meta } from '~/queries/meta.ts'
-import { seo } from '~/queries/seo.ts'
-import { heroSelection } from './page'
-import { retailerSelection } from './retailer'
-import { eventSelection } from '~/queries/event.ts'
-import { postSelection } from '~/queries/post.ts'
+import { testimonials } from './testimonials';
+import { runQuery } from '~/lib/sanity.ts';
+import { InferType, q, sanityImage } from 'groqd';
+import { meta } from '~/queries/meta.ts';
+import { seo } from '~/queries/seo.ts';
+import { heroSelection } from './page';
+import { retailerSelection } from './retailer';
+import { eventSelection } from '~/queries/event.ts';
+import { postSelection } from '~/queries/post.ts';
 
 const homeQuery = q('').grab({
   page: q('*')
@@ -19,10 +19,18 @@ const homeQuery = q('').grab({
           _type: q.string(),
           ...heroSelection,
         }),
+        images: sanityImage('images', {
+          isList: true,
+          withAsset: ['base', 'blurHash', 'dimensions'],
+          additionalFields: {
+            captionTitle: q.string(),
+            captionDescription: q.string().nullable(),
+          },
+        }).nullable(),
       },
       {
         includeTestimonials: testimonials,
-      },
+      }
     )
     .slice(0),
   posts: q('*')
@@ -36,8 +44,10 @@ const homeQuery = q('').grab({
     .filterByType('event')
     .order('start_date desc')
     .grab$(eventSelection),
-})
+});
 
 export async function getHomePage() {
-  return runQuery(homeQuery)
+  return runQuery(homeQuery);
 }
+
+export type HomePageProps = InferType<typeof homeQuery>;

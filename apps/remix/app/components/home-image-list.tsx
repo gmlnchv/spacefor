@@ -1,19 +1,14 @@
 import { cn } from 'ui';
 import { Image } from '~/components/image.tsx';
-import { SpacePageProps } from '~/queries/spaces';
 import { cva } from 'class-variance-authority';
+import { HomePageProps } from '~/queries/home';
 
 interface Props {
-  images?: SpacePageProps['images'];
+  images?: HomePageProps['page']['images'];
 }
 
-const marginClasses = ['md:mt-16', 'md:mt-32', 'md:mt-64'];
-const flexDirectionClasses = ['flex-col', 'flex-col-reverse'];
+const flexDirectionClasses = ['flex-col', 'flex-col-reverse space-y-reverse'];
 const alignItemsClasses = ['items-start', 'items-end'];
-
-function randomMarginClass() {
-  return marginClasses[Math.floor(Math.random() * marginClasses.length)];
-}
 
 function randomAlignItemsClass() {
   return alignItemsClasses[
@@ -27,17 +22,18 @@ function randomFlexDirectionClass() {
   ];
 }
 
-const figureVariants = cva('flex break-inside-avoid', {
+const figureVariants = cva('flex break-inside-avoid mt-8 first:mt-0', {
   variants: {
     variant: {
-      portrait: 'xl:flex-row-reverse',
-      landscape: '',
+      portrait:
+        'xl:flex-row-reverse -space-y-px xl:-space-x-px xl:space-x-reverse',
+      landscape: '-space-y-px',
     },
   },
 });
 
 const figcaptionVariants = cva(
-  'bg-white p-5 text-black leading-tight space-y-2.5',
+  'bg-white p-5 text-black border leading-tight space-y-2.5',
   {
     variants: {
       variant: {
@@ -48,9 +44,9 @@ const figcaptionVariants = cva(
   }
 );
 
-export const SpaceAdditionalImages = ({ images = [] }: Props) => {
+export const HomeImageList = ({ images = [] }: Props) => {
   return (
-    <div className="columns-1 md:columns-2 gap-x-8 lg:gap-x-36 space-y-10">
+    <div className="columns-1 md:columns-2 gap-x-8 lg:gap-x-36 max-lg:space-y-10">
       {images?.map((image) => {
         const isPortrait =
           image.asset.metadata.dimensions?.height! >
@@ -66,8 +62,7 @@ export const SpaceAdditionalImages = ({ images = [] }: Props) => {
                 variant: isPortrait ? 'portrait' : 'landscape',
               }),
               randomFlexDirectionClass(),
-              randomAlignItemsClass(),
-              randomMarginClass()
+              randomAlignItemsClass()
             )}
           >
             <Image
@@ -75,7 +70,7 @@ export const SpaceAdditionalImages = ({ images = [] }: Props) => {
               width={width}
               aspectRatio={image.asset.metadata.dimensions?.aspectRatio!}
               blurHash={image.asset.metadata.blurHash}
-              className="border border-white"
+              className="border"
               alt={``}
             />
 

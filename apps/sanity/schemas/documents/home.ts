@@ -1,4 +1,4 @@
-import { defineField, defineType } from 'sanity';
+import { defineArrayMember, defineField, defineType } from 'sanity';
 import pageSchema from './page';
 import { HomeIcon } from '@sanity/icons';
 
@@ -30,6 +30,31 @@ export default defineType({
         title: 'Hero',
         type: 'hero',
         group: 'content',
+      }),
+      defineField({
+        name: 'images',
+        type: 'array',
+        title: 'Images',
+        group: 'content',
+        of: [
+          defineArrayMember({
+            name: 'image',
+            type: 'image',
+            fields: [
+              defineField({
+                name: 'captionTitle',
+                title: 'Caption Title',
+                type: 'string',
+                validation: (Rule) => Rule.required(),
+              }),
+              defineField({
+                name: 'captionDescription',
+                title: 'Caption Description',
+                type: 'string',
+              }),
+            ],
+          }),
+        ],
       }),
     ]),
 });

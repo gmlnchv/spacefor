@@ -157,11 +157,9 @@ export default function Space() {
         )}
 
         {/* Additional images */}
-        <section>
-          <Container>
-            <SpaceAdditionalImages images={space.images} />
-          </Container>
-        </section>
+        <Container className="pb-10 md:pb-24">
+          <SpaceAdditionalImages images={space.images} />
+        </Container>
       </LayoutContent>
     </Layout>
   );
