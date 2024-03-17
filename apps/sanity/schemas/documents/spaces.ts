@@ -25,7 +25,7 @@ export default defineType({
       return field;
     })
     .concat([
-      defineType({
+      defineField({
         name: 'header',
         title: 'Header',
         type: 'object',
@@ -55,6 +55,12 @@ export default defineType({
             ],
           }),
         ],
+      }),
+      defineField({
+        name: 'accordionList',
+        title: 'Accordion List',
+        type: 'accordionList',
+        group: 'content',
       }),
     ]),
 });

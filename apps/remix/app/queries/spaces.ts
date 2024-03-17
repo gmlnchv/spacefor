@@ -11,6 +11,7 @@ import { meta } from '~/queries/meta.ts';
 import { seo } from '~/queries/seo.ts';
 import { spaceSelection } from './space';
 import { postSelection } from './post';
+import { accordionItemSelection } from './accordion-item';
 
 const spacesQuery = q('*').filterByType('space').grab$(spaceSelection);
 
@@ -33,6 +34,12 @@ export async function getSpacesPage() {
             title: q.string().optional(),
             description: q.array(q.contentBlock()),
           }),
+          accordionList: q('accordionList')
+            .grab$({
+              title: q.string(),
+              items: q.array(q.object(accordionItemSelection)),
+            })
+            .nullable(),
         })
         .slice(0),
       spaces: spacesQuery,
@@ -76,6 +83,12 @@ const spacePageQuery = q('*')
         captionDescription: q.string().nullable(),
       },
     }).nullable(),
+    accordionList: q('accordionList')
+      .grab$({
+        title: q.string(),
+        items: q.array(q.object(accordionItemSelection)),
+      })
+      .nullable(),
   })
   .slice(0);
 

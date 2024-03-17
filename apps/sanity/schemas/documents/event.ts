@@ -31,13 +31,6 @@ export default defineType({
       options: {
         dateFormat: 'DD-MM-YYYY',
       },
-      validation: (Rule) =>
-        Rule.required()
-          .min(
-            // Today's date
-            new Date().toISOString().split('T')[0]
-          )
-          .error('Start date must be today or later'),
     }),
     defineField({
       name: 'end_date',

@@ -25,6 +25,8 @@ import spacePlan from './schemas/objects/space-plan';
 import footer from './schemas/documents/footer';
 import testimonial from './schemas/documents/testimonial';
 import editorial from './schemas/documents/editorial';
+import accordionItem from './schemas/objects/accordion-item';
+import accordionList from './schemas/objects/accordion-list';
 
 export default defineConfig({
   name: 'default',
@@ -51,6 +53,8 @@ export default defineConfig({
       retailer,
       testimonial,
       // Objects
+      accordionItem,
+      accordionList,
       blockContent,
       category,
       hero,

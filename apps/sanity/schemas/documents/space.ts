@@ -103,5 +103,10 @@ export default defineType({
       title: 'Plan',
       type: 'spacePlan',
     }),
+    defineField({
+      name: 'accordionList',
+      title: 'Accordion List',
+      type: 'accordionList',
+    }),
   ],
 });

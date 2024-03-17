@@ -11,6 +11,7 @@ import { SpaceIcon } from '~/components/space-icon';
 import { SpecsIcon } from '~/components/specs-icon';
 import { Popover, PopoverArrow, PopoverContent, PopoverTrigger } from 'ui';
 import { SpaceAdditionalImages } from '~/components/space-additional-images';
+import { AccordionList } from '~/components/accordion-list';
 
 export const loader = async ({ params }: LoaderFunctionArgs) => {
   const { slug } = params;
@@ -160,6 +161,21 @@ export default function Space() {
         <Container className="pb-10 md:pb-24">
           <SpaceAdditionalImages images={space.images} />
         </Container>
+
+        {/* Accordion List */}
+        {Boolean(space.accordionList?.items?.length) && (
+          <section className="bg-black text-white py-8 lg:py-14">
+            <Container className="py-9 border-t border-white">
+              <div className="space-y-28 lg:space-y-40">
+                <p className="font-serif text-2xl max-w-xl lg:text-5xl">
+                  {space.accordionList.title}
+                </p>
+
+                <AccordionList items={space.accordionList.items} />
+              </div>
+            </Container>
+          </section>
+        )}
       </LayoutContent>
     </Layout>
   );

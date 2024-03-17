@@ -25,6 +25,7 @@
   "dependencies": {
     "@ariakit/react": "^0.3.11",
     "@phosphor-icons/react": "^2.0.15",
+    "@radix-ui/react-accordion": "^1.1.2",
     "@radix-ui/react-dialog": "^1.0.5",
     "@radix-ui/react-popover": "^1.0.7",
     "@radix-ui/react-select": "^2.0.0",
@@ -33,6 +34,7 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
     "install": "^0.13.0",
+    "react-accordion": "link:@@radix-ui/react-accordion",
     "tailwind-merge": "^2.2.0",
     "tailwindcss": "^3.4.0",
     "tailwindcss-animate": "^1.0.7"
