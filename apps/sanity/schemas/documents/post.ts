@@ -1,5 +1,5 @@
-import { defineArrayMember, defineField, defineType } from 'sanity'
-import { ComposeIcon } from '@sanity/icons'
+import { defineArrayMember, defineField, defineType } from 'sanity';
+import { ComposeIcon } from '@sanity/icons';
 
 export default defineType({
   name: 'post',
@@ -83,7 +83,10 @@ export default defineType({
           lists: [],
           marks: {
             annotations: [],
-            decorators: [],
+            decorators: [
+              { title: 'Strong', value: 'strong' },
+              { title: 'Emphasis', value: 'em' },
+            ],
           },
         }),
         defineArrayMember({
@@ -126,12 +129,12 @@ export default defineType({
       media: 'mainImage',
     },
     prepare(selection) {
-      const { title, category, media } = selection
+      const { title, category, media } = selection;
       return {
         title,
         subtitle: category,
         media,
-      }
+      };
     },
   },
-})
+});
