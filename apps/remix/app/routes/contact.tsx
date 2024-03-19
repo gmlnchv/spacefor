@@ -9,7 +9,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
 
   const { error } = await resend.emails.send({
     from: 'Spacefor <spacefor@devbox.sbs>',
-    to: ['georgy@malanichev.com'],
+    to: ['hello@spacefor.nz'],
     subject: 'New contact form submission',
     html: `
       <p>First Name: ${formData.get('firstName')}</p>
