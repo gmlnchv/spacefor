@@ -64,6 +64,11 @@ export async function getPost(slug: string) {
                   }),
                 }),
             },
+            default: {
+              _key: q.string(),
+              _type: ['"unsupported"', q.literal('unsupported')],
+              unsupportedType: ['_type', q.string()],
+            },
           }),
       })
       .slice(0),
