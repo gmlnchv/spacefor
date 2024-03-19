@@ -32,8 +32,6 @@ export const meta: MetaFunction<typeof loader> = ({ data }) => {
 export default function Spaces() {
   const { page, spaces, posts } = useLoaderData<typeof loader>();
 
-  console.log('page', page);
-
   return (
     <Layout>
       <Header colorScheme="light" />

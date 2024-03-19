@@ -11,7 +11,6 @@ import { useFetcher } from '@remix-run/react';
 
 const ContactForm = () => {
   const form = useFetcher();
-  console.log(form);
   return (
     <>
       {!form.data && (

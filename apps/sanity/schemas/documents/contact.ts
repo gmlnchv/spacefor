@@ -1,11 +1,13 @@
-import { defineArrayMember, defineField, defineType } from 'sanity'
-import pageSchema from './page'
+import { defineArrayMember, defineField, defineType } from 'sanity';
+import { EnvelopeIcon } from '@sanity/icons';
+import pageSchema from './page';
 
 export default defineType({
   ...pageSchema,
   name: 'contactPage',
   title: 'Contact',
   type: 'document',
+  icon: EnvelopeIcon,
   // overwrite slug field options
   fields: pageSchema.fields
     .filter((field) => field.name !== 'components')
@@ -17,9 +19,9 @@ export default defineType({
           initialValue: {
             current: '/enquire',
           },
-        }
+        };
       }
-      return field
+      return field;
     })
     .concat([
       defineField({
@@ -58,5 +60,11 @@ export default defineType({
           }),
         ],
       }),
+      defineField({
+        name: 'accordionList',
+        title: 'Accordion List',
+        type: 'accordionList',
+        group: 'content',
+      }),
     ]),
-})
+});

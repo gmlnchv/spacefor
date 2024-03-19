@@ -17,7 +17,7 @@ export const AccordionList = ({ items }: AccordionListProps) => {
       type="single"
       collapsible
       className={cn('gap-x-10', {
-        'lg:columns-2': items.length > 4,
+        'md:columns-2': items.length > 4,
       })}
     >
       {items.map((item) => (
