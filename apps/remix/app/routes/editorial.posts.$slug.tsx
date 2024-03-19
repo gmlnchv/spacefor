@@ -1,24 +1,22 @@
-import { LoaderFunctionArgs, json } from '@remix-run/node'
-import { useLoaderData } from '@remix-run/react'
-import { Layout, LayoutContent } from '~/layouts/layout'
-import { getPost } from '~/queries/posts'
-import React from 'react'
-import { Header } from '~/components/header.tsx'
-import { Container } from '~/components/container.tsx'
-import { format, parseISO } from 'date-fns'
-import { Image } from '~/components/image.tsx'
-import { PortableText } from '@portabletext/react'
+import { LoaderFunctionArgs, json } from '@remix-run/node';
+import { useLoaderData } from '@remix-run/react';
+import { Layout, LayoutContent } from '~/layouts/layout';
+import { getPost } from '~/queries/posts';
+import { Header } from '~/components/header.tsx';
+import { Container } from '~/components/container.tsx';
+import { format, parseISO } from 'date-fns';
+import { Image } from '~/components/image.tsx';
+import { PortableText } from '@portabletext/react';
 
 export const loader = async ({ params }: LoaderFunctionArgs) => {
-  const { slug = null } = params
+  const { slug = null } = params;
 
-  const post = await getPost(slug as string)
-  return json(post)
-}
+  const post = await getPost(slug as string);
+  return json(post);
+};
 
 export default function Post() {
-  const post = useLoaderData<typeof loader>()
-  console.log(post)
+  const post = useLoaderData<typeof loader>();
   return (
     <Layout>
       <Header colorScheme="light" />
@@ -75,6 +73,22 @@ export default function Post() {
                         <h3 className="text-xl lg:text-2xl">{children}</h3>
                       ),
                     },
+                    marks: {
+                      link: ({ children, value }) => {
+                        const rel = value.href.startsWith('/')
+                          ? undefined
+                          : 'noreferrer noopener';
+                        return (
+                          <a
+                            rel={rel}
+                            href={value.href}
+                            className="underline underline-offset-2"
+                          >
+                            {children}
+                          </a>
+                        );
+                      },
+                    },
                   }}
                 />
               </div>
@@ -83,5 +97,5 @@ export default function Post() {
         </Container>
       </LayoutContent>
     </Layout>
-  )
+  );
 }
