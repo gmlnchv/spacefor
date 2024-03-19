@@ -48,12 +48,12 @@ export async function getSpacesPage() {
   );
 }
 
-const spotSelection: Selection = {
+const spotSelection = {
   _key: q.string(),
   description: q.string(),
   x: q.number(),
   y: q.number(),
-};
+} satisfies Selection;
 
 export type SpotProps = TypeFromSelection<typeof spaceSelection>;
 

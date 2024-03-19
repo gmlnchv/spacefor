@@ -1,21 +1,23 @@
-import { LoaderFunctionArgs, json } from '@remix-run/node'
-import { useLoaderData } from '@remix-run/react'
-import { Container } from '~/components/container'
-import { Header } from '~/components/header'
-import { Layout, LayoutContent } from '~/layouts/layout'
-import { getEditorialPage } from '~/queries/posts'
-import { MetaFunction } from '@vercel/remix'
-import { Separator, cn } from 'ui'
-import { PostList } from '~/components/post-list.tsx'
-import { NavLink } from '@remix-run/react'
-import React from 'react'
+import { LoaderFunctionArgs, json } from '@remix-run/node';
+import { useLoaderData } from '@remix-run/react';
+import { Container } from '~/components/container';
+import { Header } from '~/components/header';
+import { Layout, LayoutContent } from '~/layouts/layout';
+import { getEditorialPage } from '~/queries/posts';
+import { MetaFunction } from '@vercel/remix';
+import { Separator, cn } from 'ui';
+import { PostList } from '~/components/post-list.tsx';
+import { NavLink } from '@remix-run/react';
+import React from 'react';
 
 export const loader = async ({ params }: LoaderFunctionArgs) => {
-  const { category = null } = params
+  const { category = null } = params;
 
-  const { page, posts, categories } = await getEditorialPage(category as string)
-  return json({ page, posts, categories })
-}
+  const { page, posts, categories } = await getEditorialPage(
+    category as string
+  );
+  return json({ page, posts, categories });
+};
 
 export const meta: MetaFunction<typeof loader> = ({ data }) => {
   return [
@@ -28,8 +30,8 @@ export const meta: MetaFunction<typeof loader> = ({ data }) => {
       name: 'description',
       content: data?.page.seo?.description ?? '',
     },
-  ]
-}
+  ];
+};
 
 const Link = (props: React.ComponentProps<typeof NavLink>) => (
   <NavLink
@@ -41,14 +43,14 @@ const Link = (props: React.ComponentProps<typeof NavLink>) => (
         'h-[46px] px-4 py-2 text-sm lg:text-base border border-transparent',
         isActive
           ? 'bg-black text-white'
-          : 'bg-transparent border-black text-black hover:bg-black hover:text-white',
+          : 'bg-transparent border-black text-black hover:bg-black hover:text-white'
       )
     }
   />
-)
+);
 
 export default function Editorial() {
-  const { page, posts, categories } = useLoaderData<typeof loader>()
+  const { page, posts, categories } = useLoaderData<typeof loader>();
 
   return (
     <Layout>
@@ -77,5 +79,5 @@ export default function Editorial() {
         </Container>
       </LayoutContent>
     </Layout>
-  )
+  );
 }

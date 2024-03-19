@@ -1,7 +1,7 @@
 import { q, type TypeFromSelection, type Selection } from 'groqd';
 import { runQuery } from '~/lib/sanity';
 
-const NavigationItemSelection: Selection = {
+const navigationItemSelection = {
   _key: q.string(),
   label: q.string(),
   link: q('link').grab({
@@ -11,10 +11,10 @@ const NavigationItemSelection: Selection = {
       'type == "external"': q('external'),
     }),
   }),
-};
+} satisfies Selection;
 
 export type NavigationItemProps = TypeFromSelection<
-  typeof NavigationItemSelection
+  typeof navigationItemSelection
 >;
 
 export async function getGlobalData() {
@@ -27,13 +27,13 @@ export async function getGlobalData() {
           primaryNav: q('primaryNav')
             .deref()
             .grab$({
-              items: q('items').filter().grab(NavigationItemSelection),
+              items: q('items').filter().grab(navigationItemSelection),
             })
             .nullable(),
           mobileNav: q('mobileNav')
             .deref()
             .grab$({
-              items: q('items').filter().grab(NavigationItemSelection),
+              items: q('items').filter().grab(navigationItemSelection),
             })
             .nullable(),
           instagram: q.string().optional(),

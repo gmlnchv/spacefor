@@ -1,7 +1,7 @@
-import { q, Selection, type TypeFromSelection } from 'groqd'
-import { retailerSelection } from '~/queries/retailer.ts'
+import { q, Selection, type TypeFromSelection } from 'groqd';
+import { retailerSelection } from '~/queries/retailer.ts';
 
-export const eventSelection: Selection = {
+export const eventSelection = {
   _id: q.string(),
   start_date: q.date(),
   end_date: q.date(),
@@ -12,6 +12,6 @@ export const eventSelection: Selection = {
       title: q.string(),
       slug: q.slug('slug'),
     }),
-}
+} satisfies Selection;
 
-export type EventProps = TypeFromSelection<typeof eventSelection>
+export type EventProps = TypeFromSelection<typeof eventSelection>;

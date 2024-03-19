@@ -1,10 +1,4 @@
-import {
-  q,
-  type InferType,
-  type TypeFromSelection,
-  sanityImage,
-  type Selection,
-} from 'groqd';
+import { q } from 'groqd';
 import { runQuery } from '~/lib/sanity';
 
 import { meta } from '~/queries/meta.ts';

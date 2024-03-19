@@ -1,6 +1,6 @@
-import { q, type TypeFromSelection, type Selection, sanityImage } from 'groqd'
+import { q, type TypeFromSelection, type Selection, sanityImage } from 'groqd';
 
-export const postSelection: Selection = {
+export const postSelection = {
   _id: q.string(),
   title: q.string(),
   slug: q.slug('slug'),
@@ -19,6 +19,6 @@ export const postSelection: Selection = {
       caption: q.string().nullable(),
     },
   }),
-}
+} satisfies Selection;
 
-export type PostProps = TypeFromSelection<typeof postSelection>
+export type PostProps = TypeFromSelection<typeof postSelection>;

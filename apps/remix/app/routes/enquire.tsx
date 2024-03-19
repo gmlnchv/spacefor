@@ -69,7 +69,7 @@ export default function Contact() {
         </Container>
 
         {/* Accordion List */}
-        {Boolean(page.accordionList?.items?.length) && (
+        {page.accordionList && (
           <section className="bg-black text-white py-8 lg:py-14">
             <Container className="py-9 border-t border-white">
               <div className="space-y-28 lg:space-y-40">

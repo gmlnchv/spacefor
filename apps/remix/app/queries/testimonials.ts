@@ -1,11 +1,11 @@
 import { q, type Selection, type TypeFromSelection } from 'groqd';
 import { retailerSelection } from './retailer';
 
-export const testimonialSelection: Selection = {
+export const testimonialSelection = {
   _id: q.string(),
   retailer: q('retailer').deref().grab$(retailerSelection),
   quote: q.string(),
-};
+} satisfies Selection;
 
 export const testimonials: Selection = {
   testimonials: q('*')
