@@ -41,18 +41,6 @@ export default defineType({
       },
     }),
     defineField({
-      name: 'components',
-      type: 'array',
-      title: 'Components',
-      group: 'content',
-      of: [
-        defineArrayMember({
-          name: 'hero',
-          type: 'hero',
-        }),
-      ],
-    }),
-    defineField({
       name: 'includeTestimonials',
       title: 'Include testimonials',
       type: 'boolean',

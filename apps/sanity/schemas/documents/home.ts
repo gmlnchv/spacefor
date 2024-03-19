@@ -10,8 +10,6 @@ export default defineType({
   icon: HomeIcon,
   // override the slug field to always be '/'
   fields: pageSchema.fields
-    // hide the components field
-    .filter((field) => field.name !== 'components')
     .map((field) => {
       if (field.name === 'slug') {
         return {

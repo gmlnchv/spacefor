@@ -3,7 +3,7 @@ import { runQuery } from '~/lib/sanity.ts';
 import { InferType, q, sanityImage } from 'groqd';
 import { meta } from '~/queries/meta.ts';
 import { seo } from '~/queries/seo.ts';
-import { heroSelection } from './page';
+import { heroSelection } from './hero';
 import { retailerSelection } from './retailer';
 import { eventSelection } from '~/queries/event.ts';
 import { postSelection } from '~/queries/post.ts';
@@ -15,7 +15,6 @@ const pageQuery = q('*')
       ...meta,
       ...seo,
       hero: q('hero').grab$({
-        _type: q.string(),
         ...heroSelection,
       }),
       images: sanityImage('images', {

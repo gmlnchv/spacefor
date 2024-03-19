@@ -1,4 +1,4 @@
-import { HeroProps } from '~/queries/page.ts';
+import { HeroProps } from '~/queries/hero';
 import { Image } from '~/components/image.tsx';
 import { Container } from '~/components/container.tsx';
 
@@ -13,16 +13,23 @@ const Hero = ({ title, description, image }: HeroProps) => {
           </header>
 
           {image && (
-            <figure>
+            <figure className="relative mt-10 sm:mt-0">
               <Image
                 src={image.asset.url}
                 layout="constrained"
                 width={600}
                 height={490}
                 blurHash={image.asset.metadata.blurHash}
-                className="border border-white md:w-1/2 xl:w-auto"
+                className="border border-white md:w-1/2 xl:w-auto z-10 relative"
                 alt={image.alt ?? ''}
               />
+
+              {/* Top */}
+              <div className="w-32 lg:w-60 h-16 lg:h-32 bg-white absolute -top-12 lg:-top-10 z-20 -right-5" />
+              {/* Bottom Left */}
+              <div className="size-28 lg:size-40 bg-white absolute -bottom-5 lg:-bottom-10 z-20 -left-5 lg:-left-10" />
+              {/* Bottom Right */}
+              <div className="size-36 lg:size-64 bg-white absolute -bottom-16 lg:-bottom-32 -right-5 lg:-right-10" />
             </figure>
           )}
         </div>

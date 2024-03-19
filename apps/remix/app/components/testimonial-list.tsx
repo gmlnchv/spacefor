@@ -13,7 +13,7 @@ const TestimonialList = ({ testimonials }: TestimonialListProps) => {
         <div className="grid max-md:divide-y md:grid-cols-2 md:divide-x divide-black border-y border-black">
           {testimonials.map(({ _id, quote, retailer }) => (
             <div key={_id} className="flex flex-col py-10 space-y-4 md:px-8">
-              <p className="font-serif flex-1 text-2xl md:text-3xl">{quote}</p>
+              <p className="font-serif flex-1 text-2xl lg:text-3xl">{quote}</p>
               <p>{retailer.title}</p>
             </div>
           ))}
