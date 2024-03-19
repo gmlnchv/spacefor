@@ -1,10 +1,10 @@
-import { useFetcher } from '@remix-run/react'
-import { Container } from './container'
-import { Input } from 'ui/src'
-import { Button } from 'ui'
+import { useFetcher } from '@remix-run/react';
+import { Container } from './container';
+import { Input } from 'ui/src';
+import { Button } from 'ui';
 
 export const Newsletter = () => {
-  const form = useFetcher()
+  const form = useFetcher();
   return (
     <section className="py-8 lg:py-14 space-y-8 lg:space-y-14 bg-cararra-100 text-black">
       <Container>
@@ -41,5 +41,5 @@ export const Newsletter = () => {
         </div>
       </Container>
     </section>
-  )
-}
+  );
+};

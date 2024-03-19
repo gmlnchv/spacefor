@@ -1,19 +1,18 @@
-import { Layout, LayoutContent } from '~/layouts/layout'
-import { Header } from '~/components/header.tsx'
-import { Container } from '~/components/container'
-import React from 'react'
-import { Separator } from 'ui'
-import { json } from '@remix-run/node'
-import { getContactPage } from '~/queries/contact.ts'
-import { MetaFunction } from '@vercel/remix'
-import { useLoaderData } from '@remix-run/react'
-import { PortableText } from '@portabletext/react'
-import { ContactForm } from '~/components/contact-form.tsx'
+import { Layout, LayoutContent } from '~/layouts/layout';
+import { Header } from '~/components/header.tsx';
+import { Container } from '~/components/container';
+import { Separator } from 'ui';
+import { json } from '@remix-run/node';
+import { getContactPage } from '~/queries/contact.ts';
+import { MetaFunction } from '@vercel/remix';
+import { useLoaderData } from '@remix-run/react';
+import { PortableText } from '@portabletext/react';
+import { ContactForm } from '~/components/contact-form.tsx';
 
 export const loader = async () => {
-  const page = await getContactPage()
-  return json({ page })
-}
+  const page = await getContactPage();
+  return json({ page });
+};
 
 export const meta: MetaFunction<typeof loader> = ({ data }) => {
   return [
@@ -26,13 +25,11 @@ export const meta: MetaFunction<typeof loader> = ({ data }) => {
       name: 'description',
       content: data?.page.seo?.description ?? '',
     },
-  ]
-}
+  ];
+};
 
 export default function Contact() {
-  const { page } = useLoaderData<typeof loader>()
-
-  console.log('page', page)
+  const { page } = useLoaderData<typeof loader>();
 
   return (
     <Layout>
@@ -58,7 +55,7 @@ export default function Contact() {
                           >
                             {children}
                           </a>
-                        )
+                        );
                       },
                     },
                   }}
@@ -71,5 +68,5 @@ export default function Contact() {
         </Container>
       </LayoutContent>
     </Layout>
-  )
+  );
 }
