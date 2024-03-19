@@ -1,9 +1,10 @@
-import { RetailerProps } from '~/queries/retailer.ts'
-import { Container } from '~/components/container.tsx'
-import { Image } from '@unpic/react'
+import { RetailerProps } from '~/queries/retailer.ts';
+import { Container } from '~/components/container.tsx';
+import { Image } from '@unpic/react';
+import { cn } from 'ui/src';
 
 interface RetailerListProps {
-  retailers: RetailerProps[]
+  retailers: RetailerProps[];
 }
 
 const RetailerList = ({ retailers }: RetailerListProps) => {
@@ -20,14 +21,20 @@ const RetailerList = ({ retailers }: RetailerListProps) => {
               >
                 {retailer.logo && (
                   <div className="group size-full relative flex items-center justify-center">
+                    {/* Logo */}
                     <img
                       src={retailer.logo.asset.url}
-                      width={215}
-                      height={150}
                       alt={retailer.title}
-                      className="p-6"
+                      className={cn('p-6 max-h-[60%]', {
+                        // if landscape logo
+                        'max-w-[80%]':
+                          retailer.logo.asset.metadata.dimensions &&
+                          retailer.logo.asset.metadata.dimensions.height >
+                            retailer.logo.asset.metadata.dimensions.width,
+                      })}
                     />
 
+                    {/* Rollover image */}
                     <Image
                       src={retailer.image.asset.url}
                       layout="constrained"
@@ -44,7 +51,7 @@ const RetailerList = ({ retailers }: RetailerListProps) => {
         </div>
       </Container>
     </section>
-  )
-}
+  );
+};
 
-export { RetailerList }
+export { RetailerList };
