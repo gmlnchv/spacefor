@@ -25,12 +25,12 @@ const RetailerList = ({ retailers }: RetailerListProps) => {
                     <img
                       src={retailer.logo.asset.url}
                       alt={retailer.title}
-                      className={cn('p-6 max-h-[60%]', {
-                        // if landscape logo
+                      className={cn('p-4 max-h-[60%]', {
+                        // Landscape
                         'max-w-[80%]':
                           retailer.logo.asset.metadata.dimensions &&
-                          retailer.logo.asset.metadata.dimensions.height >
-                            retailer.logo.asset.metadata.dimensions.width,
+                          retailer.logo.asset.metadata.dimensions.width >
+                            retailer.logo.asset.metadata.dimensions.height,
                       })}
                     />
 
