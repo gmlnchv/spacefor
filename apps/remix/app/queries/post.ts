@@ -11,7 +11,7 @@ export const postSelection = {
       title: q.string(),
       slug: q.slug('slug'),
     }),
-  publishedAt: q.date(),
+  publishedAt: q.string(),
   image: sanityImage('mainImage', {
     withAsset: ['base', 'blurHash', 'dimensions'],
     additionalFields: {
