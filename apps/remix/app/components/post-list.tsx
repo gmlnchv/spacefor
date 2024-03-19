@@ -1,9 +1,9 @@
-import { Image } from '~/components/image.tsx'
-import { Link } from '@remix-run/react'
-import { PostProps } from '~/queries/post.ts'
-import { format, parseISO } from 'date-fns'
-import { cva, type VariantProps } from 'class-variance-authority'
-import { cn } from 'ui'
+import { Image } from '~/components/image.tsx';
+import { Link } from '@remix-run/react';
+import { PostProps } from '~/queries/post.ts';
+import { format, parseISO } from 'date-fns';
+import { cva, type VariantProps } from 'class-variance-authority';
+import { cn } from 'ui';
 
 const captionVariants = cva('flex flex-col p-5 space-y-2.5 flex-1', {
   variants: {
@@ -15,17 +15,17 @@ const captionVariants = cva('flex flex-col p-5 space-y-2.5 flex-1', {
   defaultVariants: {
     colorScheme: 'cararra',
   },
-})
+});
 
 interface PostListProps extends VariantProps<typeof captionVariants> {
-  posts: PostProps[]
+  posts: PostProps[];
 }
 
 export const PostList = ({ posts, colorScheme }: PostListProps) => {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-3 border border-black lg:grid-cols-4 bg-black gap-px">
       {posts.map((post) => (
-        <figure key={post._id} className="flex flex-col">
+        <figure key={post._id} className="flex flex-col relative">
           <Image
             src={post.image.asset.url}
             width={385}
@@ -42,7 +42,7 @@ export const PostList = ({ posts, colorScheme }: PostListProps) => {
 
             <Link
               to={`/editorial/posts/${post.slug}`}
-              className="underline text-sm"
+              className="underline text-sm after:absolute after:inset-0"
             >
               Read more
             </Link>
@@ -50,5 +50,5 @@ export const PostList = ({ posts, colorScheme }: PostListProps) => {
         </figure>
       ))}
     </div>
-  )
-}
+  );
+};
