@@ -39,7 +39,12 @@ const postsQuery = q('*')
   .slice(0, 3)
   .grab$(postSelection);
 
-const retailersQuery = q('*').filterByType('retailer').grab$(retailerSelection);
+const retailersQuery = q('*')
+  .filterByType('retailer')
+  // only show featured retailers
+  .filter('isFeatured == true')
+  .grab$(retailerSelection);
+
 const eventsQuery = q('*')
   .filterByType('event')
   .order('start_date desc')
