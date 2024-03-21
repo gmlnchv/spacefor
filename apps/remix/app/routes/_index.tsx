@@ -43,9 +43,7 @@ export default function Index() {
         {page.hero && <Hero {...page.hero} />}
 
         {/* Retailers */}
-        {Boolean(page.retailers?.length) && (
-          <RetailerList retailers={retailers} />
-        )}
+        {Boolean(retailers?.length) && <RetailerList retailers={retailers} />}
 
         {/* Events */}
         {Boolean(events?.length) && <EventList events={events} />}
