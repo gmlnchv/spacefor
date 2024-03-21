@@ -24,8 +24,8 @@ const AnimatedTableRow = motion(TableRow);
 const EventRow = React.forwardRef<HTMLTableRowElement, { event: EventProps }>(
   ({ event }, ref) => {
     const { start_date, end_date, retailer, space } = event;
-    const parsedStartDate = parseISO(start_date);
-    const parsedEndDate = parseISO(end_date);
+    const parsedStartDate = parseISO(start_date.toString());
+    const parsedEndDate = parseISO(end_date.toString());
 
     const eventIsSameMonth = isSameMonth(parsedStartDate, parsedEndDate);
     const eventIsPast = isPast(parsedEndDate);
@@ -83,8 +83,8 @@ const EventRowNarrow = React.forwardRef<
   { event: EventProps }
 >(({ event }, ref) => {
   const { start_date, end_date, retailer, space } = event;
-  const parsedStartDate = parseISO(start_date);
-  const parsedEndDate = parseISO(end_date);
+  const parsedStartDate = parseISO(start_date.toString());
+  const parsedEndDate = parseISO(end_date.toString());
 
   const eventIsSameMonth = isSameMonth(parsedStartDate, parsedEndDate);
   const eventIsPast = isPast(parsedEndDate);
