@@ -31,11 +31,11 @@ const EventRow = React.forwardRef<HTMLTableRowElement, { event: EventProps }>(
     const eventIsPast = isPast(parsedEndDate);
 
     const formattedDate = eventIsSameMonth
-      ? `${format(parsedStartDate, 'd')} \u2013 ${format(
+      ? `${format(parsedStartDate, 'd')}\u2013${format(
           parsedEndDate,
           'd MMM yyyy'
         )}`
-      : `${format(parsedStartDate, 'd MMM yyyy')} \u2013 ${format(
+      : `${format(parsedStartDate, 'd MMM yyyy')}\u2013${format(
           parsedEndDate,
           'd MMM yyyy'
         )}`;
@@ -90,8 +90,11 @@ const EventRowNarrow = React.forwardRef<
   const eventIsPast = isPast(parsedEndDate);
 
   const formattedDate = eventIsSameMonth
-    ? `${format(parsedStartDate, 'd')}–${format(parsedEndDate, 'd MMM yyyy')}`
-    : `${format(parsedStartDate, 'd MMM yyyy')} – ${format(
+    ? `${format(parsedStartDate, 'd')}\u2013${format(
+        parsedEndDate,
+        'd MMM yyyy'
+      )}`
+    : `${format(parsedStartDate, 'd MMM yyyy')}\u2013${format(
         parsedEndDate,
         'd MMM yyyy'
       )}`;
