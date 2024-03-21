@@ -45,7 +45,7 @@ export default function Spaces() {
                 </h1>
               )}
 
-              <div className="p-10">
+              <div className="p-5">
                 <div className="space-y-4 p-5 relative border border-black text-xl text-balance before:content-['*'] before:block before:size-5 before:bg-black before:absolute before:-top-5 before:-left-5">
                   <PortableText value={page.header.description} />
                 </div>
