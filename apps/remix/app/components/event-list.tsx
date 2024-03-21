@@ -139,59 +139,57 @@ const EventList = ({ events }: EventListProps) => {
 
   const latestEvents = events.slice(0, limit);
   return (
-    <section className="py-10 md:py-24">
-      <Container>
-        {/* Wide */}
-        <Table className="max-sm:hidden">
-          <TableHeader>
-            <TableRow>
-              <TableHead className="w-1/4 sr-only">Dates</TableHead>
-              <TableHead className="sr-only">Retailer</TableHead>
-              <TableHead className="text-right sr-only w-[140px]">
-                Space
-              </TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody className="[&_tr:last-child]:border-t">
-            <AnimatePresence initial={false}>
-              {latestEvents?.map((event) => (
-                <EventRow key={event._id} event={event} />
-              ))}
-            </AnimatePresence>
-          </TableBody>
-        </Table>
+    <Container>
+      {/* Wide */}
+      <Table className="max-sm:hidden">
+        <TableHeader>
+          <TableRow>
+            <TableHead className="w-1/4 sr-only">Dates</TableHead>
+            <TableHead className="sr-only">Retailer</TableHead>
+            <TableHead className="text-right sr-only w-[140px]">
+              Space
+            </TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody className="[&_tr:last-child]:border-t">
+          <AnimatePresence initial={false}>
+            {latestEvents?.map((event) => (
+              <EventRow key={event._id} event={event} />
+            ))}
+          </AnimatePresence>
+        </TableBody>
+      </Table>
 
-        {/* Narrow */}
-        <Table className="md:hidden">
-          <TableHeader>
-            <TableRow>
-              <TableHead className="sr-only">
-                Dates, Retailer and Location
-              </TableHead>
-              <TableHead className="w-20 sr-only">Image</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody className="[&_tr:last-child]:border-t">
-            <AnimatePresence initial={false}>
-              {latestEvents?.map((event) => (
-                <EventRowNarrow key={event._id} event={event} />
-              ))}
-            </AnimatePresence>
-          </TableBody>
-        </Table>
+      {/* Narrow */}
+      <Table className="md:hidden">
+        <TableHeader>
+          <TableRow>
+            <TableHead className="sr-only">
+              Dates, Retailer and Location
+            </TableHead>
+            <TableHead className="w-20 sr-only">Image</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody className="[&_tr:last-child]:border-t">
+          <AnimatePresence initial={false}>
+            {latestEvents?.map((event) => (
+              <EventRowNarrow key={event._id} event={event} />
+            ))}
+          </AnimatePresence>
+        </TableBody>
+      </Table>
 
-        {events.length > limit && (
-          <div className="text-center mt-6">
-            <button
-              onClick={() => setLimit(limit + 1)}
-              className="lg:text-lg underline underline-offset-2"
-            >
-              Show more
-            </button>
-          </div>
-        )}
-      </Container>
-    </section>
+      {events.length > limit && (
+        <div className="text-center mt-6">
+          <button
+            onClick={() => setLimit(limit + 1)}
+            className="lg:text-lg underline underline-offset-2"
+          >
+            Show more
+          </button>
+        </div>
+      )}
+    </Container>
   );
 };
 

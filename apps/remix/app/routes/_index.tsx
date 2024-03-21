@@ -46,16 +46,22 @@ export default function Index() {
         {Boolean(retailers?.length) && <RetailerList retailers={retailers} />}
 
         {/* Events */}
-        {Boolean(events?.length) && <EventList events={events} />}
+        {Boolean(events?.length) && (
+          <section className="space-y-9 py-10 md:py-24">
+            <Container>
+              <h3 className="text-2xl lg:text-5xl">What&apos;s on</h3>
+            </Container>
+
+            <EventList events={events} />
+          </section>
+        )}
 
         {/* Images */}
         {Boolean(page.images?.length) && (
           <section className="bg-cararra-100 text-black py-8 lg:py-14">
             <Container className="py-9 border-y">
               <div className="space-y-9 grid">
-                <p className="font-serif text-2xl max-w-xl lg:text-5xl">
-                  IRL, made easy
-                </p>
+                <h3 className="text-2xl lg:text-5xl">IRL, made easy</h3>
 
                 <HomeImageList images={page.images} />
 
