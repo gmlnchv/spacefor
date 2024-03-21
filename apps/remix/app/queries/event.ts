@@ -3,8 +3,8 @@ import { retailerSelection } from '~/queries/retailer.ts';
 
 export const eventSelection = {
   _id: q.string(),
-  start_date: q.date(),
-  end_date: q.date(),
+  start_date: q.string(),
+  end_date: q.string(),
   retailer: q('retailer').deref().grab$(retailerSelection),
   space: q('space')
     .deref()
