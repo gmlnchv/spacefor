@@ -49,6 +49,7 @@ const EventRow = React.forwardRef<HTMLTableRowElement, { event: EventProps }>(
         transition={{ duration: 0.5 }}
         className={cn('text-white text-lg border-b-0 border-t', {
           'opacity-50 border-white/50': eventIsPast,
+          'border-white': !eventIsPast,
         })}
       >
         <TableCell className="px-0 h-24 w-1/4">
@@ -104,6 +105,7 @@ const EventRowNarrow = React.forwardRef<
       transition={{ duration: 0.5 }}
       className={cn('text-white border-b-0 border-t', {
         'opacity-50 border-white/50': eventIsPast,
+        'border-white': !eventIsPast,
       })}
     >
       <TableCell className="px-0 py-3.5 space-y-4">
@@ -130,7 +132,6 @@ const EventRowNarrow = React.forwardRef<
 });
 
 const EventList = ({ events }: EventListProps) => {
-  // limit the number of events to display
   const [limit, setLimit] = React.useState(5);
 
   const latestEvents = events.slice(0, limit);
