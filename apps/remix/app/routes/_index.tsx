@@ -11,6 +11,8 @@ import { TestimonialList } from '~/components/testimonial-list';
 import { PostList } from '~/components/post-list.tsx';
 import { Container } from '~/components/container.tsx';
 import { HomeImageList } from '~/components/home-image-list';
+import { cn } from 'ui/src';
+import { buttonVariants } from 'ui';
 
 export const loader = async () => {
   const { page, retailers, events, posts } = await getHomePage();
@@ -52,12 +54,19 @@ export default function Index() {
         {Boolean(page.images?.length) && (
           <section className="bg-cararra-100 text-black py-8 lg:py-14">
             <Container className="py-9 border-y">
-              <div className="space-y-9">
+              <div className="space-y-9 grid">
                 <p className="font-serif text-2xl max-w-xl lg:text-5xl">
                   IRL, made easy
                 </p>
 
                 <HomeImageList images={page.images} />
+
+                <Link
+                  to="/enquire"
+                  className={cn(buttonVariants(), 'justify-self-center')}
+                >
+                  Enquire
+                </Link>
               </div>
             </Container>
           </section>
