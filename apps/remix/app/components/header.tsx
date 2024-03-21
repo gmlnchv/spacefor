@@ -5,6 +5,7 @@ import { SiteLogo } from '~/components/site-logo.tsx';
 import { cva, VariantProps } from 'class-variance-authority';
 import { cn } from 'ui';
 import { MobileNav } from './mobile-nav.tsx';
+import { Context } from '~/types.ts';
 
 const variants = cva(['h-20'], {
   variants: {
@@ -23,8 +24,7 @@ interface HeaderProps
     VariantProps<typeof variants> {}
 
 const Header = ({ colorScheme }: HeaderProps) => {
-  const context = useOutletContext();
-  const { primaryNav } = context.globalData.settings ?? {};
+  const { globalData }: Context = useOutletContext();
 
   return (
     <header className={cn(variants({ colorScheme }))}>
@@ -38,11 +38,13 @@ const Header = ({ colorScheme }: HeaderProps) => {
           <MobileNav />
         </div>
 
-        {Boolean(primaryNav?.items?.length) && (
+        {globalData.settings?.primaryNav && (
           <nav className="md:flex gap-x-10 hidden">
-            {primaryNav.items.map((item: NavigationItemProps) => (
-              <NavigationItem key={item._key} {...item} />
-            ))}
+            {globalData.settings.primaryNav.items.map(
+              (item: NavigationItemProps) => (
+                <NavigationItem key={item._key} {...item} />
+              )
+            )}
           </nav>
         )}
       </div>
