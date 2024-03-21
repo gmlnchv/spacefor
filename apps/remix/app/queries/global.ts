@@ -1,6 +1,8 @@
-import { q, type TypeFromSelection, type Selection } from 'groqd';
+import { q, type TypeFromSelection, type Selection, sanityImage } from 'groqd';
 import { runQuery } from '~/lib/sanity';
 import { linkSelection } from './link';
+import { callToActionSelection } from './call-to-action';
+import { bookingBannerSelection } from './booking-banner';
 
 const navigationItemSelection = {
   _key: q.string(),
@@ -32,6 +34,9 @@ export async function getGlobalData() {
             })
             .nullable(),
           instagram: q.string().optional(),
+          bookingBanner: q('bookingBanner')
+            .grab$(bookingBannerSelection)
+            .nullable(),
         })
         .slice(0),
       footer: q('*')

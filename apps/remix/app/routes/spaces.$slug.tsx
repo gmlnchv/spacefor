@@ -20,6 +20,7 @@ import { SpaceAdditionalImages } from '~/components/space-additional-images';
 import { AccordionList } from '~/components/accordion-list';
 import { cn } from 'ui/src';
 import { TestimonialList } from '~/components/testimonial-list';
+import { BookingBanner } from '~/components/booking-banner';
 
 export const loader = async ({ params }: LoaderFunctionArgs) => {
   const { slug } = params;
@@ -202,6 +203,9 @@ export default function Space() {
         {Boolean(testimonials?.length) && (
           <TestimonialList testimonials={testimonials} />
         )}
+
+        {/* Booking banner */}
+        <BookingBanner />
       </LayoutContent>
     </Layout>
   );

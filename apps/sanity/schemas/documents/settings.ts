@@ -31,5 +31,42 @@ export default defineType({
       title: 'Instagram',
       type: 'url',
     }),
+    defineField({
+      name: 'bookingBanner',
+      title: 'Booking Banner',
+      type: 'object',
+      fields: [
+        defineField({
+          name: 'title',
+          title: 'Title',
+          type: 'string',
+          validation: (Rule) => Rule.required(),
+        }),
+        defineField({
+          name: 'description',
+          title: 'Description',
+          type: 'text',
+        }),
+        defineField({
+          name: 'image',
+          title: 'Image',
+          type: 'image',
+          fields: [
+            defineField({
+              name: 'alt',
+              title: 'Alt Text',
+              type: 'string',
+            }),
+          ],
+          validation: (Rule) => Rule.required(),
+        }),
+        defineField({
+          name: 'callToAction',
+          title: 'Call to Action',
+          type: 'callToAction',
+          validation: (Rule) => Rule.required(),
+        }),
+      ],
+    }),
   ],
 });
