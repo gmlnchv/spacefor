@@ -1,5 +1,5 @@
 import { Link, useOutletContext } from '@remix-run/react';
-import type { NavigationItemProps } from '~/queries/global-data.ts';
+import type { NavigationItemProps } from '~/queries/global.ts';
 import { NavigationItem } from './navigation-item.tsx';
 import { SiteLogo } from '~/components/site-logo.tsx';
 import { cva, VariantProps } from 'class-variance-authority';

@@ -1,5 +1,5 @@
 import { json, LoaderFunctionArgs } from '@remix-run/node';
-import { useLoaderData } from '@remix-run/react';
+import { Link, useLoaderData } from '@remix-run/react';
 import { MetaFunction } from '@vercel/remix';
 import { Layout, LayoutContent } from '~/layouts/layout.tsx';
 import { getSpacePage, SpotProps } from '~/queries/spaces.ts';
@@ -9,9 +9,16 @@ import { PortableText } from '@portabletext/react';
 import { Container } from '~/components/container.tsx';
 import { SpaceIcon } from '~/components/space-icon';
 import { SpecsIcon } from '~/components/specs-icon';
-import { Popover, PopoverArrow, PopoverContent, PopoverTrigger } from 'ui';
+import {
+  buttonVariants,
+  Popover,
+  PopoverArrow,
+  PopoverContent,
+  PopoverTrigger,
+} from 'ui';
 import { SpaceAdditionalImages } from '~/components/space-additional-images';
 import { AccordionList } from '~/components/accordion-list';
+import { cn } from 'ui/src';
 
 export const loader = async ({ params }: LoaderFunctionArgs) => {
   const { slug } = params;
@@ -44,12 +51,23 @@ export default function Space() {
         <section className="py-10 md:py-24 max-h-[875px]">
           <Container>
             <div className="flex max-sm:flex-wrap items-center gap-y-8 justify-between">
-              <header className="space-y-12 lg:space-y-16 max-w-[380px]">
+              <header className="space-y-12 lg:space-y-16 max-w-[380px] pr-6">
                 <h1 className="text-3xl md:text-6xl">{space.title}</h1>
 
                 <div className="space-y-4">
                   <PortableText value={space.detailDescription} />
                 </div>
+
+                <Link
+                  to="/enquire"
+                  className={cn(
+                    buttonVariants({
+                      variant: 'inverse',
+                    })
+                  )}
+                >
+                  Enquire
+                </Link>
               </header>
 
               {space.image && (
@@ -106,7 +124,7 @@ export default function Space() {
               <div className="grid justify-items-center mt-10 mb-20 lg:my-10">
                 <figure className="relative">
                   <img
-                    src={space.plan.image.asset.url}
+                    src={space.plan.image?.asset.url}
                     className=""
                     alt={space.title}
                   />
@@ -163,7 +181,7 @@ export default function Space() {
         </Container>
 
         {/* Accordion List */}
-        {Boolean(space.accordionList?.items?.length) && (
+        {space.accordionList && (
           <section className="bg-black text-white py-8 lg:py-14">
             <Container className="py-9 border-t border-white">
               <div className="space-y-28 lg:space-y-40">

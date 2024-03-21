@@ -38,13 +38,15 @@ export default function Index() {
     <Layout>
       <Header />
       <LayoutContent className="bg-black text-white">
-        <Hero {...page.hero} />
+        {page.hero && <Hero {...page.hero} />}
 
         {/* Retailers */}
-        <RetailerList retailers={retailers} />
+        {Boolean(page.retailers?.length) && (
+          <RetailerList retailers={retailers} />
+        )}
 
         {/* Events */}
-        <EventList events={events} />
+        {Boolean(events?.length) && <EventList events={events} />}
 
         {/* Images */}
         {Boolean(page.images?.length) && (

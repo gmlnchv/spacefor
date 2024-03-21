@@ -1,16 +1,11 @@
 import { q, type TypeFromSelection, type Selection } from 'groqd';
 import { runQuery } from '~/lib/sanity';
+import { linkSelection } from './link';
 
 const navigationItemSelection = {
   _key: q.string(),
   label: q.string(),
-  link: q('link').grab({
-    isExternal: q('type == "external"'),
-    href: q.select({
-      'type == "internal"': q('internal').deref().grabOne('slug.current'),
-      'type == "external"': q('external'),
-    }),
-  }),
+  link: q('link').grab(linkSelection),
 } satisfies Selection;
 
 export type NavigationItemProps = TypeFromSelection<

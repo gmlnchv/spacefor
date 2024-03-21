@@ -1,4 +1,5 @@
 import { q, sanityImage, type TypeFromSelection, type Selection } from 'groqd';
+import { callToActionSelection } from './call-to-action';
 
 export const heroSelection = {
   title: q.string(),
@@ -9,6 +10,7 @@ export const heroSelection = {
       alt: q.string(),
     },
   }).nullable(),
+  callToAction: q('callToAction').grab(callToActionSelection).nullable(),
 } satisfies Selection;
 
 export type HeroProps = TypeFromSelection<typeof heroSelection>;

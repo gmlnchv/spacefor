@@ -9,7 +9,7 @@ import {
 } from 'ui';
 import { SiteLogo } from './site-logo';
 import { Container } from './container';
-import { NavigationItemProps } from '~/queries/global-data';
+import { NavigationItemProps } from '~/queries/global';
 import { MobileNavigationItem } from './mobile-navigation-item';
 
 export const MobileNav = () => {

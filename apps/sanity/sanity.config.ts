@@ -27,6 +27,7 @@ import testimonial from './schemas/documents/testimonial';
 import editorial from './schemas/documents/editorial';
 import accordionItem from './schemas/objects/accordion-item';
 import accordionList from './schemas/objects/accordion-list';
+import callToAction from './schemas/objects/call-to-action';
 
 export default defineConfig({
   name: 'default',
@@ -56,6 +57,7 @@ export default defineConfig({
       accordionItem,
       accordionList,
       blockContent,
+      callToAction,
       category,
       hero,
       link,

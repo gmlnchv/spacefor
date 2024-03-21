@@ -5,12 +5,14 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from './utils.ts';
 
 const buttonVariants = cva(
-  'inline-flex min-w-32 border h-12 px-4 py-2 text-sm lg:text-base items-center justify-center whitespace-nowrap transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50',
+  'inline-flex border min-w-32 border h-12 px-4 py-2 text-sm lg:text-base items-center justify-center focus-visible:ring-offset-2 whitespace-nowrap transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50',
   {
     variants: {
       variant: {
-        default: '',
-        outline: 'border border-current bg-transparent',
+        default:
+          'border-black text-black hover:bg-black hover:text-white focus-visible:ring-black focus-visible:ring-offset-transparent',
+        inverse:
+          'border-white text-white hover:bg-white hover:text-black focus-visible:ring-white focus-visible:ring-offset-black',
       },
     },
   }
@@ -37,4 +39,4 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 
 Button.displayName = 'Button';
 
-export { Button };
+export { Button, buttonVariants };

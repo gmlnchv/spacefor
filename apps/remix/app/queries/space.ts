@@ -1,7 +1,7 @@
 import { q, type TypeFromSelection, type Selection, sanityImage } from 'groqd';
 import { accordionItemSelection } from './accordion-item';
 
-export const spaceSelection: Selection = {
+export const spaceSelection = {
   _id: q.string(),
   title: q.string(),
   slug: q.slug('slug'),
@@ -17,6 +17,6 @@ export const spaceSelection: Selection = {
       items: q.array(q.object(accordionItemSelection)),
     })
     .nullable(),
-};
+} satisfies Selection;
 
 export type SpaceProps = TypeFromSelection<typeof spaceSelection>;
