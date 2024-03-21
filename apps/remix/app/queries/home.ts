@@ -41,7 +41,6 @@ const postsQuery = q('*')
 
 const retailersQuery = q('*')
   .filterByType('retailer')
-  // only show featured retailers
   .filter('isFeatured == true')
   .grab$(retailerSelection);
 

@@ -3,7 +3,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { format, parseISO, isSameMonth, isPast } from 'date-fns';
 import { EventProps } from '~/queries/event';
 import {
-  Button,
   Table,
   TableBody,
   TableCell,
@@ -176,9 +175,12 @@ const EventList = ({ events }: EventListProps) => {
 
         {events.length > limit && (
           <div className="text-center mt-6">
-            <Button variant="link" onClick={() => setLimit(limit + 1)}>
+            <button
+              onClick={() => setLimit(limit + 1)}
+              className="lg:text-lg underline underline-offset-2"
+            >
               Show more
-            </Button>
+            </button>
           </div>
         )}
       </Container>
