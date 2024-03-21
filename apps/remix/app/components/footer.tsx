@@ -1,9 +1,10 @@
-import { useOutletContext } from '@remix-run/react'
-import { Container } from '~/components/container.tsx'
-import { SiteLogo } from './site-logo'
+import { useOutletContext } from '@remix-run/react';
+import { Container } from '~/components/container.tsx';
+import { SiteLogo } from './site-logo';
+import { Context } from '~/types';
 
 const Footer = () => {
-  const { globalData } = useOutletContext()
+  const { globalData }: Context = useOutletContext();
 
   return (
     <footer role="contentinfo" className="py-20 pb-10 bg-black text-white">
@@ -58,14 +59,14 @@ const Footer = () => {
           </div>
 
           {/* Copyright */}
-          <p className="text-sm col-span-2 lg:pt-28">
+          <p className="text-sm col-span-2 lg:pt-28 max-sm:text-sm text-balance mt-4">
             {globalData.settings.siteTitle ?? null}{' '}
             <span className="opacity-50">©</span> {new Date().getFullYear()}
           </p>
         </div>
       </Container>
     </footer>
-  )
-}
+  );
+};
 
-export { Footer }
+export { Footer };

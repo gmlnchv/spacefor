@@ -3,9 +3,14 @@ import { NavigationItemProps } from './queries/global';
 
 export interface Context {
   globalData: {
-    settings?: {
+    settings: {
+      siteTitle: string;
+      instagram: string;
       primaryNav: { items: NavigationItemProps[] };
       bookingBanner: BookingBannerProps;
+    };
+    footer: {
+      footerText: string;
     };
   };
 }
