@@ -7,13 +7,4 @@ export const testimonialSelection = {
   quote: q.string(),
 } satisfies Selection;
 
-export const testimonials = {
-  testimonials: q('*')
-    .filterByType('testimonial')
-    .filter('show == true')
-    .order('_createdAt desc')
-    .slice(0, 1)
-    .grab$(testimonialSelection),
-} satisfies Selection;
-
 export type TestimonialProps = TypeFromSelection<typeof testimonialSelection>;

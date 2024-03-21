@@ -19,12 +19,13 @@ import {
 import { SpaceAdditionalImages } from '~/components/space-additional-images';
 import { AccordionList } from '~/components/accordion-list';
 import { cn } from 'ui/src';
+import { TestimonialList } from '~/components/testimonial-list';
 
 export const loader = async ({ params }: LoaderFunctionArgs) => {
   const { slug } = params;
-  const space = await getSpacePage(slug as string);
+  const { space, testimonials } = await getSpacePage(slug as string);
 
-  return json({ space });
+  return json({ space, testimonials });
 };
 
 export const meta: MetaFunction<typeof loader> = ({ data }) => {
@@ -41,8 +42,47 @@ export const meta: MetaFunction<typeof loader> = ({ data }) => {
   ];
 };
 
+const Spot = (spot: SpotProps) => (
+  <div
+    className="absolute grid place-items-center size-2 md:size-4"
+    style={{
+      top: `${spot.y}%`,
+      left: `${spot.x}%`,
+    }}
+  >
+    <Popover>
+      <PopoverTrigger asChild>
+        <button
+          className="absolute size-2 md:size-4 bg-white rounded-full cursor-pointer z-10"
+          aria-label={spot.description}
+        />
+      </PopoverTrigger>
+      <PopoverContent
+        className="rounded-none p-5 w-[220px]"
+        sideOffset={0}
+        side="bottom"
+        align="start"
+      >
+        <p>{spot.description}</p>
+
+        <PopoverArrow asChild width={1} height={50}>
+          <svg
+            viewBox="0 0 1 50"
+            xmlns="http://www.w3.org/2000/svg"
+            className="relative top-px"
+          >
+            <path stroke="#fff" d="M.5 0v50" />
+          </svg>
+        </PopoverArrow>
+      </PopoverContent>
+    </Popover>
+
+    <span className="absolute inline-flex h-full w-full bg-white opacity-75 animate-ping rounded-full" />
+  </div>
+);
+
 export default function Space() {
-  const { space } = useLoaderData<typeof loader>();
+  const { space, testimonials } = useLoaderData<typeof loader>();
 
   return (
     <Layout>
@@ -129,45 +169,8 @@ export default function Space() {
                     alt={space.title}
                   />
 
-                  {space.plan.hotspots?.map((spot: SpotProps) => (
-                    <div
-                      key={spot._key}
-                      className="absolute grid place-items-center size-2 md:size-4"
-                      style={{
-                        top: `${spot.y}%`,
-                        left: `${spot.x}%`,
-                      }}
-                    >
-                      <Popover>
-                        <PopoverTrigger asChild>
-                          <button
-                            key={spot._key}
-                            className="absolute size-2 md:size-4 bg-white rounded-full cursor-pointer z-10"
-                            aria-label={spot.description}
-                          />
-                        </PopoverTrigger>
-                        <PopoverContent
-                          className="rounded-none p-5 w-[220px]"
-                          sideOffset={0}
-                          side="bottom"
-                          align="start"
-                        >
-                          <p>{spot.description}</p>
-
-                          <PopoverArrow asChild width={1} height={50}>
-                            <svg
-                              viewBox="0 0 1 50"
-                              xmlns="http://www.w3.org/2000/svg"
-                              className="relative top-px"
-                            >
-                              <path stroke="#fff" d="M.5 0v50" />
-                            </svg>
-                          </PopoverArrow>
-                        </PopoverContent>
-                      </Popover>
-
-                      <span className="absolute inline-flex h-full w-full bg-white opacity-75 animate-ping rounded-full" />
-                    </div>
+                  {space.plan.hotspots?.map((spot) => (
+                    <Spot key={spot._key} {...spot} />
                   ))}
                 </figure>
               </div>
@@ -193,6 +196,11 @@ export default function Space() {
               </div>
             </Container>
           </section>
+        )}
+
+        {/* Testimonials */}
+        {Boolean(testimonials?.length) && (
+          <TestimonialList testimonials={testimonials} />
         )}
       </LayoutContent>
     </Layout>

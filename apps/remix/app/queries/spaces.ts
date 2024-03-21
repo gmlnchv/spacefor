@@ -12,6 +12,7 @@ import { seo } from '~/queries/seo.ts';
 import { spaceSelection } from './space';
 import { postSelection } from './post';
 import { accordionItemSelection } from './accordion-item';
+import { testimonialSelection } from './testimonials';
 
 const spacesQuery = q('*').filterByType('space').grab$(spaceSelection);
 
@@ -55,9 +56,9 @@ const spotSelection = {
   y: q.number(),
 } satisfies Selection;
 
-export type SpotProps = TypeFromSelection<typeof spaceSelection>;
+export type SpotProps = TypeFromSelection<typeof spotSelection>;
 
-const spacePageQuery = q('*')
+const spaceQuery = q('*')
   .filterByType('space')
   .filter('slug.current == $slug')
   .grab$({
@@ -91,6 +92,18 @@ const spacePageQuery = q('*')
       .nullable(),
   })
   .slice(0);
+
+const testimonialsQuery = q('*')
+  .filterByType('testimonial')
+  .filter('show == true')
+  .order('_createdAt desc')
+  .slice(0, 1)
+  .grab$(testimonialSelection);
+
+const spacePageQuery = q('').grab({
+  space: spaceQuery,
+  testimonials: testimonialsQuery,
+});
 
 export async function getSpacePage(slug: string) {
   return runQuery(spacePageQuery, { slug });

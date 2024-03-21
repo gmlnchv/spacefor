@@ -15,8 +15,8 @@ import { cn } from 'ui/src';
 import { buttonVariants } from 'ui';
 
 export const loader = async () => {
-  const { page, retailers, events, posts } = await getHomePage();
-  return json({ page, retailers, events, posts });
+  const { page, retailers, events, posts, testimonials } = await getHomePage();
+  return json({ page, retailers, events, posts, testimonials });
 };
 
 export const meta: MetaFunction<typeof loader> = ({ data }) => {
@@ -34,7 +34,8 @@ export const meta: MetaFunction<typeof loader> = ({ data }) => {
 };
 
 export default function Index() {
-  const { page, retailers, events, posts } = useLoaderData<typeof loader>();
+  const { page, retailers, events, posts, testimonials } =
+    useLoaderData<typeof loader>();
 
   return (
     <Layout>
@@ -98,8 +99,8 @@ export default function Index() {
         )}
 
         {/* Testimonials */}
-        {Boolean(page.testimonials?.length) && (
-          <TestimonialList testimonials={page.testimonials} />
+        {Boolean(testimonials?.length) && (
+          <TestimonialList testimonials={testimonials} />
         )}
       </LayoutContent>
     </Layout>
