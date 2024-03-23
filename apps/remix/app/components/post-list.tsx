@@ -23,13 +23,13 @@ interface PostListProps extends VariantProps<typeof captionVariants> {
 
 export const PostList = ({ posts, colorScheme }: PostListProps) => {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-3 border border-black lg:grid-cols-4 bg-black gap-px">
+    <div className="grid grid-cols-1 sm:grid-cols-2 border border-black lg:grid-cols-4 bg-black gap-px">
       {posts.map((post) => (
         <figure key={post._id} className="flex flex-col relative">
           <Image
             src={post.image.asset.url}
-            width={385}
-            height={385}
+            width={500}
+            height={500}
             blurHash={post.image.asset.metadata.blurHash}
             alt={post.title}
             className="mx-auto"
