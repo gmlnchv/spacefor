@@ -9,6 +9,7 @@ import { Separator, buttonVariants, cn } from 'ui';
 import { PostList } from '~/components/post-list.tsx';
 import { NavLink } from '@remix-run/react';
 import React from 'react';
+import { getMetaTags } from '~/utils/meta-tags';
 
 export const loader = async ({ params }: LoaderFunctionArgs) => {
   const { category = null } = params;
@@ -19,18 +20,13 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
   return json({ page, posts, categories });
 };
 
-export const meta: MetaFunction<typeof loader> = ({ data }) => {
-  return [
-    { title: data?.page.title },
-    {
-      property: 'og:title',
-      content: data?.page.seo?.title ?? data?.page.title,
-    },
-    {
-      name: 'description',
-      content: data?.page.seo?.description ?? '',
-    },
-  ];
+export const meta: MetaFunction<typeof loader> = ({ data, location }) => {
+  return getMetaTags({
+    title: data?.page.seo?.title,
+    description: data?.page.seo?.description,
+    image: data?.page.seo?.image?.asset.url,
+    slug: location.pathname,
+  });
 };
 
 const Link = (props: React.ComponentProps<typeof NavLink>) => (

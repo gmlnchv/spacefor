@@ -42,6 +42,8 @@ export async function getPost(slug: string) {
       .filterByType('post')
       .filter('slug.current == $slug')
       .grab$({
+        ...meta,
+        ...seo,
         ...postSelection,
         body: q('body')
           .filter()

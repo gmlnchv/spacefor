@@ -9,6 +9,7 @@ import { SpaceList } from '~/components/space-list.tsx';
 import { Container } from '~/components/container.tsx';
 import { PostList } from '~/components/post-list';
 import { AccordionList } from '~/components/accordion-list';
+import { getMetaTags } from '~/utils/meta-tags';
 
 export const loader = async () => {
   const { page, spaces, posts } = await getSpacesPage();
@@ -16,17 +17,12 @@ export const loader = async () => {
 };
 
 export const meta: MetaFunction<typeof loader> = ({ data }) => {
-  return [
-    { title: data?.page.title },
-    {
-      property: 'og:title',
-      content: data?.page.seo?.title ?? data?.page.title,
-    },
-    {
-      name: 'description',
-      content: data?.page.seo?.description ?? '',
-    },
-  ];
+  return getMetaTags({
+    title: data?.page.seo?.title,
+    description: data?.page.seo?.description,
+    image: data?.page.seo?.image?.asset.url,
+    slug: '/spaces',
+  });
 };
 
 export default function Spaces() {

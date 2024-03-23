@@ -21,6 +21,7 @@ import { AccordionList } from '~/components/accordion-list';
 import { cn } from 'ui/src';
 import { TestimonialList } from '~/components/testimonial-list';
 import { BookingBanner } from '~/components/booking-banner';
+import { getMetaTags } from '~/utils/meta-tags';
 
 export const loader = async ({ params }: LoaderFunctionArgs) => {
   const { slug } = params;
@@ -30,17 +31,12 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
 };
 
 export const meta: MetaFunction<typeof loader> = ({ data }) => {
-  return [
-    { title: data?.space.title },
-    {
-      property: 'og:title',
-      content: data?.space.seo?.title ?? data?.space.title,
-    },
-    {
-      name: 'description',
-      content: data?.space.seo?.description ?? '',
-    },
-  ];
+  return getMetaTags({
+    title: data?.space.seo?.title,
+    description: data?.space.seo?.description,
+    image: data?.space.seo?.image?.asset.url,
+    slug: `/spaces/${data?.space.slug}`,
+  });
 };
 
 const Spot = (spot: SpotProps) => (

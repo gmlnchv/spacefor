@@ -7,12 +7,23 @@ import { Container } from '~/components/container.tsx';
 import { format, parseISO } from 'date-fns';
 import { Image } from '~/components/image.tsx';
 import { PortableText } from '@portabletext/react';
+import { MetaFunction } from '@vercel/remix';
+import { getMetaTags } from '~/utils/meta-tags';
 
 export const loader = async ({ params }: LoaderFunctionArgs) => {
   const { slug = null } = params;
 
   const post = await getPost(slug as string);
   return json(post);
+};
+
+export const meta: MetaFunction<typeof loader> = ({ data }) => {
+  return getMetaTags({
+    title: data?.seo?.title,
+    description: data?.seo?.description,
+    image: data?.seo?.image?.asset.url,
+    slug: `/editorial/posts/${data?.slug}`,
+  });
 };
 
 export default function Post() {

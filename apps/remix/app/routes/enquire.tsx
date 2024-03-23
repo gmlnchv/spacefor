@@ -9,6 +9,7 @@ import { useLoaderData } from '@remix-run/react';
 import { PortableText } from '@portabletext/react';
 import { ContactForm } from '~/components/contact-form.tsx';
 import { AccordionList } from '~/components/accordion-list';
+import { getMetaTags } from '~/utils/meta-tags';
 
 export const loader = async () => {
   const page = await getContactPage();
@@ -16,17 +17,12 @@ export const loader = async () => {
 };
 
 export const meta: MetaFunction<typeof loader> = ({ data }) => {
-  return [
-    { title: data?.page.title },
-    {
-      property: 'og:title',
-      content: data?.page.seo?.title ?? data?.page.title,
-    },
-    {
-      name: 'description',
-      content: data?.page.seo?.description ?? '',
-    },
-  ];
+  return getMetaTags({
+    title: data?.page.seo?.title,
+    description: data?.page.seo?.description,
+    image: data?.page.seo?.image?.asset.url,
+    slug: '/enquire',
+  });
 };
 
 export default function Contact() {
