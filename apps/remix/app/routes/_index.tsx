@@ -13,6 +13,7 @@ import { Container } from '~/components/container.tsx';
 import { HomeImageList } from '~/components/home-image-list';
 import { cn } from 'ui/src';
 import { buttonVariants } from 'ui';
+import { getMetaTags } from '~/utils/meta-tags';
 
 export const loader = async () => {
   const { page, retailers, events, posts, testimonials } = await getHomePage();
@@ -20,17 +21,12 @@ export const loader = async () => {
 };
 
 export const meta: MetaFunction<typeof loader> = ({ data }) => {
-  return [
-    { title: data?.page.title },
-    {
-      property: 'og:title',
-      content: data?.page.seo?.title ?? data?.page.title,
-    },
-    {
-      name: 'description',
-      content: data?.page.seo?.description ?? '',
-    },
-  ];
+  return getMetaTags({
+    title: data?.page.seo?.title,
+    description: data?.page.seo?.description,
+    image: data?.page.seo?.image?.asset.url,
+    slug: '/',
+  });
 };
 
 export default function Index() {

@@ -25,7 +25,9 @@ export const links: LinksFunction = () => [
 export const loader = async () => {
   const globalData = await getGlobalData();
 
-  return json({ globalData });
+  return json({
+    globalData,
+  });
 };
 
 export default function App() {
