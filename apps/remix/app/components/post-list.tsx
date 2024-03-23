@@ -43,9 +43,8 @@ export const PostList = ({ posts, colorScheme }: PostListProps) => {
             <Link
               to={`/editorial/posts/${post.slug}`}
               className="underline text-sm after:absolute after:inset-0"
-              aria-label={`Read more about ${post.title}`}
             >
-              Read more
+              Read more <span className="sr-only">{post.title}</span>
             </Link>
           </figcaption>
         </figure>
