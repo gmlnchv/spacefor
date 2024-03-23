@@ -41,13 +41,6 @@ export default defineType({
       },
     }),
     defineField({
-      name: 'includeTestimonials',
-      title: 'Include testimonials',
-      type: 'boolean',
-      group: 'content',
-      initialValue: false,
-    }),
-    defineField({
       name: 'seo',
       title: 'SEO',
       type: 'seo',

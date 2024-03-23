@@ -1,7 +1,9 @@
 import { q, type TypeFromSelection, type Selection, sanityImage } from 'groqd';
 import { accordionItemSelection } from './accordion-item';
+import { seo } from './seo';
 
 export const spaceSelection = {
+  ...seo,
   _id: q.string(),
   title: q.string(),
   slug: q.slug('slug'),
