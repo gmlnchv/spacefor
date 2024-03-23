@@ -5,7 +5,7 @@
       "outputs": ["dist/**", ".next/**", "public/dist/**"],
       "dependsOn": ["^build"]
     },
-    "remix-app#build": {
+    "remix#build": {
       "dependsOn": ["^build"],
       "outputs": ["api/index.js", "api/build/**", "public/build/**"]
     },
