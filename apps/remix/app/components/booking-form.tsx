@@ -46,7 +46,7 @@ export const BookingForm = () => {
             className="space-y-9"
           >
             <fieldset className="grid gap-5 grid-cols-2">
-              <legend className="col-span-2 text-xl	font-serif mb-2 w-full">
+              <legend className="col-span-2 text-xl	font-serif mb-2 min-w-full">
                 Your details
               </legend>
 
@@ -105,7 +105,7 @@ export const BookingForm = () => {
             </fieldset>
 
             <fieldset className="grid gap-5 grid-cols-2">
-              <legend className="col-span-2 text-xl	font-serif mb-2 w-full">
+              <legend className="col-span-2 text-xl	font-serif mb-2 min-w-full">
                 Which space are you interested in?
               </legend>
 
@@ -125,7 +125,7 @@ export const BookingForm = () => {
             </fieldset>
 
             <fieldset className="grid gap-5 grid-cols-2">
-              <legend className="col-span-2 text-xl	mb-2 font-serif block">
+              <legend className="col-span-2 text-xl	mb-2 font-serif min-w-full">
                 When would you like it?
               </legend>
 
@@ -145,7 +145,7 @@ export const BookingForm = () => {
             </fieldset>
 
             <fieldset className="grid gap-5 grid-cols-2">
-              <legend className="col-span-2 text-xl	font-serif mb-2 w-full">
+              <legend className="col-span-2 text-xl	font-serif mb-2 min-w-full">
                 How long would you like the booking for?
               </legend>
 
@@ -162,7 +162,7 @@ export const BookingForm = () => {
             </fieldset>
 
             <fieldset className="grid gap-5 grid-cols-2">
-              <legend className="col-span-2 text-xl	font-serif mb-2 w-full">
+              <legend className="col-span-2 text-xl	font-serif mb-2 min-w-full">
                 Tell us about your brand and pop-up ideas.
               </legend>
 
