@@ -1,5 +1,6 @@
 import { BookingBannerProps } from './queries/booking-banner';
 import { NavigationItemProps } from './queries/global';
+import { SpaceProps } from './queries/space';
 
 export interface Context {
   globalData: {
@@ -12,5 +13,6 @@ export interface Context {
     footer: {
       footerText: string;
     };
+    spaces: SpaceProps['title'][];
   };
 }

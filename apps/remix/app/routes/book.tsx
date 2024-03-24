@@ -19,6 +19,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
       <p>Last Name: ${formData.get('lastName')}</p>
       <p>Email: ${formData.get('email')}</p>
       <p>Company Name: ${formData.get('companyName')}</p>
+      <p>Space: ${formData.get('space')}</p>
       <p>Date: ${date}</p>
       <p>Duration: ${formData.get('duration')}</p>
       <p>Message: ${formData.get('message')}</p>

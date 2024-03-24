@@ -33,6 +33,8 @@ export const loader = async () => {
 export default function App() {
   const { globalData } = useLoaderData<typeof loader>();
 
+  console.log(globalData);
+
   return (
     <html lang="en">
       <head>

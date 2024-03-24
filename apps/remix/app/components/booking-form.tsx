@@ -15,10 +15,14 @@ import {
   SelectValue,
   Textarea,
 } from 'ui';
-import { useFetcher } from '@remix-run/react';
+import { useFetcher, useOutletContext } from '@remix-run/react';
+import { Context } from '~/types';
 
 export const BookingForm = () => {
   const form = useFetcher();
+  const { globalData }: Context = useOutletContext();
+  const { spaces } = globalData;
+
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -98,6 +102,26 @@ export const BookingForm = () => {
                   required
                 />
               </div>
+            </fieldset>
+
+            <fieldset className="grid gap-5 grid-cols-2">
+              <legend className="col-span-2 text-xl	font-serif mb-2">
+                Which space are you interested in?
+              </legend>
+
+              <Select name="space" required>
+                <SelectTrigger className="col-span-2">
+                  <SelectValue placeholder="Select an option" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="Any">Any</SelectItem>
+                  {spaces.map((space) => (
+                    <SelectItem key={space} value={space}>
+                      {space}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
             </fieldset>
 
             <fieldset className="grid gap-5 grid-cols-2">

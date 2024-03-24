@@ -1,7 +1,6 @@
 import { useOutletContext } from '@remix-run/react';
 import { Image } from '~/components/image.tsx';
 import { Context } from '~/types';
-import { CallToAction } from './call-to-action';
 import { BookingForm } from './booking-form';
 
 export const BookingBanner = () => {
@@ -11,8 +10,7 @@ export const BookingBanner = () => {
     return null;
   }
 
-  const { title, description, image, callToAction } =
-    globalData.settings.bookingBanner;
+  const { title, description, image } = globalData.settings.bookingBanner;
 
   return (
     <section className="grid md:grid-cols-2">
