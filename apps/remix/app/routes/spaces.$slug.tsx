@@ -105,6 +105,7 @@ export default function Space() {
                     blurHash={space.image.asset.metadata.blurHash}
                     className="border border-white shrink"
                     alt={space.title}
+                    priority
                   />
 
                   <figcaption className="bg-white p-5 text-black leading-tight space-y-2.5 max-w-[260px] lg:max-w-[360px]">
