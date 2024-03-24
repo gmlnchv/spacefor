@@ -46,9 +46,7 @@ export const BookingForm = () => {
             className="space-y-9"
           >
             <fieldset className="grid gap-5 grid-cols-2">
-              <legend className="col-span-2 text-xl	font-serif mb-2 min-w-full">
-                Your details
-              </legend>
+              <p className="col-span-2 text-xl font-serif mb-2">Your details</p>
 
               <div className="max-sm:col-span-2">
                 <label htmlFor="firstName" className="sr-only">
@@ -105,9 +103,9 @@ export const BookingForm = () => {
             </fieldset>
 
             <fieldset className="grid gap-5 grid-cols-2">
-              <legend className="col-span-2 text-xl	font-serif mb-2 min-w-full">
+              <p className="col-span-2 text-xl font-serif mb-2">
                 Which space are you interested in?
-              </legend>
+              </p>
 
               <Select name="space" required>
                 <SelectTrigger className="col-span-2">
@@ -125,9 +123,9 @@ export const BookingForm = () => {
             </fieldset>
 
             <fieldset className="grid gap-5 grid-cols-2">
-              <legend className="col-span-2 text-xl	mb-2 font-serif min-w-full">
+              <p className="col-span-2 text-xl font-serif mb-2">
                 When would you like it?
-              </legend>
+              </p>
 
               <div className="col-span-2">
                 <label htmlFor="companyName" className="sr-only">
@@ -145,9 +143,9 @@ export const BookingForm = () => {
             </fieldset>
 
             <fieldset className="grid gap-5 grid-cols-2">
-              <legend className="col-span-2 text-xl	font-serif mb-2 min-w-full">
+              <p className="col-span-2 text-xl font-serif mb-2">
                 How long would you like the booking for?
-              </legend>
+              </p>
 
               <Select name="duration" required>
                 <SelectTrigger className="col-span-2">
@@ -162,9 +160,9 @@ export const BookingForm = () => {
             </fieldset>
 
             <fieldset className="grid gap-5 grid-cols-2">
-              <legend className="col-span-2 text-xl	font-serif mb-2 min-w-full">
+              <p className="col-span-2 text-xl font-serif mb-2">
                 Tell us about your brand and pop-up ideas.
-              </legend>
+              </p>
 
               <div className="col-span-2">
                 <label htmlFor="message" className="sr-only">
