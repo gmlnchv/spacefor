@@ -105,7 +105,19 @@ export const BookingForm = () => {
                 When would you like it?
               </legend>
 
-              {/* Date Picker */}
+              <div className="col-span-2">
+                <label htmlFor="companyName" className="sr-only">
+                  Date
+                </label>
+
+                <Input
+                  name="date"
+                  type="date"
+                  placeholder="DD/MM/YYYY"
+                  className="inline-block"
+                  required
+                />
+              </div>
             </fieldset>
 
             <fieldset className="grid gap-5 grid-cols-2">
