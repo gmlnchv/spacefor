@@ -24,6 +24,7 @@ const Hero = ({ title, description, image, callToAction }: HeroProps) => {
                 blurHash={image.asset.metadata.blurHash}
                 className="border border-white md:w-1/2 xl:w-auto z-10 relative"
                 alt={image.alt ?? ''}
+                priority
               />
 
               {/* Top */}
