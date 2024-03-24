@@ -1,5 +1,5 @@
 import { json, LoaderFunctionArgs } from '@remix-run/node';
-import { Link, useLoaderData } from '@remix-run/react';
+import { useLoaderData } from '@remix-run/react';
 import { MetaFunction } from '@vercel/remix';
 import { Layout, LayoutContent } from '~/layouts/layout.tsx';
 import { getSpacePage, SpotProps } from '~/queries/spaces.ts';
@@ -9,19 +9,13 @@ import { PortableText } from '@portabletext/react';
 import { Container } from '~/components/container.tsx';
 import { SpaceIcon } from '~/components/space-icon';
 import { SpecsIcon } from '~/components/specs-icon';
-import {
-  buttonVariants,
-  Popover,
-  PopoverArrow,
-  PopoverContent,
-  PopoverTrigger,
-} from 'ui';
+import { Popover, PopoverArrow, PopoverContent, PopoverTrigger } from 'ui';
 import { SpaceAdditionalImages } from '~/components/space-additional-images';
 import { AccordionList } from '~/components/accordion-list';
-import { cn } from 'ui/src';
 import { TestimonialList } from '~/components/testimonial-list';
 import { BookingBanner } from '~/components/booking-banner';
 import { getMetaTags } from '~/utils/meta-tags';
+import { BookingForm } from '~/components/booking-form';
 
 export const loader = async ({ params }: LoaderFunctionArgs) => {
   const { slug } = params;
@@ -95,16 +89,7 @@ export default function Space() {
                   <PortableText value={space.detailDescription} />
                 </div>
 
-                <Link
-                  to="/enquire"
-                  className={cn(
-                    buttonVariants({
-                      variant: 'inverse',
-                    })
-                  )}
-                >
-                  Enquire
-                </Link>
+                <BookingForm />
               </header>
 
               {space.image && (

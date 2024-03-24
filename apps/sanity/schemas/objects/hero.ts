@@ -34,10 +34,5 @@ export default defineType({
       ],
       validation: (Rule) => Rule.required(),
     }),
-    defineField({
-      name: 'callToAction',
-      title: 'Call to Action',
-      type: 'callToAction',
-    }),
   ],
 });

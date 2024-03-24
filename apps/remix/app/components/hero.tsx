@@ -1,7 +1,7 @@
 import { HeroProps } from '~/queries/hero';
 import { Image } from '~/components/image.tsx';
 import { Container } from '~/components/container.tsx';
-import { CallToAction } from './call-to-action';
+import { BookingForm } from './booking-form';
 
 const Hero = ({ title, description, image, callToAction }: HeroProps) => {
   return (
@@ -11,7 +11,7 @@ const Hero = ({ title, description, image, callToAction }: HeroProps) => {
           <header className="space-y-8 lg:space-y-14 text-balance md:w-1/2 xl:w-auto max-w-[660px]">
             <h1 className="text-5xl md:text-6xl xl:text-8xl">{title}</h1>
             <p className="text-balance">{description}</p>
-            {callToAction && <CallToAction {...callToAction} />}
+            <BookingForm />
           </header>
 
           {image && (
