@@ -1,0 +1,13 @@
+{
+  "redirects": [
+    { "source": "/spacefor-pavillion", "destination": "/spaces/the-pavillion", "statusCode": 301 },
+    { "source": "/spacefor-tyler-street", "destination": "/spaces/tyler-st", "statusCode": 301 },
+    { "source": "/journal", "destination": "/editorial", "statusCode": 301 },
+    { "source": "/journal/behind-the-brand-la-tribe", "destination": "/editorial/posts/emma-winter-of-la-tribe", "statusCode": 301 },
+    { "source": "/journal/behind-the-brand-moodi-blends", "destination": "/editorial/posts/kate-gatfield-jeffries-of-moodi", "statusCode": 301 },
+    { "source": "/journal/behind-the-brand-thom-morison", "destination": "/editorial/posts/behind-the-brand-thom-morison", "statusCode": 301 },
+    { "source": "/journal/behind-the-brand-videris-lingerie", "destination": "/editorial/posts/chloe-julian-of-videris-lingerie", "statusCode": 301 },
+    { "source": "/journal/behind-the-brand-porter-james-sports", "destination": "/editorial/posts/behind-the-brand-porter-james-sports", "statusCode": 301 },
+    { "source": "/journal/behind-the-brand-rebe", "destination": "/editorial/posts/behind-the-brand-rebe", "statusCode": 301 }
+  ]
+}
