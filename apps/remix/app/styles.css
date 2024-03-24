@@ -47,6 +47,14 @@
         @apply border-border;
     }
 
+    html {
+      scrollbar-gutter: stable;
+    }
+
+    body[style] {
+      margin: 0 auto !important;
+    }
+
     h1, h2, h3, h4, h5, h6 {
         @apply font-serif;
     }
