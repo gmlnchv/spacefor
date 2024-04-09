@@ -47,10 +47,6 @@
         @apply border-border;
     }
 
-    html {
-      scrollbar-gutter: stable;
-    }
-
     body[style] {
       margin: 0 auto !important;
     }
