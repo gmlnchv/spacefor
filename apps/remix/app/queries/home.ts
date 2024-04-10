@@ -41,7 +41,7 @@ const retailersQuery = q('*')
 
 const eventsQuery = q('*')
   .filterByType('event')
-  .order('start_date desc')
+  .order('end_date desc')
   .grab$(eventSelection);
 
 const testimonialsQuery = q('*')
