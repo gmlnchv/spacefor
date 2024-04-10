@@ -91,6 +91,21 @@ const ContactForm = () => {
           </div>
 
           <div className="col-span-2">
+            <Select name="referrer" required>
+              <SelectTrigger>
+                <SelectValue placeholder="How did you hear about us?" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="Another brand">Another brand</SelectItem>
+                <SelectItem value="Online search">Online search</SelectItem>
+                <SelectItem value="Social media">Social media</SelectItem>
+                <SelectItem value="Word of Mouth">Word of Mouth</SelectItem>
+                <SelectItem value="Press">Press</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+
+          <div className="col-span-2">
             <label htmlFor="message" className="sr-only">
               Message
             </label>

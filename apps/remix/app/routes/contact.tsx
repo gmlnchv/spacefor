@@ -17,6 +17,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
       <p>Email: ${formData.get('email')}</p>
       <p>Company Name: ${formData.get('companyName')}</p>
       <p>Reason: ${formData.get('reason')}</p>
+      <p>Referrer: ${formData.get('referrer')}</p>
       <p>Message: ${formData.get('message')}</p>
     `,
   });
