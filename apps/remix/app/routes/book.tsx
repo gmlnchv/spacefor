@@ -24,6 +24,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
       <p>Date: ${date}</p>
       <p>Duration: ${formData.get('duration')}</p>
       <p>Message: ${formData.get('message')}</p>
+      <p>Referrer: ${formData.get('referrer')}</p>
     `,
   });
 
