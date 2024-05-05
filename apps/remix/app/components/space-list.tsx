@@ -10,7 +10,10 @@ const SpaceList = ({ spaces }: SpaceListProps) => {
   return (
     <div className="flex max-md:flex-col max-md:divide-y border border-black md:divide-x divide-black">
       {spaces.map((space) => (
-        <div key={space._id} className="md:w-1/2 p-5 space-y-10 flex flex-col">
+        <div
+          key={space._id}
+          className="md:w-1/2 p-5 space-y-10 flex flex-col relative"
+        >
           <header className="flex flex-col flex-1">
             <div className="flex justify-between">
               <div className="space-y-3.5">
@@ -21,7 +24,7 @@ const SpaceList = ({ spaces }: SpaceListProps) => {
 
               <Link
                 to={space.slug}
-                className="underline text-sm underline-offset-2"
+                className="underline text-sm underline-offset-2 after:absolute after:inset-0"
               >
                 View
               </Link>
