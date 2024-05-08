@@ -29,7 +29,11 @@ export default defineType({
       type: 'image',
       validation: (Rule) => Rule.required(),
     }),
-    // add a toggle to show/hide the retailer
+    defineField({
+      name: 'url',
+      title: 'Website URL',
+      type: 'url',
+    }),
     defineField({
       name: 'isFeatured',
       title: 'Featured',
