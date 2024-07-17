@@ -9,6 +9,7 @@ export const retailerSelection = {
   image: sanityImage('image', {
     withAsset: ['base', 'blurHash', 'dimensions'],
   }),
+  url: q.string().nullable().default(null),
 } satisfies Selection;
 
 export type RetailerProps = TypeFromSelection<typeof retailerSelection>;
