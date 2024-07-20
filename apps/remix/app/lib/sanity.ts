@@ -3,7 +3,7 @@ import { makeSafeQueryRunner } from 'groqd';
 
 const client = createClient({
   projectId: 'tt57qu4m',
-  dataset: 'production',
+  dataset: 'development',
   apiVersion: '2021-03-25',
   useCdn: true,
   perspective: 'published',

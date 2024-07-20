@@ -34,7 +34,7 @@ export default defineConfig({
   title: 'Spacefor',
 
   projectId: 'tt57qu4m',
-  dataset: 'production',
+  dataset: 'development',
 
   schema: {
     types: [
