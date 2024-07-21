@@ -83,14 +83,18 @@ export default defineType({
     select: {
       title: 'retailer.title',
       subtitle: 'space.title',
+      is_coming_soon: 'is_coming_soon',
       start_date: 'start_date',
       end_date: 'end_date',
     },
     prepare(selection) {
-      const { title, subtitle, start_date, end_date } = selection;
+      const { title, subtitle, is_coming_soon, start_date, end_date } =
+        selection;
       return {
         title,
-        subtitle: `${subtitle} - ${start_date} - ${end_date}`,
+        subtitle: `${subtitle} - ${
+          is_coming_soon ? 'Coming Soon' : `${start_date} - ${end_date}`
+        }`,
       };
     },
   },
