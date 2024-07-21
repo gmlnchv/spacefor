@@ -22,24 +22,44 @@ interface EventListProps {
 
 const AnimatedTableRow = motion(TableRow);
 
+const useEventDates = ({
+  start_date,
+  end_date,
+  is_coming_soon,
+}: EventProps) => {
+  const parsedStartDate = start_date
+    ? parseISO(start_date.toString())
+    : new Date();
+  const parsedEndDate = end_date ? parseISO(end_date.toString()) : new Date();
+
+  const eventIsSameMonth = is_coming_soon
+    ? false
+    : isSameMonth(parsedStartDate, parsedEndDate);
+  const eventIsPast = is_coming_soon ? false : isPast(parsedEndDate);
+
+  const formattedDate = eventIsSameMonth
+    ? `${format(parsedStartDate, 'd')}\u2013${format(
+        parsedEndDate,
+        'd MMM yyyy'
+      )}`
+    : `${format(parsedStartDate, 'd MMM yyyy')}\u2013${format(
+        parsedEndDate,
+        'd MMM yyyy'
+      )}`;
+
+  const label = is_coming_soon
+    ? 'Coming Soon'
+    : eventIsPast
+    ? 'Finished'
+    : formattedDate;
+
+  return { formattedDate, eventIsSameMonth, eventIsPast, label };
+};
+
 const EventRow = React.forwardRef<HTMLTableRowElement, { event: EventProps }>(
   ({ event }, ref) => {
-    const { start_date, end_date, retailer, space } = event;
-    const parsedStartDate = parseISO(start_date.toString());
-    const parsedEndDate = parseISO(end_date.toString());
-
-    const eventIsSameMonth = isSameMonth(parsedStartDate, parsedEndDate);
-    const eventIsPast = isPast(parsedEndDate);
-
-    const formattedDate = eventIsSameMonth
-      ? `${format(parsedStartDate, 'd')}\u2013${format(
-          parsedEndDate,
-          'd MMM yyyy'
-        )}`
-      : `${format(parsedStartDate, 'd MMM yyyy')}\u2013${format(
-          parsedEndDate,
-          'd MMM yyyy'
-        )}`;
+    const { retailer, space } = event;
+    const { eventIsPast, label } = useEventDates(event);
 
     return (
       <AnimatedTableRow
@@ -53,9 +73,7 @@ const EventRow = React.forwardRef<HTMLTableRowElement, { event: EventProps }>(
           'border-white': !eventIsPast,
         })}
       >
-        <TableCell className="px-0 h-24 w-1/4">
-          {eventIsPast ? 'Finished' : formattedDate}
-        </TableCell>
+        <TableCell className="px-0 h-24 w-1/4">{label}</TableCell>
         <TableCell className="font-serif h-24 text-xl px-2">
           <div className="flex items-center gap-x-5">
             <Image
@@ -95,22 +113,8 @@ const EventRowNarrow = React.forwardRef<
   HTMLTableRowElement,
   { event: EventProps }
 >(({ event }, ref) => {
-  const { start_date, end_date, retailer, space } = event;
-  const parsedStartDate = parseISO(start_date.toString());
-  const parsedEndDate = parseISO(end_date.toString());
-
-  const eventIsSameMonth = isSameMonth(parsedStartDate, parsedEndDate);
-  const eventIsPast = isPast(parsedEndDate);
-
-  const formattedDate = eventIsSameMonth
-    ? `${format(parsedStartDate, 'd')}\u2013${format(
-        parsedEndDate,
-        'd MMM yyyy'
-      )}`
-    : `${format(parsedStartDate, 'd MMM yyyy')}\u2013${format(
-        parsedEndDate,
-        'd MMM yyyy'
-      )}`;
+  const { retailer, space } = event;
+  const { eventIsPast, label } = useEventDates(event);
 
   return (
     <AnimatedTableRow
@@ -125,7 +129,7 @@ const EventRowNarrow = React.forwardRef<
       })}
     >
       <TableCell className="px-0 py-3.5 space-y-4">
-        <p>{eventIsPast ? 'Finished' : formattedDate}</p>
+        {label}
         <p>{retailer.title}</p>
 
         <div className="flex items-center gap-x-2.5">
@@ -154,7 +158,7 @@ const EventList = ({ events }: EventListProps) => {
   return (
     <Container>
       {/* Wide */}
-      <Table className="max-sm:hidden">
+      <Table className="max-md:hidden">
         <TableHeader>
           <TableRow>
             <TableHead className="w-1/4 sr-only">Dates</TableHead>
