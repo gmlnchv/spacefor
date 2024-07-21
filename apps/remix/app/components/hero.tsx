@@ -3,9 +3,9 @@ import { Image } from '~/components/image.tsx';
 import { Container } from '~/components/container.tsx';
 import { BookingForm } from './booking-form';
 
-const Hero = ({ title, description, image, callToAction }: HeroProps) => {
+const Hero = ({ title, description, image }: HeroProps) => {
   return (
-    <section className="py-10 md:py-24 max-h-[875px]">
+    <section className="py-10 md:py-24 max-h-[875px] overflow-hidden">
       <Container>
         <div className="flex max-sm:flex-wrap items-center gap-x-4 gap-y-8 justify-between">
           <header className="space-y-8 lg:space-y-14 text-balance md:w-1/2 xl:w-auto max-w-[660px]">
