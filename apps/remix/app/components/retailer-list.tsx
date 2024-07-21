@@ -2,7 +2,6 @@ import { RetailerProps } from '~/queries/retailer.ts';
 import { Container } from '~/components/container.tsx';
 import { Image } from '@unpic/react';
 import { cn } from 'ui/src';
-import { ArrowUpRight } from '@phosphor-icons/react';
 
 interface RetailerListProps {
   retailers: RetailerProps[];
@@ -34,22 +33,6 @@ const RetailerList = ({ retailers }: RetailerListProps) => {
                             retailer.logo.asset.metadata.dimensions.height,
                       })}
                     />
-
-                    {/* URL */}
-                    {retailer.url && (
-                      <a
-                        href={retailer.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        tabIndex={-1}
-                        className="absolute z-10 right-2 top-2 rounded-sm p-0.5 bg-neutral-400/50 opacity-0 group-hover:opacity-100 duration-300 hover:bg-neutral-400/80"
-                      >
-                        <span className="sr-only">
-                          Visit {retailer.title} website
-                        </span>
-                        <ArrowUpRight weight="bold" />
-                      </a>
-                    )}
 
                     {/* Rollover image */}
                     <Image

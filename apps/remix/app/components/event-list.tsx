@@ -14,6 +14,7 @@ import { Container } from './container';
 import { cn } from 'ui';
 import { Image } from './image';
 import { SpaceIcon } from './space-icon';
+import { ArrowUpRight } from '@phosphor-icons/react';
 
 interface EventListProps {
   events: EventProps[];
@@ -64,7 +65,19 @@ const EventRow = React.forwardRef<HTMLTableRowElement, { event: EventProps }>(
               width={80}
               alt={retailer.title}
             />
-            {retailer.title}
+            {retailer.url ? (
+              <a
+                href={retailer.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1 decoration-1 decoration-transparent hover:decoration-current hover:underline underline-offset-4 transition-all"
+              >
+                {retailer.title}
+                <ArrowUpRight className="size-4 mt-0.5" />
+              </a>
+            ) : (
+              retailer.title
+            )}
           </div>
         </TableCell>
         <TableCell className="px-0 h-24 w-[120px]">
