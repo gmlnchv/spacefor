@@ -11,7 +11,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
   const date = format(String(formData.get('date')), 'dd/MM/yyyy');
 
   const { error } = await resend.emails.send({
-    from: 'Spacefor <spacefor@devbox.sbs>',
+    from: 'Spacefor <spacefor@chrctr.dev>',
     to: ['hello@spacefor.nz'],
     reply_to: formData.get('email') as string,
     subject: 'New booking form submission',
